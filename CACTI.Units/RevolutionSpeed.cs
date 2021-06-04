@@ -9,7 +9,7 @@ namespace CACTI.Units
 {
     public class RevolutionSpeed : UnitValue<RevolutionSpeedDimension, RevolutionSpeed>
     {
-        public RevolutionSpeed(double value, [NotNull] RevolutionSpeedDimension unit) : base(value, unit)
+        public RevolutionSpeed(double value, RevolutionSpeedDimension unit) : base(value, unit)
         {
         }
 

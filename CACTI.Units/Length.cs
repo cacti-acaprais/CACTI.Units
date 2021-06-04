@@ -9,7 +9,7 @@ namespace CACTI.Units
 {
     public class Length : UnitValue<LengthDimension, Length>
     {
-        public Length(double value, [NotNull] LengthDimension unit) : base(value, unit)
+        public Length(double value, LengthDimension unit) : base(value, unit)
         {
         }
 

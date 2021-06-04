@@ -9,7 +9,7 @@ namespace CACTI.Units
 {
     public class Surface : UnitValue<SurfaceDimension, Surface>
     {
-        public Surface(double value, [NotNull] SurfaceDimension unit) : base(value, unit)
+        public Surface(double value, SurfaceDimension unit) : base(value, unit)
         {
         }
 

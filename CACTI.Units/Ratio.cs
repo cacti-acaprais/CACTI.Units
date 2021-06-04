@@ -14,7 +14,7 @@ namespace CACTI.Units
             
         }
 
-        public Ratio(double value, [NotNull] RatioDimension unit) : base(value, unit)
+        public Ratio(double value, RatioDimension unit) : base(value, unit)
         {
         }
 

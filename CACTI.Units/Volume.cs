@@ -9,7 +9,7 @@ namespace CACTI.Units
 {
     public class Volume : UnitValue<VolumeDimension, Volume>
     {
-        public Volume(double value, [NotNull] VolumeDimension unit) : base(value, unit)
+        public Volume(double value, VolumeDimension unit) : base(value, unit)
         {
         }
 

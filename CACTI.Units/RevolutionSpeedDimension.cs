@@ -9,7 +9,7 @@ namespace CACTI.Units
 {
     public class RevolutionSpeedDimension : ComposedUnit<RevolutionDimension, DurationDimension>, IUnit<RevolutionSpeedDimension>
     {
-        public RevolutionSpeedDimension([NotNull] RevolutionDimension dimension, [NotNull] DurationDimension baseDimension) : base(dimension, baseDimension)
+        public RevolutionSpeedDimension(RevolutionDimension dimension, DurationDimension baseDimension) : base(dimension, baseDimension)
         {
         }
 

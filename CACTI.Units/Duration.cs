@@ -9,7 +9,7 @@ namespace CACTI.Units
 {
     public class Duration : UnitValue<DurationDimension, Duration>
     {
-        public Duration(double value, [NotNull] DurationDimension unit) : base(value, unit)
+        public Duration(double value, DurationDimension unit) : base(value, unit)
         {
         }
 

@@ -13,7 +13,7 @@ namespace CACTI.Units
     {
 
 
-        public ComposedUnit([NotNull] TDimension dimension, [NotNull] TBaseDimension baseDimension)
+        public ComposedUnit(TDimension dimension, TBaseDimension baseDimension)
         {
             Dimension = dimension;
             BaseDimension = baseDimension;

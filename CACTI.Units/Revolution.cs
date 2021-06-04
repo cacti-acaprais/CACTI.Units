@@ -14,7 +14,7 @@ namespace CACTI.Units
 
         }
 
-        public Revolution(double value, [NotNull] RevolutionDimension unit) : base(value, unit)
+        public Revolution(double value, RevolutionDimension unit) : base(value, unit)
         {
         }
 

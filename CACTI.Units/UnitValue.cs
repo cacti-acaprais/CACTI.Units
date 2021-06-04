@@ -12,7 +12,7 @@ namespace CACTI.Units
         protected static Func<double, double, double> Division { get; } = (val1, val2) => val1 / val2;
 
 
-        public UnitValue(double value, [NotNull] TDimension unit)
+        public UnitValue(double value, TDimension unit)
         {
             Value = value;
             Unit = unit ?? throw new ArgumentNullException(nameof(unit));
