@@ -30,5 +30,14 @@ namespace CACTI.Units
 
         public static Speed operator /(Speed speed, double value)
             => new Speed(speed.Value / value, speed.Unit);
+
+        public static Length operator *(Speed speed, Duration duration)
+        {
+            Duration convertedDuration = duration.Convert(speed.Unit.BaseDimension);
+            return new Length(speed.Value * convertedDuration.Value, speed.Unit.Dimension);
+        }
+
+        public static Acceleration operator /(Speed speed, Duration duration)
+            => new Acceleration(speed.Value / duration.Value, new AccelerationDimension(speed.Unit, duration.Unit));
     }
 }

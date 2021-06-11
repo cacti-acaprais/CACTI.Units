@@ -108,6 +108,10 @@ namespace UnitsTests
 
             int comparison = metersPerSecond.CompareTo(kilometerPerHour);
             Assert.AreEqual(0, comparison);
+
+            Length length = (KilometerPerHour)18 * (Minute)120;
+            Kilometer kilometer = Kilometer.Convert(length);
+            Assert.AreEqual(36, kilometer.Value);
         }
 
         [TestMethod]
@@ -129,6 +133,19 @@ namespace UnitsTests
 
             CubicMeter cubicMeter = length * witdth * height;
             Assert.AreEqual(12, cubicMeter.Value);
+        }
+
+        [TestMethod]
+        public void AccelerationTest()
+        {
+            KilometerPerHour kilometerPerHour = 100;
+            Second second = 5;
+
+            Acceleration acceleration = kilometerPerHour / second;
+            Assert.AreEqual(20, acceleration.Value);
+
+            MeterPerSecondPerSecond meterPerSecondPerSecond = MeterPerSecondPerSecond.Convert(acceleration);
+            Assert.AreEqual(5.555555555555555, meterPerSecondPerSecond.Value);
         }
     }
 }
