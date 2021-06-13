@@ -1,2 +1,2 @@
 # CACTI.Units
-Manage units
+Manage units with conversions and mathematical operations
