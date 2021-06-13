@@ -15,6 +15,9 @@ namespace CACTI.Units
         public static implicit operator MeterPerSecondPerSecond(double value)
             => new MeterPerSecondPerSecond(value);
 
+        public static implicit operator MeterPerSecondPerSecond(Gravity gravity)
+            => Convert(gravity);
+
         public static MeterPerSecondPerSecond Convert(Acceleration acceleration)
             => new MeterPerSecondPerSecond(acceleration.Unit.ConvertValue(acceleration.Value, AccelerationUnits.MeterPerSecondPerSecond));
     }

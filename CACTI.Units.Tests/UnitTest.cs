@@ -146,6 +146,11 @@ namespace UnitsTests
 
             MeterPerSecondPerSecond meterPerSecondPerSecond = MeterPerSecondPerSecond.Convert(acceleration);
             Assert.AreEqual(5.555555555555555, meterPerSecondPerSecond.Value);
+
+            Gravity gravity = acceleration;
+            Assert.AreEqual(0.5665090072099601, gravity.Value);
+
+            
         }
     }
 }
