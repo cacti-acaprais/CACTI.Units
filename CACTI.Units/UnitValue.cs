@@ -32,8 +32,11 @@ namespace CACTI.Units
             => $"{Value}{Unit.Symbol}";
 
         public bool Equals(TValue? other)
-            => other != null 
-            && other.Unit.GetBaseValue(other.Value) == Unit.GetBaseValue(Value);
+            => other != null
+            && (
+                (Unit.Equals(other.Unit) && Value.Equals(other.Value))
+                || (other.Unit.GetBaseValue(other.Value) == Unit.GetBaseValue(Value))
+            ); 
 
         public int CompareTo(TValue? other)
         {

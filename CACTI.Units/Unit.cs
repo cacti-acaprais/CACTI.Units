@@ -13,9 +13,19 @@ namespace CACTI.Units
         public abstract double Ratio { get; }
 
         public double ConvertValue(double value, TDimension unit)
-            => GetBaseValue(value) / unit.Ratio;
+        {
+            if (unit.Equals(this))
+                return value;
 
-        public double GetBaseValue(double value)
+            double baseValue = GetBaseValue(value);
+
+            return unit.FromBaseValue(baseValue);
+        }
+
+        public virtual double FromBaseValue(double value)
+            => value / Ratio;
+        
+        public virtual double GetBaseValue(double value)
             => value * Ratio;
     }
 }

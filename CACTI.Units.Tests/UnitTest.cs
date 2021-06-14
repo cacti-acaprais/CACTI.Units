@@ -1,7 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CACTI.Units;
 
-namespace UnitsTests
+namespace CACTI.Units.Tests
 {
     [TestClass]
     public class UnitTest
@@ -150,7 +150,51 @@ namespace UnitsTests
             Gravity gravity = acceleration;
             Assert.AreEqual(0.5665090072099601, gravity.Value);
 
-            
+            Newton newton = 100;
+            Kilogram kilogram = 20;
+
+            MeterPerSecondPerSecond meterPerSecondPerSecond1 = newton / kilogram;
+            Assert.AreEqual(5, meterPerSecondPerSecond1);
+        }
+
+        [TestMethod]
+        public void ForceTest()
+        {
+            MeterPerSecondPerSecond acceleration = 5;
+            Kilogram mass = 20;
+            Newton newton = acceleration * mass;
+
+            Assert.AreEqual(100, newton);
+
+            Dyn dyn = Dyn.Convert(newton);
+            Assert.AreEqual(1e7d, dyn);
+
+            KilogramForce kilogramForce = 1;
+            Assert.AreEqual(9.80665, Newton.Convert(kilogramForce));
+        }
+
+        [TestMethod]
+        public void MassTest()
+        {
+            Kilogram kilogram = 1;
+            Gram gram = Gram.Convert(kilogram);
+
+            Assert.AreEqual(1000, gram);
+
+            Mass mass = kilogram * 2;
+            Ratio ratio = kilogram / mass;
+            Assert.AreEqual(0.5, ratio);
+        }
+
+        [TestMethod]
+        public void TemperatureTest()
+        {
+            Celcius celcius = 10;
+            Kelvin kelvin = Kelvin.Convert(celcius);
+            Assert.AreEqual(283.15, kelvin);
+
+            Farenheight farenheight = Farenheight.Convert(kelvin);
+            Assert.AreEqual(50, farenheight);
         }
     }
 }

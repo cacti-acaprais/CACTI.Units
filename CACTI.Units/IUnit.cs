@@ -12,5 +12,6 @@ namespace CACTI.Units
         public string Symbol { get; }
         public double ConvertValue(double value, TDimension unit);
         public double GetBaseValue(double value);
+        public double FromBaseValue(double value);
     }
 }
