@@ -4,6 +4,13 @@
     <TargetFramework>netstandard2.1</TargetFramework>
 	<Nullable>enable</Nullable>
 	<WarningsAsErrors>nullable</WarningsAsErrors>
+	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	<Authors>Alexandre Caprais</Authors>
+	<Company>CACTI</Company>
+	<Description>Manage conversions and operations on units.</Description>
+	<RepositoryUrl>https://github.com/cacti-acaprais/CACTI.Units</RepositoryUrl>
+	<PackageTags></PackageTags>
+	<PackageProjectUrl>https://github.com/cacti-acaprais/CACTI.Units</PackageProjectUrl>
   </PropertyGroup>
 
 </Project>
