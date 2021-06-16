@@ -24,21 +24,21 @@ namespace CACTI.Units
         public override int GetHashCode()
             => HashCode.Combine(Unit.GetBaseValue(Value));
 
-        public override bool Equals(object? obj)
+        public override bool Equals(object obj)
             => obj is TValue other
             && Equals(other);
 
         public override string ToString()
             => $"{Value}{Unit.Symbol}";
 
-        public bool Equals(TValue? other)
+        public bool Equals(TValue other)
             => other != null
             && (
                 (Unit.Equals(other.Unit) && Value.Equals(other.Value))
                 || (other.Unit.GetBaseValue(other.Value) == Unit.GetBaseValue(Value))
             ); 
 
-        public int CompareTo(TValue? other)
+        public int CompareTo(TValue other)
         {
             if (other == null)
                 return 1;

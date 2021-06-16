@@ -14,6 +14,9 @@ namespace CACTI.Units
 
         public ComposedUnit(TDimension dimension, TBaseDimension baseDimension)
         {
+            if (dimension == null) throw new ArgumentNullException(nameof(dimension));
+            if (baseDimension == null) throw new ArgumentNullException(nameof(baseDimension));
+
             Dimension = dimension;
             BaseDimension = baseDimension;
 

@@ -14,6 +14,8 @@ namespace CACTI.Units
 
         public double ConvertValue(double value, TDimension unit)
         {
+            if (unit == null) throw new ArgumentNullException(nameof(unit));
+
             if (unit.Equals(this))
                 return value;
 
