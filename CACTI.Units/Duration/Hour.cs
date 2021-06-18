@@ -9,7 +9,7 @@ namespace CACTI.Units
 {
     public class Hour : Duration
     {
-        public Hour(double value) : base(value, DurationUnits.Hour)
+        public Hour(double value) : base(value, DurationDimension.Hour)
         {
         }
 
@@ -17,6 +17,6 @@ namespace CACTI.Units
             => new Hour(value);
 
         public static Hour Convert(Duration duration)
-            => new Hour(duration.Unit.ConvertValue(duration.Value, DurationUnits.Hour));
+            => new Hour(duration.Unit.ConvertValue(duration.Value, DurationDimension.Hour));
     }
 }

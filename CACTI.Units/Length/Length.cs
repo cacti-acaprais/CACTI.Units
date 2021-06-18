@@ -34,12 +34,11 @@ namespace CACTI.Units
         public static Speed operator /(Length length, Duration duration)
             => new Speed(length.Value / duration.Value, new SpeedDimension(length.Unit, duration.Unit));
 
-        public static SquareMeter operator *(Length heigh, Length width)
+        public static Surface operator *(Length heigh, Length width)
         {
-            Meter heightMeter = Meter.Convert(heigh);
-            Meter withMeter = Meter.Convert(width);
+            Length convertedWith = width.Convert(heigh.Unit);
 
-            return new SquareMeter(heightMeter.Value * withMeter.Value);
+            return new Surface(heigh.Value * convertedWith.Value, new SurfaceDimension(heigh.Unit));
         }
     }
 }

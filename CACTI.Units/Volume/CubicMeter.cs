@@ -9,7 +9,7 @@ namespace CACTI.Units
 {
     public class CubicMeter : Volume
     {
-        public CubicMeter(double value) : base(value, VolumeUnits.CubicMeter)
+        public CubicMeter(double value) : base(value, VolumeDimension.CubicMeter)
         {
         }
 
@@ -17,6 +17,6 @@ namespace CACTI.Units
             => new CubicMeter(value);
 
         public static CubicMeter Convert(Volume volume)
-            => new CubicMeter(volume.Unit.ConvertValue(volume.Value, VolumeUnits.CubicMeter));
+            => new CubicMeter(volume.Unit.ConvertValue(volume.Value, VolumeDimension.CubicMeter));
     }
 }

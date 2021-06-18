@@ -8,7 +8,7 @@ namespace CACTI.Units
 {
     public class KilogramForce : Force
     {
-        public KilogramForce(double value) : base(value, ForceUnits.KilogramForce)
+        public KilogramForce(double value) : base(value, ForceDimension.KilogramForce)
         {
         }
 
@@ -16,6 +16,6 @@ namespace CACTI.Units
             => new KilogramForce(value);
 
         public static KilogramForce Convert(Force force)
-            => new KilogramForce(force.Unit.ConvertValue(force.Value, ForceUnits.KilogramForce));
+            => new KilogramForce(force.Unit.ConvertValue(force.Value, ForceDimension.KilogramForce));
     }
 }

@@ -9,7 +9,7 @@ namespace CACTI.Units
 {
     public class Minute : Duration
     {
-        public Minute(double value) : base(value, DurationUnits.Minute)
+        public Minute(double value) : base(value, DurationDimension.Minute)
         {
         }
 
@@ -17,6 +17,6 @@ namespace CACTI.Units
             => new Minute(value);
 
         public static Minute Convert(Duration duration)
-            => new Minute(duration.Unit.ConvertValue(duration.Value, DurationUnits.Minute));
+            => new Minute(duration.Unit.ConvertValue(duration.Value, DurationDimension.Minute));
     }
 }

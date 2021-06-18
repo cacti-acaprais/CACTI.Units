@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace CACTI.Units
 {
-    public abstract class RevolutionDimension : Unit<RevolutionDimension>
+    public class RevolutionDimension : Unit<RevolutionDimension>
     {
+        public RevolutionDimension(string symbol, double ratio) : base(symbol, ratio)
+        {
+        }
+
+        public static RevolutionDimension Revolution { get; } = new RevolutionDimension("r", 1);
+
+        public static RevolutionDimension[] Units { get; } = new RevolutionDimension[]
+        {
+            Revolution
+        };
     }
 }

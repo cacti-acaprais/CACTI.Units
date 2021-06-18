@@ -8,7 +8,7 @@ namespace CACTI.Units
 {
     public class Celcius : Temperature
     {
-        public Celcius(double value) : base(value, TemperatureUnits.Celcius)
+        public Celcius(double value) : base(value, TemperatureDimension.Celcius)
         {
         }
 
@@ -16,6 +16,6 @@ namespace CACTI.Units
             => new Celcius(value);
 
         public static Celcius Convert(Temperature temperature)
-            => new Celcius(temperature.Unit.ConvertValue(temperature.Value, TemperatureUnits.Celcius));
+            => new Celcius(temperature.Unit.ConvertValue(temperature.Value, TemperatureDimension.Celcius));
     }
 }

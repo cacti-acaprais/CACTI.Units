@@ -9,7 +9,7 @@ namespace CACTI.Units
 {
     public class Second : Duration
     {
-        public Second(double value) : base(value, DurationUnits.Second)
+        public Second(double value) : base(value, DurationDimension.Second)
         {
         }
 
@@ -17,6 +17,6 @@ namespace CACTI.Units
             => new Second(value);
 
         public static Second Convert(Duration duration)
-            => new Second(duration.Unit.ConvertValue(duration.Value, DurationUnits.Second));
+            => new Second(duration.Unit.ConvertValue(duration.Value, DurationDimension.Second));
     }
 }

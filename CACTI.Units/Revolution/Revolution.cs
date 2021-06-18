@@ -9,7 +9,7 @@ namespace CACTI.Units
 {
     public class Revolution : UnitValue<RevolutionDimension, Revolution>
     {
-        public Revolution(double value) : this(value, RevolutionUnits.Revolution)
+        public Revolution(double value) : this(value, RevolutionDimension.Revolution)
         {
 
         }
@@ -22,7 +22,7 @@ namespace CACTI.Units
              => new Revolution(Unit.ConvertValue(Value, unit), unit);
 
         public static Revolution Convert(Revolution revolution)
-            => new Revolution(revolution.Unit.ConvertValue(revolution.Value, RevolutionUnits.Revolution));
+            => new Revolution(revolution.Unit.ConvertValue(revolution.Value, RevolutionDimension.Revolution));
 
         public static implicit operator Revolution(double value)
             => new Revolution(value);

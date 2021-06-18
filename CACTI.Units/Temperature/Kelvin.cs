@@ -8,7 +8,7 @@ namespace CACTI.Units
 {
     public class Kelvin : Temperature
     {
-        public Kelvin(double value) : base(value, TemperatureUnits.Kelvin)
+        public Kelvin(double value) : base(value, TemperatureDimension.Kelvin)
         {
         }
 
@@ -16,6 +16,6 @@ namespace CACTI.Units
             => new Kelvin(value);
 
         public static Kelvin Convert(Temperature temperature)
-            => new Kelvin(temperature.Unit.ConvertValue(temperature.Value, TemperatureUnits.Kelvin));
+            => new Kelvin(temperature.Unit.ConvertValue(temperature.Value, TemperatureDimension.Kelvin));
     }
 }

@@ -9,7 +9,7 @@ namespace CACTI.Units
 {
     public class SquareMeter : Surface
     {
-        public SquareMeter(double value) : base(value, SurfaceUnits.SquareMeter)
+        public SquareMeter(double value) : base(value, SurfaceDimension.SquareMeter)
         {
         }
 
@@ -17,6 +17,6 @@ namespace CACTI.Units
             => new SquareMeter(value);
 
         public static SquareMeter Convert(Surface surface)
-            => new SquareMeter(surface.Unit.ConvertValue(surface.Value, SurfaceUnits.SquareMeter));
+            => new SquareMeter(surface.Unit.ConvertValue(surface.Value, SurfaceDimension.SquareMeter));
     }
 }

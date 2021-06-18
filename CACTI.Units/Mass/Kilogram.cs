@@ -8,7 +8,7 @@ namespace CACTI.Units
 {
     public class Kilogram : Mass
     {
-        public Kilogram(double value) : base(value, MassUnits.Kilogram)
+        public Kilogram(double value) : base(value, MassDimension.Kilogram)
         {
         }
 
@@ -16,6 +16,6 @@ namespace CACTI.Units
             => new Kilogram(value);
 
         public static Kilogram Convert(Mass mass)
-            => new Kilogram(mass.Unit.ConvertValue(mass.Value, MassUnits.Kilogram));
+            => new Kilogram(mass.Unit.ConvertValue(mass.Value, MassDimension.Kilogram));
     }
 }

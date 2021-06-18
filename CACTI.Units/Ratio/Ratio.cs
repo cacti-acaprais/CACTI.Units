@@ -9,7 +9,7 @@ namespace CACTI.Units
 {
     public class Ratio : UnitValue<RatioDimension, Ratio>
     {
-        public Ratio(double value) : this(value, RatioUnits.Ratio)
+        public Ratio(double value) : this(value, RatioDimension.RatioUnit)
         {
             
         }
@@ -25,6 +25,6 @@ namespace CACTI.Units
             => new Ratio(value);
 
         public static Ratio Convert(Ratio ratio)
-            => new Ratio(ratio.Unit.ConvertValue(ratio.Value, RatioUnits.Ratio));
+            => new Ratio(ratio.Unit.ConvertValue(ratio.Value, RatioDimension.RatioUnit));
     }
 }

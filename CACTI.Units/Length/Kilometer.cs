@@ -9,7 +9,7 @@ namespace CACTI.Units
 {
     public class Kilometer : Length
     {
-        public Kilometer(double value) : base(value, LengthUnits.Kilometer)
+        public Kilometer(double value) : base(value, LengthDimension.Kilometer)
         {
         }
 
@@ -17,6 +17,6 @@ namespace CACTI.Units
             => new Kilometer(value);
 
         public static Kilometer Convert(Length length)
-            => new Kilometer(length.Unit.ConvertValue(length.Value, LengthUnits.Kilometer));
+            => new Kilometer(length.Unit.ConvertValue(length.Value, LengthDimension.Kilometer));
     }
 }

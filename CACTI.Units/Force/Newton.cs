@@ -8,7 +8,7 @@ namespace CACTI.Units
 {
     public class Newton : Force
     {
-        public Newton(double value) : base(value, ForceUnits.Newton)
+        public Newton(double value) : base(value, ForceDimension.Newton)
         {
         }
 
@@ -16,6 +16,6 @@ namespace CACTI.Units
             => new Newton(value);
 
         public static Newton Convert(Force force)
-            => new Newton(force.Unit.ConvertValue(force.Value, ForceUnits.Newton));
+            => new Newton(force.Unit.ConvertValue(force.Value, ForceDimension.Newton));
     }
 }

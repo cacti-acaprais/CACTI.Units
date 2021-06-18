@@ -8,7 +8,7 @@ namespace CACTI.Units
 {
     public class Farenheight : Temperature
     {
-        public Farenheight(double value) : base(value, TemperatureUnits.Farenheight)
+        public Farenheight(double value) : base(value, TemperatureDimension.Farenheight)
         {
         }
 
@@ -16,6 +16,6 @@ namespace CACTI.Units
             => new Farenheight(value);
 
         public static Farenheight Convert(Temperature temperature)
-            => new Farenheight(temperature.Unit.ConvertValue(temperature.Value, TemperatureUnits.Farenheight));
+            => new Farenheight(temperature.Unit.ConvertValue(temperature.Value, TemperatureDimension.Farenheight));
     }
 }

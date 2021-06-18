@@ -13,4 +13,8 @@
 	<PackageProjectUrl>https://github.com/cacti-acaprais/CACTI.Units</PackageProjectUrl>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Current\" />
+  </ItemGroup>
+
 </Project>

@@ -9,7 +9,7 @@ namespace CACTI.Units
 {
     public class Millimeter : Length
     {
-        public Millimeter(double value) : base(value, LengthUnits.Millimeter)
+        public Millimeter(double value) : base(value, LengthDimension.Millimeter)
         {
         }
 
@@ -17,6 +17,6 @@ namespace CACTI.Units
             => new Millimeter(value);
 
         public static Millimeter Convert(Length length)
-            => new Millimeter(length.Unit.ConvertValue(length.Value, LengthUnits.Millimeter));
+            => new Millimeter(length.Unit.ConvertValue(length.Value, LengthDimension.Millimeter));
     }
 }

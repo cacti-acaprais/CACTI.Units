@@ -8,7 +8,7 @@ namespace CACTI.Units
 {
     public class Percent : Ratio
     {
-        public Percent(double value) : base(value, RatioUnits.Percent)
+        public Percent(double value) : base(value, RatioDimension.Percent)
         {
         }
 
@@ -16,6 +16,6 @@ namespace CACTI.Units
             => new Percent(value);
 
         public static new Percent Convert(Ratio ratio)
-            => new Percent(ratio.Unit.ConvertValue(ratio.Value, RatioUnits.Percent));
+            => new Percent(ratio.Unit.ConvertValue(ratio.Value, RatioDimension.Percent));
     }
 }

@@ -9,7 +9,7 @@ namespace CACTI.Units
 {
     public class Meter : Length
     {
-        public Meter(double value) : base(value, LengthUnits.Meter)
+        public Meter(double value) : base(value, LengthDimension.Meter)
         {
         }
 
@@ -17,6 +17,6 @@ namespace CACTI.Units
             => new Meter(value);
 
         public static Meter Convert(Length length)
-            => new Meter(length.Unit.ConvertValue(length.Value, LengthUnits.Meter));
+            => new Meter(length.Unit.ConvertValue(length.Value, LengthDimension.Meter));
     }
 }

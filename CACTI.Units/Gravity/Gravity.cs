@@ -8,7 +8,7 @@ namespace CACTI.Units
 {
     public class Gravity : UnitValue<GravityDimension, Gravity>
     {
-        public Gravity(double value) : base(value, GravityUnits.Gravity)
+        public Gravity(double value) : base(value, GravityDimension.Gravity)
         {
 
         }
@@ -26,11 +26,9 @@ namespace CACTI.Units
         public static Gravity Convert(Acceleration acceleration)
         {
             MeterPerSecondPerSecond meterPerSecondPerSecond = MeterPerSecondPerSecond.Convert(acceleration);
-            return meterPerSecondPerSecond.Value / ForceUnits.KilogramForce.Ratio;
+            double gravityValue = meterPerSecondPerSecond.Value / ForceDimension.KilogramForce.Ratio;
+            return gravityValue;
         }
-
-        public static implicit operator Gravity(Acceleration acceleration)
-            => Convert(acceleration);
 
         public static Ratio operator /(Gravity gravity1, Gravity gravity2)
             => new Ratio(Operation(gravity1, gravity2, Division));

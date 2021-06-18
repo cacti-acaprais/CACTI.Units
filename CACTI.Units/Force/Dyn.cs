@@ -8,7 +8,7 @@ namespace CACTI.Units
 {
     public class Dyn : Force
     {
-        public Dyn(double value) : base(value, ForceUnits.Dyn)
+        public Dyn(double value) : base(value, ForceDimension.Dyn)
         {
         }
 
@@ -16,6 +16,6 @@ namespace CACTI.Units
             => new Dyn(value);
 
         public static Dyn Convert(Force force)
-            => new Dyn(force.Unit.ConvertValue(force.Value, ForceUnits.Dyn));
+            => new Dyn(force.Unit.ConvertValue(force.Value, ForceDimension.Dyn));
     }
 }

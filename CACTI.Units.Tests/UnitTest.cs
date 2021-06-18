@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CACTI.Units;
+using System;
 
 namespace CACTI.Units.Tests
 {
@@ -9,7 +10,7 @@ namespace CACTI.Units.Tests
         [TestMethod]
         public void TestLength()
         {
-            Length length = new Length(10, LengthUnits.Meter);
+            Length length = new Length(10, LengthDimension.Meter);
             Assert.AreEqual(10, length.Value);
 
             Meter meters = 1;
@@ -120,8 +121,11 @@ namespace CACTI.Units.Tests
             Meter length = 2;
             Meter witdth = 3;
 
-            SquareMeter squareMeter = length * witdth;
+            Surface squareMeter = length * witdth;
             Assert.AreEqual(6, squareMeter.Value);
+
+            SquareCentimeter squareCentimeter = SquareCentimeter.Convert(squareMeter);
+            Assert.AreEqual(60000, squareCentimeter);
         }
 
         [TestMethod]
@@ -133,6 +137,9 @@ namespace CACTI.Units.Tests
 
             CubicMeter cubicMeter = length * witdth * height;
             Assert.AreEqual(12, cubicMeter.Value);
+
+            CubicCentimeter cubicCentimeter = CubicCentimeter.Convert(cubicMeter);
+            Assert.AreEqual(1.2e+7, cubicCentimeter.Value, 0.000001);
         }
 
         [TestMethod]
@@ -145,10 +152,10 @@ namespace CACTI.Units.Tests
             Assert.AreEqual(20, acceleration.Value);
 
             MeterPerSecondPerSecond meterPerSecondPerSecond = MeterPerSecondPerSecond.Convert(acceleration);
-            Assert.AreEqual(5.555555555555555, meterPerSecondPerSecond.Value);
+            Assert.AreEqual(5.556, meterPerSecondPerSecond.Value, 0.001);
 
-            Gravity gravity = acceleration;
-            Assert.AreEqual(0.5665090072099601, gravity.Value);
+            Gravity gravity = Gravity.Convert(acceleration);
+            Assert.AreEqual(0.566, gravity.Value, 0.001);
 
             Newton newton = 100;
             Kilogram kilogram = 20;
@@ -160,17 +167,25 @@ namespace CACTI.Units.Tests
         [TestMethod]
         public void ForceTest()
         {
-            MeterPerSecondPerSecond acceleration = 5;
-            Kilogram mass = 20;
-            Newton newton = acceleration * mass;
+            try
+            {
+                MeterPerSecondPerSecond acceleration = 5;
+                Kilogram mass = 20;
+                Newton newton = acceleration * mass;
 
-            Assert.AreEqual(100, newton);
+                Assert.AreEqual(100, newton);
 
-            Dyn dyn = Dyn.Convert(newton);
-            Assert.AreEqual(1e7d, dyn);
+                Dyn dyn = Dyn.Convert(newton);
+                Assert.AreEqual(1e7d, dyn);
 
-            KilogramForce kilogramForce = 1;
-            Assert.AreEqual(9.80665, Newton.Convert(kilogramForce));
+                KilogramForce kilogramForce = 1;
+                Assert.AreEqual(9.80665, Newton.Convert(kilogramForce));
+            }
+            catch(Exception exception)
+            {
+                var a = exception;
+            }
+            
         }
 
         [TestMethod]

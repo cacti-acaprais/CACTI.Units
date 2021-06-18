@@ -9,7 +9,7 @@ namespace CACTI.Units
 {
     public class KilometerPerHour : Speed
     {
-        public KilometerPerHour(double value) : base(value, SpeedUnits.KilometerPerHour)
+        public KilometerPerHour(double value) : base(value, SpeedDimension.KilometerPerHour)
         {
         }
 
@@ -17,6 +17,6 @@ namespace CACTI.Units
             => new KilometerPerHour(value);
 
         public static KilometerPerHour Convert(Speed speed)
-            => new KilometerPerHour(speed.Unit.ConvertValue(speed.Value, SpeedUnits.KilometerPerHour));
+            => new KilometerPerHour(speed.Unit.ConvertValue(speed.Value, SpeedDimension.KilometerPerHour));
     }
 }

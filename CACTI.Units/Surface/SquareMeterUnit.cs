@@ -10,8 +10,10 @@ namespace CACTI.Units
     {
         public static SquareMeterUnit Unit { get; } = new SquareMeterUnit();
 
-        public override string Symbol => "m²";
+        public SquareMeterUnit() : base(LengthDimension.Meter)
+        {
+        }
 
-        public override double Ratio => 1;
+        
     }
 }

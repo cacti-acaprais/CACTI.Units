@@ -9,7 +9,7 @@ namespace CACTI.Units
 {
     public class RevolutionPerMinute : RevolutionSpeed
     {
-        public RevolutionPerMinute(double value) : base(value, RevolutionSpeedUnits.RevolutionPerMinute)
+        public RevolutionPerMinute(double value) : base(value, RevolutionSpeedDimension.RevolutionPerMinute)
         {
         }
 
@@ -17,6 +17,6 @@ namespace CACTI.Units
             => new RevolutionPerMinute(value);
 
         public static RevolutionPerMinute Convert(RevolutionSpeed speed)
-            => new RevolutionPerMinute(speed.Unit.ConvertValue(speed.Value, RevolutionSpeedUnits.RevolutionPerMinute));
+            => new RevolutionPerMinute(speed.Unit.ConvertValue(speed.Value, RevolutionSpeedDimension.RevolutionPerMinute));
     }
 }

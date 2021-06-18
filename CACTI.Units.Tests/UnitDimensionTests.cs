@@ -13,13 +13,12 @@ namespace CACTI.Units.Tests
         [TestMethod]
         public void SpeedDimensionTest()
         {
-            SpeedUnits speedUnits = new SpeedUnits(new LengthUnits(), new DurationUnits());
-
+            
             MeterPerSecond meterPerSecond = 10;
 
             Speed speed = meterPerSecond.Convert(meterPerSecond.Unit);
 
-            foreach(SpeedDimension speedDimension in speedUnits.Units)
+            foreach(SpeedDimension speedDimension in SpeedDimension.Units)
             {
                  speed = speed.Convert(speedDimension);
             }
@@ -32,13 +31,11 @@ namespace CACTI.Units.Tests
         [TestMethod]
         public void AccelerationDimensionTest()
         {
-            AccelerationUnits accelerationUnits = new AccelerationUnits(new SpeedUnits(new LengthUnits(), new DurationUnits()), new DurationUnits());
-
             MeterPerSecondPerSecond meterPerSecondPerSecond = 10;
 
             Acceleration acceleration = meterPerSecondPerSecond.Convert(meterPerSecondPerSecond.Unit);
 
-            foreach (AccelerationDimension accelerationDimension in accelerationUnits.Units)
+            foreach (AccelerationDimension accelerationDimension in AccelerationDimension.Units)
             {
                 acceleration = acceleration.Convert(accelerationDimension);
             }

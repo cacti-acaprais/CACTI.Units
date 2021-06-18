@@ -9,7 +9,7 @@ namespace CACTI.Units
 {
     public class MeterPerSecond : Speed
     {
-        public MeterPerSecond(double value) : base(value, SpeedUnits.MeterPerSecond)
+        public MeterPerSecond(double value) : base(value, SpeedDimension.MeterPerSecond)
         {
         }
 
@@ -17,6 +17,6 @@ namespace CACTI.Units
             => new MeterPerSecond(value);
 
         public static MeterPerSecond Convert(Speed speed)
-            => new MeterPerSecond(speed.Unit.ConvertValue(speed.Value, SpeedUnits.MeterPerSecond));
+            => new MeterPerSecond(speed.Unit.ConvertValue(speed.Value, SpeedDimension.MeterPerSecond));
     }
 }

@@ -8,7 +8,7 @@ namespace CACTI.Units
 {
     public class Gram : Mass
     {
-        public Gram(double value) : base(value, MassUnits.Gram)
+        public Gram(double value) : base(value, MassDimension.Gram)
         {
         }
 
@@ -16,6 +16,6 @@ namespace CACTI.Units
             => new Gram(value);
 
         public static Gram Convert(Mass mass)
-            => new Gram(mass.Unit.ConvertValue(mass.Value, MassUnits.Gram));
+            => new Gram(mass.Unit.ConvertValue(mass.Value, MassDimension.Gram));
     }
 }
