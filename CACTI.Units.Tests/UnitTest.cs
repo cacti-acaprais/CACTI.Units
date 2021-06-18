@@ -86,7 +86,7 @@ namespace CACTI.Units.Tests
         public void TestRevolutionMath()
         {
             RevolutionPerMinute revolutionPerMinute = 10;
-            
+
         }
 
         [TestMethod]
@@ -167,25 +167,17 @@ namespace CACTI.Units.Tests
         [TestMethod]
         public void ForceTest()
         {
-            try
-            {
-                MeterPerSecondPerSecond acceleration = 5;
-                Kilogram mass = 20;
-                Newton newton = acceleration * mass;
+            MeterPerSecondPerSecond acceleration = 5;
+            Kilogram mass = 20;
+            Newton newton = acceleration * mass;
 
-                Assert.AreEqual(100, newton);
+            Assert.AreEqual(100, newton);
 
-                Dyn dyn = Dyn.Convert(newton);
-                Assert.AreEqual(1e7d, dyn);
+            Dyn dyn = Dyn.Convert(newton);
+            Assert.AreEqual(1e7d, dyn);
 
-                KilogramForce kilogramForce = 1;
-                Assert.AreEqual(9.80665, Newton.Convert(kilogramForce));
-            }
-            catch(Exception exception)
-            {
-                var a = exception;
-            }
-            
+            KilogramForce kilogramForce = 1;
+            Assert.AreEqual(9.80665, Newton.Convert(kilogramForce));
         }
 
         [TestMethod]
