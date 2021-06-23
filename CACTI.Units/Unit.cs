@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,7 @@ namespace CACTI.Units
             Symbol = symbol ?? throw new ArgumentNullException(nameof(symbol));
         }
 
+        
         public string Symbol { get; }
         public double Ratio { get; }
         public double Offset { get; }

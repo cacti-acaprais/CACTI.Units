@@ -17,7 +17,7 @@ namespace CACTI.Units
 
         public static VolumeDimension CubicMeter { get; } = new VolumeDimension(LengthDimension.Meter);
         public static VolumeDimension CubicCentimeter { get; } = new VolumeDimension(LengthDimension.Centimeter);
-
+        //public static VolumeDimension Liter { get; } = new VolumeDimension(LengthDimension.Meter);
 
         private static readonly Lazy<VolumeDimension[]> _lazyUnits = new Lazy<VolumeDimension[]>(() => ComputeUnits(LengthDimension.Units).ToArray());
         public static VolumeDimension[] Units => _lazyUnits.Value;

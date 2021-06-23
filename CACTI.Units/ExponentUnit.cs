@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CACTI.Units
 {
-    public class ExponentUnit<TDimension> : IExponentUnit<TDimension>
+    public abstract class ExponentUnit<TDimension> : IExponentUnit<TDimension>
         where TDimension : Unit<TDimension>, IUnit<TDimension>
     {
         public ExponentUnit(TDimension dimension, int exponent)

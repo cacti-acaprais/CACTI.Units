@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 
 namespace CACTI.Units
 {
@@ -29,7 +30,16 @@ namespace CACTI.Units
             && Equals(other);
 
         public override string ToString()
-            => $"{Value}{Unit.Symbol}";
+            => ToString(null, null);
+
+        public string ToString(string format)
+            => ToString(format, null);
+
+        public string ToString(IFormatProvider formatProvider)
+            => ToString(null, formatProvider);
+
+        public string ToString(string? format, IFormatProvider? formatProvider)
+            => $"{Value.ToString(format, formatProvider)} {Unit.Symbol}";
 
         public bool Equals(TValue other)
             => other != null

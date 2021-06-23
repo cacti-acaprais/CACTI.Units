@@ -16,11 +16,14 @@ namespace CACTI.Units
         public static DurationDimension Minute { get; } = new DurationDimension("m", 60);
         public static DurationDimension Hour { get; } = new DurationDimension("h", 3600);
 
-        public static DurationDimension[] Units { get; } = new DurationDimension[]
-        {
-            Second,
-            Minute,
-            Hour
-        };
+        public static IEnumerable<DurationDimension> Units 
+        { 
+            get
+            {
+                yield return Second;
+                yield return Minute;
+                yield return Hour;
+            }
+        }
     }
 }
