@@ -2,6 +2,7 @@
 using CACTI.Units.Masses;
 using CACTI.Units.Ratios;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace CACTI.Units.Forces
 {
@@ -37,16 +38,16 @@ namespace CACTI.Units.Forces
             return newton.Value / kilogram.Value;
         }
 
-        public static bool TryParse(string valueString, out Force parsed)
+        public static bool TryParse(string valueString, [MaybeNull][NotNullWhen(true)] out Force parsed)
            => TryParse(valueString, null, out parsed);
 
-        public static bool TryParse(string valueString, IFormatProvider formatProvider, out Force parsed)
+        public static bool TryParse(string valueString, IFormatProvider? formatProvider, [MaybeNull][NotNullWhen(true)] out Force parsed)
         {
             if (valueString == null) throw new ArgumentNullException(nameof(valueString));
 
             parsed = default;
 
-            if (!UnitValueParser.TryParse<ForceDimension, Force>(valueString, ForceDimension.Units, formatProvider, out double value, out ForceDimension unit))
+            if (!UnitValueParser.TryParse<ForceDimension, Force>(valueString, ForceDimension.Units, formatProvider, out double value, out ForceDimension? unit))
                 return false;
 
             parsed = new Force(value, unit);

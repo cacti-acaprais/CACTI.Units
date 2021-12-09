@@ -1,6 +1,7 @@
 ﻿using CACTI.Units.Ratios;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,16 +32,16 @@ namespace CACTI.Units.Temperatures
         public static Temperature operator -(Temperature temperature1, Temperature temperature2)
             => new Temperature(Operation(temperature1, temperature2, Substraction), temperature1.Unit);
 
-        public static bool TryParse(string valueString, out Temperature temperature)
+        public static bool TryParse(string valueString, [MaybeNull][NotNullWhen(true)] out Temperature temperature)
             => TryParse(valueString, null, out temperature);
 
-        public static bool TryParse(string valueString, IFormatProvider formatProvider, out Temperature temperature)
+        public static bool TryParse(string valueString, IFormatProvider? formatProvider, [MaybeNull][NotNullWhen(true)] out Temperature temperature)
         {
             if (valueString == null) throw new ArgumentNullException(nameof(valueString));
 
             temperature = default;
 
-            if (!UnitValueParser.TryParse<TemperatureDimension, Temperature>(valueString, TemperatureDimension.Units, formatProvider, out double value, out TemperatureDimension unit))
+            if (!UnitValueParser.TryParse<TemperatureDimension, Temperature>(valueString, TemperatureDimension.Units, formatProvider, out double value, out TemperatureDimension? unit))
                 return false;
 
             temperature = new Temperature(value, unit);

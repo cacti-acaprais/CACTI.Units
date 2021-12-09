@@ -33,13 +33,13 @@ namespace CACTI.Units
         public override string ToString()
             => ToString(null, null);
 
-        public string ToString(string format)
+        public string ToString(string? format)
             => ToString(format, null);
 
-        public string ToString(IFormatProvider formatProvider)
+        public string ToString(IFormatProvider? formatProvider)
             => ToString(null, formatProvider);
 
-        public string ToString(string format, IFormatProvider formatProvider)
+        public string ToString(string? format, IFormatProvider? formatProvider)
             => $"{Value.ToString(format, formatProvider)}{(string.IsNullOrEmpty(Unit.Symbol) ? string.Empty : $" {Unit.Symbol}")}";
 
         public override bool Equals(object obj)

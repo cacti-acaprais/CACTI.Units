@@ -32,16 +32,16 @@ namespace CACTI.Units.Durations
         public static Duration operator -(Duration duration1, Duration duration2)
             => new Duration(Operation(duration1, duration2, Substraction), duration1.Unit);
 
-        public static bool TryParse(string valueString, out Duration duration)
+        public static bool TryParse(string valueString, [MaybeNull][NotNullWhen(true)] out Duration duration)
             => TryParse(valueString, null, out duration);
 
-        public static bool TryParse(string valueString, IFormatProvider formatProvider, out Duration duration)
+        public static bool TryParse(string valueString, IFormatProvider? formatProvider, [MaybeNull][NotNullWhen(true)] out Duration duration)
         {
             if (valueString == null) throw new ArgumentNullException(nameof(valueString));
 
             duration = default;
 
-            if (!UnitValueParser.TryParse<DurationDimension, Duration>(valueString, DurationDimension.Units, formatProvider, out double value, out DurationDimension unit))
+            if (!UnitValueParser.TryParse<DurationDimension, Duration>(valueString, DurationDimension.Units, formatProvider, out double value, out DurationDimension? unit))
                 return false;
 
             duration = new Duration(value, unit);

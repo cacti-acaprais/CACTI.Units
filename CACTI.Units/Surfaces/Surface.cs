@@ -2,6 +2,7 @@
 using CACTI.Units.Ratios;
 using CACTI.Units.Volumes;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace CACTI.Units.Surfaces
 {
@@ -37,16 +38,16 @@ namespace CACTI.Units.Surfaces
         public static Surface operator -(Surface surface1, Surface surface2)
             => new Surface(Operation(surface1, surface2, Substraction), surface1.Unit);
 
-        public static bool TryParse(string valueString, out Surface parsed)
+        public static bool TryParse(string valueString, [MaybeNull][NotNullWhen(true)] out Surface parsed)
             => TryParse(valueString, null, out parsed);
 
-        public static bool TryParse(string valueString, IFormatProvider formatProvider, out Surface parsed)
+        public static bool TryParse(string valueString, IFormatProvider? formatProvider, [MaybeNull][NotNullWhen(true)] out Surface parsed)
         {
             if (valueString == null) throw new ArgumentNullException(nameof(valueString));
 
             parsed = default;
 
-            if (!UnitValueParser.TryParse<SurfaceDimension, Surface>(valueString, SurfaceDimension.Units, formatProvider, out double value, out SurfaceDimension unit))
+            if (!UnitValueParser.TryParse<SurfaceDimension, Surface>(valueString, SurfaceDimension.Units, formatProvider, out double value, out SurfaceDimension? unit))
                 return false;
 
             parsed = new Surface(value, unit);

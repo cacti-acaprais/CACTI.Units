@@ -45,16 +45,16 @@ namespace CACTI.Units.Distances
             return new Surface(heigh.Value * convertedWith.Value, new SurfaceDimension(heigh.Unit));
         }
 
-        public static bool TryParse(string valueString, out Distance distance)
+        public static bool TryParse(string valueString, [MaybeNull][NotNullWhen(true)] out Distance distance)
             => TryParse(valueString, null, out distance);
 
-        public static bool TryParse(string valueString, IFormatProvider formatProvider, out Distance distance)
+        public static bool TryParse(string valueString, IFormatProvider? formatProvider, [MaybeNull][NotNullWhen(true)] out Distance distance)
         {
             if (valueString == null) throw new ArgumentNullException(nameof(valueString));
 
             distance = default;
 
-            if (!UnitValueParser.TryParse<DistanceDimension, Distance>(valueString, DistanceDimension.Units, formatProvider, out double value, out DistanceDimension unit))
+            if (!UnitValueParser.TryParse<DistanceDimension, Distance>(valueString, DistanceDimension.Units, formatProvider, out double value, out DistanceDimension? unit))
                 return false;
 
             distance = new Distance(value, unit);

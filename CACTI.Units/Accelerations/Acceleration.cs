@@ -3,6 +3,7 @@ using CACTI.Units.Gravities;
 using CACTI.Units.Masses;
 using CACTI.Units.Ratios;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace CACTI.Units.Accelerations
 {
@@ -50,16 +51,16 @@ namespace CACTI.Units.Accelerations
             return meterPerSecondPerSecond.Value * kilogram.Value;
         }
 
-        public static bool TryParse(string valueString, out Acceleration parsed)
+        public static bool TryParse(string valueString, [MaybeNull][NotNullWhen(true)] out Acceleration parsed)
             => TryParse(valueString, null, out parsed);
 
-        public static bool TryParse(string valueString, IFormatProvider formatProvider, out Acceleration parsed)
+        public static bool TryParse(string valueString, IFormatProvider? formatProvider, [MaybeNull][NotNullWhen(true)] out Acceleration parsed)
         {
             if (valueString == null) throw new ArgumentNullException(nameof(valueString));
 
             parsed = default;
 
-            if (!UnitValueParser.TryParse<AccelerationDimension, Acceleration>(valueString, AccelerationDimension.Units, formatProvider, out double value, out AccelerationDimension unit))
+            if (!UnitValueParser.TryParse<AccelerationDimension, Acceleration>(valueString, AccelerationDimension.Units, formatProvider, out double value, out AccelerationDimension? unit))
                 return false;
 
             parsed = new Acceleration(value, unit);
