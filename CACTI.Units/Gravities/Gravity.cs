@@ -3,6 +3,7 @@ using CACTI.Units.Forces;
 using CACTI.Units.Ratios;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,16 +49,16 @@ namespace CACTI.Units.Gravities
         public static Gravity operator -(Gravity gravity1, Gravity gravity2)
             => new Gravity(Operation(gravity1, gravity2, Substraction), gravity1.Unit);
 
-        public static bool TryParse(string valueString, out Gravity parsed)
+        public static bool TryParse(string valueString, [MaybeNull][NotNullWhen(true)] out Gravity parsed)
             => TryParse(valueString, null, out parsed);
 
-        public static bool TryParse(string valueString, IFormatProvider formatProvider, out Gravity parsed)
+        public static bool TryParse(string valueString, IFormatProvider? formatProvider, [MaybeNull][NotNullWhen(true)] out Gravity parsed)
         {
             if (valueString == null) throw new ArgumentNullException(nameof(valueString));
 
             parsed = default;
 
-            if (!UnitValueParser.TryParse<GravityDimension, Gravity>(valueString, GravityDimension.Units, formatProvider, out double value, out GravityDimension unit))
+            if (!UnitValueParser.TryParse<GravityDimension, Gravity>(valueString, GravityDimension.Units, formatProvider, out double value, out GravityDimension? unit))
                 return false;
 
             parsed = new Gravity(value, unit);
