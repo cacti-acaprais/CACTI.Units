@@ -1,6 +1,19 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CACTI.Units;
 using System;
+using CACTI.Units.Forces;
+using CACTI.Units.Accelerations;
+using CACTI.Units.Masses;
+using CACTI.Units.Ratios;
+using CACTI.Units.Distances;
+using CACTI.Units.Volumes;
+using CACTI.Units.Speeds;
+using CACTI.Units.Durations;
+using CACTI.Units.Surfaces;
+using CACTI.Units.RevolutionSpeeds;
+using CACTI.Units.Revolutions;
+using CACTI.Units.Gravities;
+using CACTI.Units.Temperatures;
 
 namespace CACTI.Units.Tests
 {
@@ -10,7 +23,7 @@ namespace CACTI.Units.Tests
         [TestMethod]
         public void TestLength()
         {
-            Length length = new Length(10, LengthDimension.Meter);
+            Distance length = new Distance(10, DistanceDimension.Meter);
             Assert.AreEqual(10, length.Value);
 
             Meter meters = 1;
@@ -25,14 +38,14 @@ namespace CACTI.Units.Tests
         {
             Meter meter = 10;
             Millimeter millimeter = 1000;
-            Length sum = meter + millimeter;
+            Distance sum = meter + millimeter;
             Meter sumMeter = Meter.Convert(sum);
             Assert.AreEqual(11, sumMeter.Value);
 
-            Length sub = meter - millimeter;
+            Distance sub = meter - millimeter;
             Assert.AreEqual(9, sub.Value);
 
-            Length result = (meter * 2 + millimeter - millimeter) / 2;
+            Distance result = (meter * 2 + millimeter - millimeter) / 2;
             Assert.AreEqual(10, result.Value);
 
             Ratio ratio = meter / (Meter)20;
@@ -110,7 +123,7 @@ namespace CACTI.Units.Tests
             int comparison = metersPerSecond.CompareTo(kilometerPerHour);
             Assert.AreEqual(0, comparison);
 
-            Length length = (KilometerPerHour)18 * (Minute)120;
+            Distance length = (KilometerPerHour)18 * (Minute)120;
             Kilometer kilometer = Kilometer.Convert(length);
             Assert.AreEqual(36, kilometer.Value);
         }

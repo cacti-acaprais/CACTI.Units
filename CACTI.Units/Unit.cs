@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CACTI.Units
 {
@@ -24,7 +19,6 @@ namespace CACTI.Units
             Offset = offset;
             Symbol = symbol ?? throw new ArgumentNullException(nameof(symbol));
         }
-
         
         public string Symbol { get; }
         public double Ratio { get; }

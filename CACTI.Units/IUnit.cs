@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 namespace CACTI.Units
 {
-    public interface IUnit<TDimension>
+    public interface IUnit
+    {
+        string Symbol { get; }
+    }
+
+    public interface IUnit<TDimension> : IUnit
         where TDimension : IUnit<TDimension>
     {
-        public string Symbol { get; }
-        public double ConvertValue(double value, TDimension unit);
-        public double GetBaseValue(double value);
-        public double FromBaseValue(double value);
+        double ConvertValue(double value, TDimension unit);
+        double GetBaseValue(double value);
+        double FromBaseValue(double value);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
@@ -15,8 +16,12 @@ namespace CACTI.Units
 
         public UnitValue(double value, TDimension unit)
         {
+            if (unit == null) throw new ArgumentNullException(nameof(unit));
+            if (double.IsNaN(value)) throw new ArgumentOutOfRangeException(nameof(value), $"{nameof(value)} is NaN");
+            if (double.IsInfinity(value)) throw new ArgumentOutOfRangeException(nameof(value), $"{nameof(value)} is Infinity");
+
             Value = value;
-            Unit = unit ?? throw new ArgumentNullException(nameof(unit));
+            Unit = unit;
         }
 
         public TDimension Unit { get; }
@@ -24,10 +29,6 @@ namespace CACTI.Units
 
         public override int GetHashCode()
             => HashCode.Combine(Unit.GetBaseValue(Value));
-
-        public override bool Equals(object obj)
-            => obj is TValue other
-            && Equals(other);
 
         public override string ToString()
             => ToString(null, null);
@@ -38,31 +39,52 @@ namespace CACTI.Units
         public string ToString(IFormatProvider formatProvider)
             => ToString(null, formatProvider);
 
-        public string ToString(string? format, IFormatProvider? formatProvider)
-            => $"{Value.ToString(format, formatProvider)} {Unit.Symbol}";
+        public string ToString(string format, IFormatProvider formatProvider)
+            => $"{Value.ToString(format, formatProvider)}{(string.IsNullOrEmpty(Unit.Symbol) ? string.Empty : $" {Unit.Symbol}")}";
+
+        public override bool Equals(object obj)
+            => obj is TValue other
+            && Equals(other);
 
         public bool Equals(TValue other)
             => other != null
             && (
                 (Unit.Equals(other.Unit) && Value.Equals(other.Value))
                 || (other.Unit.GetBaseValue(other.Value) == Unit.GetBaseValue(Value))
-            ); 
+            );
+
+        public bool Equals(TValue other, double precision)
+        {
+            if (other == null)
+                return false;
+
+            if (double.IsNaN(precision))
+                return false;
+
+            double otherValue = Unit.Equals(other.Unit)
+                ? other.Value
+                : other.Convert(Unit).Value;
+
+            return Value - otherValue < precision;
+        }
+
+        public int CompareTo(object obj)
+        {
+            if (obj is TValue other)
+                return CompareTo(other);
+
+            throw new InvalidOperationException($"{typeof(TValue).Name} can't be compared to {obj?.GetType().Name ?? "null"}");
+        }
 
         public int CompareTo(TValue other)
         {
             if (other == null)
-                return 1;
+                throw new InvalidOperationException($"{typeof(TValue).Name} can't be compared to null");
 
             double otherBaseValue = other.Unit.GetBaseValue(other.Value);
             double baseValue = Unit.GetBaseValue(Value);
 
-            if (baseValue > otherBaseValue)
-                return 1;
-
-            if (baseValue < otherBaseValue)
-                return -1;
-
-            return 0;
+            return baseValue.CompareTo(otherBaseValue);
         }
 
         protected static double Operation(TValue value1, TValue value2, Func<double, double, double> operation)
@@ -70,6 +92,24 @@ namespace CACTI.Units
             double convertedValue2 = value2.Unit.ConvertValue(value2.Value, value1.Unit);
             return operation(value1.Value, convertedValue2);
         }
+
+        public static bool operator ==(UnitValue<TDimension, TValue> left, UnitValue<TDimension, TValue> right)
+            => EqualityComparer<UnitValue<TDimension, TValue>>.Default.Equals(left, right);
+
+        public static bool operator !=(UnitValue<TDimension, TValue> left, UnitValue<TDimension, TValue> right)
+            => !EqualityComparer<UnitValue<TDimension, TValue>>.Default.Equals(left, right);
+
+        public static bool operator >(UnitValue<TDimension, TValue> left, UnitValue<TDimension, TValue> right)
+            => Comparer<UnitValue<TDimension, TValue>>.Default.Compare(left, right) > 0;
+
+        public static bool operator <(UnitValue<TDimension, TValue> left, UnitValue<TDimension, TValue> right)
+            => Comparer<UnitValue<TDimension, TValue>>.Default.Compare(left, right) < 0;
+
+        public static bool operator <=(UnitValue<TDimension, TValue> left, UnitValue<TDimension, TValue> right)
+            => Comparer<UnitValue<TDimension, TValue>>.Default.Compare(left, right) <= 0;
+
+        public static bool operator >=(UnitValue<TDimension, TValue> left, UnitValue<TDimension, TValue> right)
+            => Comparer<UnitValue<TDimension, TValue>>.Default.Compare(left, right) >= 0;
 
         public abstract TValue Convert(TDimension unit);
     }

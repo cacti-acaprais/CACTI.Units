@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace CACTI.Units
@@ -37,7 +36,7 @@ namespace CACTI.Units
                 .Select(x => Regex.Escape(x))
                 .ToArray();
 
-            string pattern = $@"^(?<value>.*?)\s?(?<unit>{string.Join("|", symbols)})";
+            string pattern = $@"^(?<value>.*?)\s?(?<unit>{string.Join("|", symbols.Where(symbol => !string.IsNullOrEmpty(symbol)))})";
             Regex regex = new Regex(pattern);
 
             Match match = regex.Match(valueAndUnitString);
@@ -45,9 +44,17 @@ namespace CACTI.Units
             Group valueGroup = groups["value"];
             Group unitGroup = groups["unit"];
 
-            if(!valueGroup.Success
+            if (!valueGroup.Success
                 || !unitGroup.Success)
             {
+                //There is a symbol less possibility
+                if (symbols.Any(symbol => string.IsNullOrEmpty(symbol)))
+                {
+                    valueString = valueAndUnitString;
+                    unitString = string.Empty;
+                    return true;
+                }
+
                 valueString = string.Empty;
                 unitString = string.Empty;
                 return false;
@@ -57,6 +64,5 @@ namespace CACTI.Units
             unitString = unitGroup.Value;
             return true;
         }
-
     }
 }

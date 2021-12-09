@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CACTI.Units
 {
@@ -20,8 +15,7 @@ namespace CACTI.Units
             Dimension = dimension;
             BaseDimension = baseDimension;
 
-            //TODO : if dimension is composed, display dimension as (dimension)/baseDimension
-            Symbol = $"{dimension.Symbol}/{baseDimension.Symbol}";
+            Symbol = $"{(dimension is IComposedUnit ? $"({dimension.Symbol})" : dimension.Symbol)}/{baseDimension.Symbol}";
         }
 
         public string Symbol { get; }
