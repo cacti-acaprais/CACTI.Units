@@ -99,7 +99,9 @@ namespace CACTI.Units.Tests
         public void TestRevolutionMath()
         {
             RevolutionPerMinute revolutionPerMinute = 10;
-
+            RevolutionPerSecond revolutionPerSecond = 10;
+            RevolutionSpeed result = revolutionPerMinute + revolutionPerSecond;
+            Assert.AreEqual((RevolutionPerMinute)610, result);
         }
 
         [TestMethod]

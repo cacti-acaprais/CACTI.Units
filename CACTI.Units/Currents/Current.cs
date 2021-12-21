@@ -1,4 +1,6 @@
 ﻿using CACTI.Units.Ratios;
+using CACTI.Units.Resistances;
+using CACTI.Units.Voltages;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -30,6 +32,9 @@ namespace CACTI.Units.Currents
 
         public static Current operator -(Current current1, Current current2)
             => new Current(Operation(current1, current2, Substraction), current1.Unit);
+
+        public static Volt operator *(Current current, Resistance resistance)
+            => new Volt(Ampere.Convert(current).Value * Ohm.Convert(resistance).Value);
 
         public static bool TryParse(string valueString, [NotNullWhen(true)] out Current? current)
             => TryParse(valueString, null, out current);

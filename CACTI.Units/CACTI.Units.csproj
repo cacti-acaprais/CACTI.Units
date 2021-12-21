@@ -12,4 +12,8 @@
 	<PackageProjectUrl>https://github.com/cacti-acaprais/CACTI.Units</PackageProjectUrl>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+
 </Project>
