@@ -48,10 +48,10 @@ namespace CACTI.Units.Revolutions
         public static RevolutionSpeed operator /(Revolution revolution, Duration duration)
             => new RevolutionSpeed(revolution.Value / duration.Value, new RevolutionSpeedDimension(revolution.Unit, duration.Unit));
 
-        public static bool TryParse(string valueString, [MaybeNull][NotNullWhen(true)] out Revolution value)
+        public static bool TryParse(string valueString, [NotNullWhen(true)] out Revolution? value)
             => TryParse(valueString, null, out value);
 
-        public static bool TryParse(string valueString, IFormatProvider? formatProvider, [MaybeNull][NotNullWhen(true)] out Revolution ratio)
+        public static bool TryParse(string valueString, IFormatProvider? formatProvider, [NotNullWhen(true)] out Revolution? ratio)
         {
             if (valueString == null) throw new ArgumentNullException(nameof(valueString));
 

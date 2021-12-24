@@ -51,10 +51,10 @@ namespace CACTI.Units.Accelerations
             return meterPerSecondPerSecond.Value * kilogram.Value;
         }
 
-        public static bool TryParse(string valueString, [MaybeNull][NotNullWhen(true)] out Acceleration parsed)
+        public static bool TryParse(string valueString, [NotNullWhen(true)] out Acceleration? parsed)
             => TryParse(valueString, null, out parsed);
 
-        public static bool TryParse(string valueString, IFormatProvider? formatProvider, [MaybeNull][NotNullWhen(true)] out Acceleration parsed)
+        public static bool TryParse(string valueString, IFormatProvider? formatProvider, [NotNullWhen(true)] out Acceleration? parsed)
         {
             if (valueString == null) throw new ArgumentNullException(nameof(valueString));
 

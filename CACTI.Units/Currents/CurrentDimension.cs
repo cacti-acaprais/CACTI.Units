@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 
@@ -25,7 +26,7 @@ namespace CACTI.Units.Currents
             }
         }
 
-        public static bool TryParse(string unitAbbrevation, out CurrentDimension currentDimension)
+        public static bool TryParse(string unitAbbrevation, [NotNullWhen(true)] out CurrentDimension? currentDimension)
             => UnitParser.TryParse(unitAbbrevation, Units, out currentDimension);
     }
 }

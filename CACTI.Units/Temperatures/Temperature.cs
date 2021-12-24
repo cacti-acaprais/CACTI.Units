@@ -32,10 +32,10 @@ namespace CACTI.Units.Temperatures
         public static Temperature operator -(Temperature temperature1, Temperature temperature2)
             => new Temperature(Operation(temperature1, temperature2, Substraction), temperature1.Unit);
 
-        public static bool TryParse(string valueString, [MaybeNull][NotNullWhen(true)] out Temperature temperature)
+        public static bool TryParse(string valueString, [NotNullWhen(true)] out Temperature? temperature)
             => TryParse(valueString, null, out temperature);
 
-        public static bool TryParse(string valueString, IFormatProvider? formatProvider, [MaybeNull][NotNullWhen(true)] out Temperature temperature)
+        public static bool TryParse(string valueString, IFormatProvider? formatProvider, [NotNullWhen(true)] out Temperature? temperature)
         {
             if (valueString == null) throw new ArgumentNullException(nameof(valueString));
 

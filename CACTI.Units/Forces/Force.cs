@@ -38,10 +38,10 @@ namespace CACTI.Units.Forces
             return newton.Value / kilogram.Value;
         }
 
-        public static bool TryParse(string valueString, [MaybeNull][NotNullWhen(true)] out Force parsed)
+        public static bool TryParse(string valueString, [NotNullWhen(true)] out Force? parsed)
            => TryParse(valueString, null, out parsed);
 
-        public static bool TryParse(string valueString, IFormatProvider? formatProvider, [MaybeNull][NotNullWhen(true)] out Force parsed)
+        public static bool TryParse(string valueString, IFormatProvider? formatProvider, [NotNullWhen(true)] out Force? parsed)
         {
             if (valueString == null) throw new ArgumentNullException(nameof(valueString));
 

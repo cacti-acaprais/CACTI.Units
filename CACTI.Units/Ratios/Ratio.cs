@@ -27,10 +27,10 @@ namespace CACTI.Units.Ratios
         public static Ratio Convert(Ratio ratio)
             => new Ratio(ratio.Unit.ConvertValue(ratio.Value, RatioDimension.RatioUnit));
 
-        public static bool TryParse(string valueString, [MaybeNull][NotNullWhen(true)] out Ratio ratio)
+        public static bool TryParse(string valueString, [NotNullWhen(true)] out Ratio? ratio)
             => TryParse(valueString, null, out ratio);
 
-        public static bool TryParse(string valueString, IFormatProvider? formatProvider, [MaybeNull][NotNullWhen(true)] out Ratio ratio)
+        public static bool TryParse(string valueString, IFormatProvider? formatProvider, [NotNullWhen(true)] out Ratio? ratio)
         {
             if (valueString == null) throw new ArgumentNullException(nameof(valueString));
 

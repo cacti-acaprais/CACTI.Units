@@ -39,7 +39,7 @@ namespace CACTI.Units.Currents
         public static bool TryParse(string valueString, [NotNullWhen(true)] out Current? current)
             => TryParse(valueString, null, out current);
 
-        public static bool TryParse(string valueString, IFormatProvider? formatProvider, [NotNullWhen(true)] out Current? current)
+        public static bool TryParse(string valueString, IFormatProvider? formatProvider, [MaybeNullWhen(false)] out Current? current)
         {
             if (valueString == null) throw new ArgumentNullException(nameof(valueString));
 

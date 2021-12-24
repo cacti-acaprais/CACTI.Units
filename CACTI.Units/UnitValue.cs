@@ -42,12 +42,12 @@ namespace CACTI.Units
         public string ToString(string? format, IFormatProvider? formatProvider)
             => $"{Value.ToString(format, formatProvider)}{(string.IsNullOrEmpty(Unit.Symbol) ? string.Empty : $" {Unit.Symbol}")}";
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
             => obj is TValue other
             && Equals(other);
 
-        public bool Equals(TValue other)
-            => other != null
+        public bool Equals(TValue? other)
+            => other is not null
             && (
                 (Unit.Equals(other.Unit) && Value.Equals(other.Value))
                 || (other.Unit.GetBaseValue(other.Value) == Unit.GetBaseValue(Value))
@@ -68,18 +68,18 @@ namespace CACTI.Units
             return Value - otherValue < precision;
         }
 
-        public int CompareTo(object obj)
+        public int CompareTo(object? obj)
         {
             if (obj is TValue other)
                 return CompareTo(other);
 
-            throw new InvalidOperationException($"{typeof(TValue).Name} can't be compared to {obj?.GetType().Name ?? "null"}");
+            return 1;
         }
 
-        public int CompareTo(TValue other)
+        public int CompareTo(TValue? other)
         {
-            if (other == null)
-                throw new InvalidOperationException($"{typeof(TValue).Name} can't be compared to null");
+            if (other is null)
+                return 1;
 
             double otherBaseValue = other.Unit.GetBaseValue(other.Value);
             double baseValue = Unit.GetBaseValue(Value);

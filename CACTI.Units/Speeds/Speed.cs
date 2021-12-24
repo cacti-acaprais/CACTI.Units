@@ -40,10 +40,10 @@ namespace CACTI.Units.Speeds
         public static Acceleration operator /(Speed speed, Duration duration)
             => new Acceleration(speed.Value / duration.Value, new AccelerationDimension(speed.Unit, duration.Unit));
 
-        public static bool TryParse(string valueString, [MaybeNull][NotNullWhen(true)] out Speed speed)
+        public static bool TryParse(string valueString, [NotNullWhen(true)] out Speed? speed)
             => TryParse(valueString, null, out speed);
 
-        public static bool TryParse(string valueString, IFormatProvider? formatProvider, [MaybeNull][NotNullWhen(true)] out Speed speed)
+        public static bool TryParse(string valueString, IFormatProvider? formatProvider, [NotNullWhen(true)] out Speed? speed)
         {
             if (valueString == null) throw new ArgumentNullException(nameof(valueString));
 

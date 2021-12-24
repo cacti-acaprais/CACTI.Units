@@ -49,10 +49,10 @@ namespace CACTI.Units.Gravities
         public static Gravity operator -(Gravity gravity1, Gravity gravity2)
             => new Gravity(Operation(gravity1, gravity2, Substraction), gravity1.Unit);
 
-        public static bool TryParse(string valueString, [MaybeNull][NotNullWhen(true)] out Gravity parsed)
+        public static bool TryParse(string valueString, [NotNullWhen(true)] out Gravity? parsed)
             => TryParse(valueString, null, out parsed);
 
-        public static bool TryParse(string valueString, IFormatProvider? formatProvider, [MaybeNull][NotNullWhen(true)] out Gravity parsed)
+        public static bool TryParse(string valueString, IFormatProvider? formatProvider, [NotNullWhen(true)] out Gravity? parsed)
         {
             if (valueString == null) throw new ArgumentNullException(nameof(valueString));
 

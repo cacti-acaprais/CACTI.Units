@@ -38,10 +38,10 @@ namespace CACTI.Units.Surfaces
         public static Surface operator -(Surface surface1, Surface surface2)
             => new Surface(Operation(surface1, surface2, Substraction), surface1.Unit);
 
-        public static bool TryParse(string valueString, [MaybeNull][NotNullWhen(true)] out Surface parsed)
+        public static bool TryParse(string valueString, [NotNullWhen(true)] out Surface? parsed)
             => TryParse(valueString, null, out parsed);
 
-        public static bool TryParse(string valueString, IFormatProvider? formatProvider, [MaybeNull][NotNullWhen(true)] out Surface parsed)
+        public static bool TryParse(string valueString, IFormatProvider? formatProvider, [NotNullWhen(true)] out Surface? parsed)
         {
             if (valueString == null) throw new ArgumentNullException(nameof(valueString));
 

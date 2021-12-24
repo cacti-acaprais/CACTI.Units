@@ -32,10 +32,10 @@ namespace CACTI.Units.Masses
         public static Mass operator -(Mass mass1, Mass mass2)
             => new Mass(Operation(mass1, mass2, Substraction), mass1.Unit);
 
-        public static bool TryParse(string valueString, [MaybeNull][NotNullWhen(true)] out Mass parsed)
+        public static bool TryParse(string valueString, [NotNullWhen(true)] out Mass? parsed)
             => TryParse(valueString, null, out parsed);
 
-        public static bool TryParse(string valueString, IFormatProvider? formatProvider, [MaybeNull][NotNullWhen(true)] out Mass parsed)
+        public static bool TryParse(string valueString, IFormatProvider? formatProvider, [NotNullWhen(true)] out Mass? parsed)
         {
             if (valueString == null) throw new ArgumentNullException(nameof(valueString));
 

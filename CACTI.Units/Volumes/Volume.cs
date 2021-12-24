@@ -16,10 +16,10 @@ namespace CACTI.Units.Volumes
         public override Volume Convert(VolumeDimension unit)
             => new Volume(Unit.ConvertValue(Value, unit), unit);
 
-        public static bool TryParse(string valueString, [MaybeNull][NotNullWhen(true)] out Volume parsed)
+        public static bool TryParse(string valueString, [NotNullWhen(true)] out Volume? parsed)
             => TryParse(valueString, null, out parsed);
 
-        public static bool TryParse(string valueString, IFormatProvider? formatProvider, [MaybeNull][NotNullWhen(true)] out Volume parsed)
+        public static bool TryParse(string valueString, IFormatProvider? formatProvider, [NotNullWhen(true)] out Volume? parsed)
         {
             if (valueString == null) throw new ArgumentNullException(nameof(valueString));
 
