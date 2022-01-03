@@ -1,0 +1,11 @@
+<DimensionDeclaration Name="Distance" Namespace="Distances">
+	<Unit Name="Nanometer" Symbol="nm" Ratio="Nano" Offset="0" />
+	<Unit Name="Micrometer" Symbol="μm" Ratio="Micro" Offset="0" />
+	<Unit Name="Millimeter" Symbol="mm" Ratio="Milli" Offset="0" />
+	<Unit Name="Centimeter" Symbol="cm" Ratio="Centi" Offset="0" />
+	<Unit Name="Decimeter" Symbol="dm" Ratio="Deci" Offset="0" />
+	<Unit Name="Meter" Symbol="m" Ratio="1" Offset="0" />
+	<Unit Name="Decameter" Symbol="dam" Ratio="Deca" Offset="0" />
+	<Unit Name="Kilometer" Symbol="km" Ratio="Kilo" Offset="0" />
+	<Unit Name="Megameter" Symbol="Mm" Ratio="Mega" Offset="0" />
+</DimensionDeclaration>

@@ -1,0 +1,8 @@
+<ExponentDimensionDeclaration 
+	Name="Surface" 
+	Namespace="Surfaces"
+	DimensionName="Distance"
+	DimensionNamespace="Distances"
+	Exponent="2"
+	ExponentPrefix="Square">
+</ExponentDimensionDeclaration>

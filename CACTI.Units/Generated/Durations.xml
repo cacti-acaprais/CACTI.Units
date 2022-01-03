@@ -1,0 +1,9 @@
+<DimensionDeclaration Name="Duration" Namespace="Durations">
+	<Unit Name="Nanosecond" Symbol="ns" Ratio="Nano" Offset="0" />
+	<Unit Name="Microsecond" Symbol="µs" Ratio="Micro" Offset="0" />
+	<Unit Name="Millisecond" Symbol="ms" Ratio="Milli" Offset="0" />
+	<Unit Name="Second" Symbol="s" Ratio="1" Offset="0" />
+	<Unit Name="Minute" Symbol="m" Ratio="60" Offset="0" />
+	<Unit Name="Hour" Symbol="h" Ratio="60 * 60" Offset="0" />
+	<Unit Name="Day" Symbol="h" Ratio="60 * 60 * 24" Offset="0" />
+</DimensionDeclaration>

@@ -1,0 +1,8 @@
+<ExponentDimensionDeclaration 
+	Name="Volume" 
+	Namespace="Volumes"
+	DimensionName="Distance"
+	DimensionNamespace="Distances"
+	Exponent="3"
+	ExponentPrefix="Cubic">
+</ExponentDimensionDeclaration>

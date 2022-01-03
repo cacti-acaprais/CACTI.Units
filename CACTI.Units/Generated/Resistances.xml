@@ -1,0 +1,5 @@
+<DimensionDeclaration Name="Resistance" Namespace="Resistances">
+  <Unit Name="Ohm" Symbol="Ω" Ratio="1" Offset="0" />  
+  <Unit Name="MilliOhm" Symbol="mΩ" Ratio="Milli" Offset="0" />  
+  <Unit Name="MicroOhm" Symbol="µΩ" Ratio="Micro" Offset="0" />  
+</DimensionDeclaration>

@@ -1,0 +1,5 @@
+<DimensionDeclaration Name="Temperature" Namespace="Temperatures">
+  <Unit Name="Celcius" Symbol="°C" Ratio="1" Offset="0" />  
+  <Unit Name="Farenheight" Symbol="°F" Ratio="5d / 9d" Offset="32" />  
+  <Unit Name="Kelvin" Symbol="K" Ratio="1" Offset="273.5" />  
+</DimensionDeclaration>

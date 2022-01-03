@@ -1,0 +1,5 @@
+<DimensionDeclaration Name="Current" Namespace="Currents">
+  <Unit Name="Ampere" Symbol="A" Ratio="1" Offset="0" />  
+  <Unit Name="MilliAmpere" Symbol="mA" Ratio="Milli" Offset="0" />  
+  <Unit Name="MicroAmpere" Symbol="µA" Ratio="Micro" Offset="0" />  
+</DimensionDeclaration>

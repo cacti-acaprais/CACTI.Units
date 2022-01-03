@@ -1,19 +1,44 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-	<Nullable>enable</Nullable>
-	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	<Authors>Alexandre Caprais</Authors>
-	<Company>CACTI</Company>
-	<Description>Manage conversions and operations on units.</Description>
-	<RepositoryUrl>https://github.com/cacti-acaprais/CACTI.Units</RepositoryUrl>
-	<PackageTags></PackageTags>
-	<PackageProjectUrl>https://github.com/cacti-acaprais/CACTI.Units</PackageProjectUrl>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Authors>Alexandre Caprais</Authors>
+		<Company>CACTI</Company>
+		<Description>Manage conversions and operations on units.</Description>
+		<RepositoryUrl>https://github.com/cacti-acaprais/CACTI.Units</RepositoryUrl>
+		<PackageTags></PackageTags>
+		<PackageProjectUrl>https://github.com/cacti-acaprais/CACTI.Units</PackageProjectUrl>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <Optimize>false</Optimize>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<Optimize>false</Optimize>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="Currents.xml" />
+		<None Remove="Generated\Surfaces.xml" />
+		<None Remove="Generated\Volumes.xml" />
+		<None Remove="Masses.xml" />
+		<None Remove="Temperatures.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<AdditionalFiles Include="Generated\Surfaces.xml" />
+		<AdditionalFiles Include="Generated\Volumes.xml" />
+		<AdditionalFiles Include="Generated\Voltages.xml" />
+		<AdditionalFiles Include="Generated\Resistances.xml" />
+		<AdditionalFiles Include="Generated\Forces.xml" />
+		<AdditionalFiles Include="Generated\Durations.xml" />
+		<AdditionalFiles Include="Generated\Distances.xml" />
+		<AdditionalFiles Include="Generated\Currents.xml" />
+		<AdditionalFiles Include="Generated\Masses.xml" />
+		<AdditionalFiles Include="Generated\Temperatures.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\CACTI.Units.Generators\CACTI.Units.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+	</ItemGroup>
 
 </Project>

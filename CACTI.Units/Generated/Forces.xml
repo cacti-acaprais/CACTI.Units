@@ -1,0 +1,5 @@
+<DimensionDeclaration Name="Force" Namespace="Forces">
+  <Unit Name="Newton" Symbol="N" Ratio="1" Offset="0" />  
+  <Unit Name="Dyn" Symbol="dyn" Ratio="1e-5d" Offset="0" />  
+  <Unit Name="KilogramForce" Symbol="kgf" Ratio="9.80665" Offset="0" />  
+</DimensionDeclaration>

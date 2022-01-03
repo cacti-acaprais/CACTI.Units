@@ -207,16 +207,5 @@ namespace CACTI.Units.Tests
             Ratio ratio = kilogram / mass;
             Assert.AreEqual(0.5, ratio);
         }
-
-        [TestMethod]
-        public void TemperatureTest()
-        {
-            Celcius celcius = 10;
-            Kelvin kelvin = Kelvin.Convert(celcius);
-            Assert.AreEqual(283.15, kelvin);
-
-            Farenheight farenheight = Farenheight.Convert(kelvin);
-            Assert.AreEqual(50, farenheight);
-        }
     }
 }

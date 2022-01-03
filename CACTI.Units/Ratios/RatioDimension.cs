@@ -8,7 +8,8 @@ namespace CACTI.Units.Ratios
 {
     public class RatioDimension : Unit<RatioDimension>
     {
-        public RatioDimension(string symbol, double ratio) : base(symbol, ratio)
+        public RatioDimension(string symbol, double ratio) 
+            : base(symbol, ratio)
         {
         }
 
