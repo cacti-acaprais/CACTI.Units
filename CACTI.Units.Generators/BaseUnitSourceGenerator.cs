@@ -31,7 +31,12 @@ namespace CACTI.Units.{_dimensionDeclaration.Namespace}
         }}
 
         public override {_dimensionDeclaration.Name} Convert({_dimensionDeclaration.Name}Dimension unit)
-            => new {_dimensionDeclaration.Name}(Unit.ConvertValue(Value, unit), unit);
+        {{
+            if(Unit.Equals(unit))
+                return this;
+
+            return new {_dimensionDeclaration.Name}(Unit.ConvertValue(Value, unit), unit);
+        }}
 
         public static Ratio operator /({_dimensionDeclaration.Name} value1, {_dimensionDeclaration.Name} value2)
             => new Ratio(Operation(value1, value2, Division));
@@ -53,7 +58,7 @@ namespace CACTI.Units.{_dimensionDeclaration.Namespace}
 
         public static bool TryParse(string valueString, IFormatProvider? formatProvider, [NotNullWhen(true)] out {_dimensionDeclaration.Name}? parsedValue)
         {{
-            if (valueString == null) throw new ArgumentNullException(nameof(valueString));
+            if (valueString is null) throw new ArgumentNullException(nameof(valueString));
 
             parsedValue = default;
 

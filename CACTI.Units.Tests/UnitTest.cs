@@ -21,6 +21,66 @@ namespace CACTI.Units.Tests
     public class UnitTest
     {
         [TestMethod]
+        public void NullComparison()
+        {
+#pragma warning disable CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
+#pragma warning disable CS8604 // Existence possible d'un argument de référence null.
+
+            MeterPerSecond speed = 10;
+            bool comparison = speed > null;
+            Assert.IsTrue(comparison);
+
+            bool comparison2 = null > speed;
+            Assert.IsFalse(comparison2);
+
+            bool comparison3 = null == speed;
+            Assert.IsFalse(comparison3);
+
+            bool comparison4 = speed != null;
+            Assert.IsTrue(comparison4);
+
+            bool comparison5 = speed <= null;
+            Assert.IsFalse(comparison5);
+
+            bool comparison6 = speed >= null;
+            Assert.IsTrue(comparison6);
+
+            bool comparison7 = speed < null;
+            Assert.IsFalse(comparison7);
+
+            int comparison8 = speed.CompareTo(null);
+            Assert.AreEqual(1, comparison8);
+
+            object foo = null;
+            int comparison9 = speed.CompareTo(foo);
+            Assert.AreEqual(1, comparison9);
+
+            KilometerPerHour speed2 = 10;
+            int comparison10 = speed2.CompareTo((object)speed);
+            Assert.AreEqual(-1, comparison10);
+
+#pragma warning restore CS8604 // Existence possible d'un argument de référence null.
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
+#pragma warning restore CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
+        }
+
+        [TestMethod]
+        public void GetHashCodeTest()
+        {
+            Kelvin kelvin = 58;
+            Kelvin kelvin2 = 58;
+
+            Assert.AreEqual(kelvin.GetHashCode(), kelvin2.GetHashCode());
+
+            Kelvin kelvin3 = 60;
+            Assert.AreNotEqual(kelvin.GetHashCode(), kelvin3.GetHashCode());
+
+            Meter distance = 58;
+            Assert.AreNotEqual(kelvin.GetHashCode(), distance.GetHashCode());
+        }
+
+        [TestMethod]
         public void TestLength()
         {
             Distance length = new Distance(10, DistanceDimension.Meter);
@@ -150,33 +210,11 @@ namespace CACTI.Units.Tests
             Meter witdth = 3;
             Meter height = 2;
 
-            CubicMeter cubicMeter = length * witdth * height;
+            Volume cubicMeter = length * witdth * height;
             Assert.AreEqual(12, cubicMeter.Value);
 
             CubicCentimeter cubicCentimeter = CubicCentimeter.Convert(cubicMeter);
             Assert.AreEqual(1.2e+7, cubicCentimeter.Value, 0.000001);
-        }
-
-        [TestMethod]
-        public void AccelerationTest()
-        {
-            KilometerPerHour kilometerPerHour = 100;
-            Second second = 5;
-
-            Acceleration acceleration = kilometerPerHour / second;
-            Assert.AreEqual(20, acceleration.Value);
-
-            MeterPerSecondPerSecond meterPerSecondPerSecond = MeterPerSecondPerSecond.Convert(acceleration);
-            Assert.AreEqual(5.556, meterPerSecondPerSecond.Value, 0.001);
-
-            Gravity gravity = Gravity.Convert(acceleration);
-            Assert.AreEqual(0.566, gravity.Value, 0.001);
-
-            Newton newton = 100;
-            Kilogram kilogram = 20;
-
-            MeterPerSecondPerSecond meterPerSecondPerSecond1 = newton / kilogram;
-            Assert.AreEqual(5, meterPerSecondPerSecond1);
         }
 
         [TestMethod]

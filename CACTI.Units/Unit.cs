@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using System.Linq;
 
 namespace CACTI.Units
 {
@@ -28,7 +30,7 @@ namespace CACTI.Units
 
         public double ConvertValue(double value, TDimension unit)
         {
-            if (unit == null) throw new ArgumentNullException(nameof(unit));
+            if (unit is null) throw new ArgumentNullException(nameof(unit));
 
             if (unit.Equals(this))
                 return value;
@@ -37,6 +39,24 @@ namespace CACTI.Units
 
             return unit.FromBaseValue(baseValue);
         }
+
+        public bool TryGetCompatibleUnit<TOtherDimension>(IEnumerable<TOtherDimension> otherUnits, [NotNullWhen(true)] out TOtherDimension? otherUnit)
+            where TOtherDimension : Unit<TOtherDimension>
+        {
+            if (otherUnits is null) throw new ArgumentNullException(nameof(otherUnits));
+
+            otherUnit = otherUnits.FirstOrDefault(x => x.Ratio == Ratio);
+            return otherUnit is not null;
+        }
+
+        public override bool Equals(object? obj)
+            => obj is TDimension other
+            && other.Ratio == Ratio
+            && other.Symbol == Symbol
+            && other.Offset == Offset;
+
+        public override int GetHashCode()
+            => HashCode.Combine(Ratio, Symbol, Offset);
 
         public virtual double FromBaseValue(double value)
             => (value / Ratio) + Offset;

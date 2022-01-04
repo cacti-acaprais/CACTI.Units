@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace CACTI.Units
 {
@@ -24,7 +27,7 @@ namespace CACTI.Units
 
         public double ConvertValue(double value, IExponentUnit<TDimension> unit)
         {
-            if (unit == null) throw new ArgumentNullException(nameof(unit));
+            if (unit is null) throw new ArgumentNullException(nameof(unit));
 
             if (unit.Equals(this))
                 return value;
@@ -39,5 +42,13 @@ namespace CACTI.Units
 
         public double GetBaseValue(double value)
             => value * Ratio;
+
+        public override bool Equals(object? obj)
+            => obj is ExponentUnit<TDimension> other
+            && Dimension.Equals(other.Dimension)
+            && Exponent.Equals(other.Exponent);
+
+        public override int GetHashCode()
+            => HashCode.Combine(Dimension, Exponent);
     }
 }

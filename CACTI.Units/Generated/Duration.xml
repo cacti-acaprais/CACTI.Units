@@ -5,5 +5,5 @@
 	<Unit Name="Second" Symbol="s" Ratio="1" Offset="0" />
 	<Unit Name="Minute" Symbol="m" Ratio="60" Offset="0" />
 	<Unit Name="Hour" Symbol="h" Ratio="60 * 60" Offset="0" />
-	<Unit Name="Day" Symbol="h" Ratio="60 * 60 * 24" Offset="0" />
+	<Unit Name="Day" Symbol="D" Ratio="60 * 60 * 24" Offset="0" />
 </DimensionDeclaration>

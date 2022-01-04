@@ -32,7 +32,7 @@ namespace CACTI.Units.Ratios
 
         public static bool TryParse(string valueString, IFormatProvider? formatProvider, [NotNullWhen(true)] out Ratio? ratio)
         {
-            if (valueString == null) throw new ArgumentNullException(nameof(valueString));
+            if (valueString is null) throw new ArgumentNullException(nameof(valueString));
 
             ratio = default;
 

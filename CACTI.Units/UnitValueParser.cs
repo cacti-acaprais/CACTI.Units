@@ -13,8 +13,8 @@ namespace CACTI.Units
             where TValue : IUnitValue<TDimension, TValue>
             where TDimension : IUnit<TDimension>
         {
-            if (valueAndUnitString == null) throw new ArgumentNullException(nameof(valueAndUnitString));
-            if (units == null) throw new ArgumentNullException(nameof(units));
+            if (valueAndUnitString is null) throw new ArgumentNullException(nameof(valueAndUnitString));
+            if (units is null) throw new ArgumentNullException(nameof(units));
 
             if (TryExtractValueAndUnit(units, valueAndUnitString, out string valueString, out string unitString)
                 && UnitParser.TryParse(unitString, units, out unit)

@@ -20,6 +20,9 @@ namespace CACTI.Units.Gravities
         public static implicit operator Gravity(double value)
             => new Gravity(value);
 
+        public static implicit operator Gravity(Acceleration acceleration)
+            => Convert(acceleration);
+
         public static Gravity Convert(Acceleration acceleration)
         {
             MeterPerSecondPerSecond meterPerSecondPerSecond = MeterPerSecondPerSecond.Convert(acceleration);

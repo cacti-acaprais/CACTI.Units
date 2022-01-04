@@ -12,7 +12,7 @@ namespace CACTI.Units.Accelerations
         
         public static MeterPerSecondPerSecond Convert(Gravity gravity)
         {
-            MeterPerSecondPerSecond meterPerSecondPerSecond = gravity.Value / ForceDimension.KilogramForce.Ratio;
+            MeterPerSecondPerSecond meterPerSecondPerSecond = gravity.Value * ForceDimension.KilogramForce.Ratio;
             return meterPerSecondPerSecond;
         }
 

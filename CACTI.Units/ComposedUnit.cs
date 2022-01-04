@@ -9,8 +9,8 @@ namespace CACTI.Units
 
         public ComposedUnit(TDimension dimension, TBaseDimension baseDimension)
         {
-            if (dimension == null) throw new ArgumentNullException(nameof(dimension));
-            if (baseDimension == null) throw new ArgumentNullException(nameof(baseDimension));
+            if (dimension is null) throw new ArgumentNullException(nameof(dimension));
+            if (baseDimension is null) throw new ArgumentNullException(nameof(baseDimension));
 
             Dimension = dimension;
             BaseDimension = baseDimension;
@@ -32,5 +32,13 @@ namespace CACTI.Units
 
         public double GetBaseValue(double value)
             => Dimension.GetBaseValue(value) / BaseDimension.GetBaseValue(1);
+
+        public override bool Equals(object? obj)
+            => obj is ComposedUnit<TDimension, TBaseDimension> other
+            && Dimension.Equals(other.Dimension)
+            && BaseDimension.Equals(other.BaseDimension);
+
+        public override int GetHashCode()
+            => HashCode.Combine(Dimension.GetHashCode(), BaseDimension.GetHashCode());
     }
 }

@@ -17,10 +17,6 @@ namespace CACTI.Units.Distances
             => new Speed(length.Value / duration.Value, new SpeedDimension(length.Unit, duration.Unit));
 
         public static Surface operator *(Distance heigh, Distance width)
-        {
-            Distance convertedWith = width.Convert(heigh.Unit);
-
-            return new Surface(heigh.Value * convertedWith.Value, new SurfaceDimension(heigh.Unit));
-        }
+            => new Surface(heigh.Value * width.Convert(heigh.Unit).Value, new SurfaceDimension(heigh.Unit));
     }
 }

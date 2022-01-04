@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using System.Linq;
 
 namespace CACTI.Units
 {
@@ -16,7 +17,7 @@ namespace CACTI.Units
 
         public UnitValue(double value, TDimension unit)
         {
-            if (unit == null) throw new ArgumentNullException(nameof(unit));
+            if (unit is null) throw new ArgumentNullException(nameof(unit));
             if (double.IsNaN(value)) throw new ArgumentOutOfRangeException(nameof(value), $"{nameof(value)} is NaN");
             if (double.IsInfinity(value)) throw new ArgumentOutOfRangeException(nameof(value), $"{nameof(value)} is Infinity");
 
@@ -55,7 +56,7 @@ namespace CACTI.Units
 
         public bool Equals(TValue other, double precision)
         {
-            if (other == null)
+            if (other is null)
                 return false;
 
             if (double.IsNaN(precision))
