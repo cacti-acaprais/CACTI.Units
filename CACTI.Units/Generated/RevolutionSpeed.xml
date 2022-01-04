@@ -1,0 +1,8 @@
+<ComposedDimensionDeclaration 
+	Name="RevolutionSpeed" 
+	Namespace="RevolutionSpeeds"
+	DimensionName="Revolution"
+	DimensionNamespace="Revolutions"
+	BaseDimensionName="Duration"
+	BaseDimensionNamespace="Durations">
+</ComposedDimensionDeclaration>

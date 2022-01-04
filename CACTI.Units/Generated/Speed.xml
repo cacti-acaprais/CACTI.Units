@@ -1,0 +1,8 @@
+<ComposedDimensionDeclaration 
+	Name="Speed" 
+	Namespace="Speeds"
+	DimensionName="Distance"
+	DimensionNamespace="Distances"
+	BaseDimensionName="Duration"
+	BaseDimensionNamespace="Durations">
+</ComposedDimensionDeclaration>

@@ -18,23 +18,33 @@
 
 	<ItemGroup>
 		<None Remove="Currents.xml" />
-		<None Remove="Generated\Surfaces.xml" />
-		<None Remove="Generated\Volumes.xml" />
+		<None Remove="Generated\Acceleration.xml" />
+		<None Remove="Generated\Gravity.xml" />
+		<None Remove="Generated\Revolution.xml" />
+		<None Remove="Generated\RevolutionSpeed.xml" />
+		<None Remove="Generated\Speed.xml" />
+		<None Remove="Generated\Surface.xml" />
+		<None Remove="Generated\Volume.xml" />
 		<None Remove="Masses.xml" />
 		<None Remove="Temperatures.xml" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<AdditionalFiles Include="Generated\Surfaces.xml" />
-		<AdditionalFiles Include="Generated\Volumes.xml" />
-		<AdditionalFiles Include="Generated\Voltages.xml" />
-		<AdditionalFiles Include="Generated\Resistances.xml" />
-		<AdditionalFiles Include="Generated\Forces.xml" />
-		<AdditionalFiles Include="Generated\Durations.xml" />
-		<AdditionalFiles Include="Generated\Distances.xml" />
-		<AdditionalFiles Include="Generated\Currents.xml" />
-		<AdditionalFiles Include="Generated\Masses.xml" />
-		<AdditionalFiles Include="Generated\Temperatures.xml" />
+		<AdditionalFiles Include="Generated\Gravity.xml" />
+		<AdditionalFiles Include="Generated\RevolutionSpeed.xml" />
+		<AdditionalFiles Include="Generated\Acceleration.xml" />
+		<AdditionalFiles Include="Generated\Speed.xml" />
+		<AdditionalFiles Include="Generated\Surface.xml" />
+		<AdditionalFiles Include="Generated\Revolution.xml" />
+		<AdditionalFiles Include="Generated\Volume.xml" />
+		<AdditionalFiles Include="Generated\Voltage.xml" />
+		<AdditionalFiles Include="Generated\Resistance.xml" />
+		<AdditionalFiles Include="Generated\Force.xml" />
+		<AdditionalFiles Include="Generated\Duration.xml" />
+		<AdditionalFiles Include="Generated\Distance.xml" />
+		<AdditionalFiles Include="Generated\Current.xml" />
+		<AdditionalFiles Include="Generated\Mass.xml" />
+		<AdditionalFiles Include="Generated\Temperature.xml" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -1,0 +1,3 @@
+<DimensionDeclaration Name="Gravity" Namespace="Gravities">
+  <Unit Name="Gravity" Symbol="G" Ratio="1" Offset="0" />
+</DimensionDeclaration>

@@ -24,6 +24,7 @@ namespace CACTI.Units.{_dimensionDeclaration.Namespace}
 {{
     public partial class {_dimensionDeclaration.Name} : UnitValue<{_dimensionDeclaration.Name}Dimension, {_dimensionDeclaration.Name}>
     {{
+        
         public {_dimensionDeclaration.Name}(double value, {_dimensionDeclaration.Name}Dimension unit) : base(value, unit)
         {{
         }}

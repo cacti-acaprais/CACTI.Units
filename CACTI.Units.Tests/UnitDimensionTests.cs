@@ -27,7 +27,7 @@ namespace CACTI.Units.Tests
 
             speed = speed.Convert(meterPerSecond.Unit);
 
-            Assert.AreEqual(meterPerSecond, speed);
+            Assert.AreEqual(meterPerSecond.Value, speed.Value, 0.00000001d);
         }
 
         [TestMethod]
@@ -44,7 +44,7 @@ namespace CACTI.Units.Tests
 
             acceleration = acceleration.Convert(meterPerSecondPerSecond.Unit);
 
-            Assert.AreEqual(meterPerSecondPerSecond, acceleration);
+            Assert.AreEqual(meterPerSecondPerSecond.Value, acceleration.Value, 0.00000001d);
         }
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 using System.Text;
 using System.Xml;
 
@@ -35,6 +36,8 @@ namespace CACTI.Units.Generators
                     return GetDimensionDeclaration(document);
                 case nameof(ExponentDimensionDeclaration):
                     return GetExponentDimensionDeclaration(document);
+                case nameof(ComposedDimensionDeclaration):
+                    return GetComposedDimensionDeclaration(document);
                 default:
                     throw new InvalidOperationException($"{document.DocumentElement.Name} is not supported");
             }
@@ -67,6 +70,40 @@ namespace CACTI.Units.Generators
             return dimensionDeclaration;
         }
 
+        public DimensionDeclaration GetComposedDimensionDeclaration(XmlDocument document)
+        {
+            ComposedDimensionDeclaration composedDimensionDeclaration = new ComposedDimensionDeclaration
+            {
+                Name = document.DocumentElement.GetAttribute("Name"),
+                Namespace = document.DocumentElement.GetAttribute("Namespace"),
+                DimensionName = document.DocumentElement.GetAttribute("DimensionName"),
+                DimensionNamespace = document.DocumentElement.GetAttribute("DimensionNamespace"),
+                BaseDimensionName = document.DocumentElement.GetAttribute("BaseDimensionName"),
+                BaseDimensionNamespace = document.DocumentElement.GetAttribute("BaseDimensionNamespace")
+            };
+
+            if (!TryGetDimensionDeclaration(composedDimensionDeclaration.DimensionName, composedDimensionDeclaration.DimensionNamespace, out DimensionDeclaration dimensionDeclaration))
+                throw new InvalidOperationException($"{composedDimensionDeclaration.DimensionNamespace}.{composedDimensionDeclaration.DimensionName} is not found");
+
+            if (!TryGetDimensionDeclaration(composedDimensionDeclaration.BaseDimensionName, composedDimensionDeclaration.BaseDimensionNamespace, out DimensionDeclaration baseDimensionDeclaration))
+                throw new InvalidOperationException($"{composedDimensionDeclaration.DimensionNamespace}.{composedDimensionDeclaration.DimensionName} is not found");
+
+            composedDimensionDeclaration.OperandeUnits = dimensionDeclaration.Units;
+            composedDimensionDeclaration.BaseUnits = baseDimensionDeclaration.Units;
+
+            List<UnitDeclaration> units = new List<UnitDeclaration>();
+            foreach (UnitDeclaration unit in composedDimensionDeclaration.OperandeUnits)
+                foreach (UnitDeclaration baseUnit in composedDimensionDeclaration.BaseUnits)
+                    units.Add(new UnitDeclaration
+                    {
+                        Name = $"{unit.Name}Per{baseUnit.Name}"
+                    });
+
+            composedDimensionDeclaration.Units = units.ToArray();
+
+            return composedDimensionDeclaration;
+        }
+
         public DimensionDeclaration GetExponentDimensionDeclaration(XmlDocument document)
         {
             ExponentDimensionDeclaration exponentDimensionDeclaration = new ExponentDimensionDeclaration
@@ -82,13 +119,21 @@ namespace CACTI.Units.Generators
             if (!TryGetDimensionDeclaration(exponentDimensionDeclaration.DimensionName, exponentDimensionDeclaration.DimensionNamespace, out DimensionDeclaration dimensionDeclaration))
                 throw new InvalidOperationException($"{exponentDimensionDeclaration.DimensionNamespace}.{exponentDimensionDeclaration.DimensionName} is not found");
 
-            exponentDimensionDeclaration.Units = dimensionDeclaration.Units;
+            exponentDimensionDeclaration.Units = dimensionDeclaration.Units
+                .Select(x => new UnitDeclaration
+                {
+                    Name = $"{exponentDimensionDeclaration.ExponentPrefix}{x.Name}",
+                    Offset = x.Offset,
+                    Ratio = x.Ratio,
+                    Symbol = x.Symbol
+                })
+                .ToArray();
             return exponentDimensionDeclaration;
         }
 
         public bool TryGetDocument(string name, string @namespace, out XmlDocument foundDocument)
         {
-            foreach(XmlDocument document in _documents)
+            foreach (XmlDocument document in _documents)
             {
                 if (document.DocumentElement.GetAttribute("Name") == name
                     && document.DocumentElement.GetAttribute("Namespace") == @namespace)
@@ -104,13 +149,13 @@ namespace CACTI.Units.Generators
 
         public bool TryGetDimensionDeclaration(string name, string @namespace, out DimensionDeclaration dimensionDeclaration)
         {
-            if(!TryGetDocument(name, @namespace, out XmlDocument document))
+            if (!TryGetDocument(name, @namespace, out XmlDocument document))
             {
                 dimensionDeclaration = default;
                 return false;
-            }    
+            }
 
-            dimensionDeclaration = GetDimensionDeclaration(document);
+            dimensionDeclaration = GetDeclaration(document);
             return true;
         }
     }

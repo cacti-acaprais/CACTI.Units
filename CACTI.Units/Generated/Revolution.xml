@@ -1,0 +1,3 @@
+<DimensionDeclaration Name="Revolution" Namespace="Revolutions">
+  <Unit Name="Revolution" Symbol="r" Ratio="1" Offset="0" />
+</DimensionDeclaration>

@@ -37,7 +37,7 @@ namespace CACTI.Units.{_dimensionDeclaration.Namespace}
             foreach (UnitDeclaration unitDeclaration in _dimensionDeclaration.Units)
             {
                 stringBuilder.Append($@"
-            public static {_dimensionDeclaration.Name}Dimension {_dimensionDeclaration.ExponentPrefix}{unitDeclaration.Name} {{ get; }} = new {_dimensionDeclaration.Name}Dimension({_dimensionDeclaration.DimensionName}Dimension.{unitDeclaration.Name});");
+            public static {_dimensionDeclaration.Name}Dimension {unitDeclaration.Name} {{ get; }} = new {_dimensionDeclaration.Name}Dimension({_dimensionDeclaration.DimensionName}Dimension.{unitDeclaration.Name.Replace(_dimensionDeclaration.ExponentPrefix, string.Empty)});");
             }
 
             stringBuilder.Append($@"
@@ -47,7 +47,7 @@ namespace CACTI.Units.{_dimensionDeclaration.Namespace}
             foreach (UnitDeclaration unitDeclaration in _dimensionDeclaration.Units)
             {
                 stringBuilder.Append($@"
-                {_dimensionDeclaration.ExponentPrefix}{unitDeclaration.Name},");
+                {unitDeclaration.Name},");
             }
 
             stringBuilder.Append($@"
