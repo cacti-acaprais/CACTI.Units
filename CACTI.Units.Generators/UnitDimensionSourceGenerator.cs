@@ -17,6 +17,7 @@ namespace CACTI.Units.Generators
         {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append($@"// Auto generated code
+#nullable enable
 using CACTI.Units;
 using System.Diagnostics.CodeAnalysis;
 

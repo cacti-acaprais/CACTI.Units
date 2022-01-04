@@ -17,6 +17,7 @@ namespace CACTI.Units.Generators
 
         public string GetSource()
             => $@"// Auto generated code
+#nullable enable
 using CACTI.Units;
 
 namespace CACTI.Units.{_dimensionDeclaration.Namespace}
