@@ -22,12 +22,12 @@ namespace CACTI.Units.{{Namespace}}
         {
         }
 
-        {{each Units as |unitDeclaration|}}
+        {{#each Units as |unitDeclaration|}}
         public static {{@root.Name}}Dimension {{unitDeclaration.Name}} { get; } = new {{@root.Name}}Dimension(""{{unitDeclaration.Symbol}}"", {{unitDeclaration.Ratio}}, {{unitDeclaration.Offset}});
         {{/each}}
             
         public static {{Name}}Dimension[] Units = new {{Name}}Dimension[] {
-            {{each Units as |unitDeclaration|}}
+            {{#each Units as |unitDeclaration|}}
                 {{unitDeclaration.Name}},
             {{/each}}
         };

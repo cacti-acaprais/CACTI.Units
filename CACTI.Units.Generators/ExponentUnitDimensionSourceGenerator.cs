@@ -28,12 +28,12 @@ namespace CACTI.Units.{{Namespace}}
         public double ConvertValue(double value, {{Name}}Dimension unit)
             => base.ConvertValue(value, unit);
         
-        {{each Units as |unitDeclaration|}}
+        {{#each Units as |unitDeclaration|}}
         public static {{@root.Name}}Dimension {{unitDeclaration.Name}} { get; } = new {{@root.Name}}Dimension({{@root.DimensionName}}Dimension.{{String.Replace unitDeclaration.Name @root.ExponentPrefix """"}});
         {{/each}}
 
         public static {{Name}}Dimension[] Units = new {{Name}}Dimension[] {
-            {{each Units as |unitDeclaration|}}
+            {{#each Units as |unitDeclaration|}}
             {{unitDeclaration.Name}},
             {{/each}}
         };

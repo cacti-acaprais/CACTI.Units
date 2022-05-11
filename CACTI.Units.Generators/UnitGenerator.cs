@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using HandlebarsDotNet;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -16,6 +17,8 @@ namespace CACTI.Units.Generators
     {
         public void Execute(GeneratorExecutionContext context)
         {
+            Handlebars.Configuration.TextEncoder = null;
+
             ImmutableArray<AdditionalText> files = context.AdditionalFiles
                 .Where(x => x.Path.EndsWith(".xml"))
                 .ToImmutableArray();
