@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HandlebarsDotNet;
+using HandlebarsDotNet.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,63 +9,50 @@ namespace CACTI.Units.Generators
     internal class ExponentUnitDimensionSourceGenerator
     {
         private readonly ExponentDimensionDeclaration _dimensionDeclaration;
+        private readonly HandlebarsTemplate<object, object> _template;
+        private const string _source = @"// Auto generated code
+#nullable enable
+using CACTI.Units;
+using CACTI.Units.{{DimensionNamespace}};
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+
+namespace CACTI.Units.{{Namespace}}
+{
+    public class {{Name}}Dimension : ExponentUnit<{{DimensionName}}Dimension>, IUnit<{{Name}}Dimension>
+    {
+        public {{Name}}Dimension({{DimensionName}}Dimension dimension) : base(dimension, {{Exponent}})
+        {
+        }
+
+        public double ConvertValue(double value, {{Name}}Dimension unit)
+            => base.ConvertValue(value, unit);
+        
+        {{each Units as |unitDeclaration|}}
+        public static {{@root.Name}}Dimension {{unitDeclaration.Name}} { get; } = new {{@root.Name}}Dimension({{@root.DimensionName}}Dimension.{{String.Replace unitDeclaration.Name @root.ExponentPrefix """"}});
+        {{/each}}
+
+        public static {{Name}}Dimension[] Units = new {{Name}}Dimension[] {
+            {{each Units as |unitDeclaration|}}
+            {{unitDeclaration.Name}},
+            {{/each}}
+        };
+
+        public static bool TryParse(string unitAbbrevation, [NotNullWhen(true)] out {{Name}}Dimension? dimension)
+            => UnitParser.TryParse(unitAbbrevation, Units, out dimension);
+    }
+}";
 
         public ExponentUnitDimensionSourceGenerator(ExponentDimensionDeclaration dimensionDeclaration)
         {
             _dimensionDeclaration = dimensionDeclaration;
+            IHandlebars handlebarsContext = HandlebarsDotNet.Handlebars.Create();
+            HandlebarsHelpers.Register(handlebarsContext);
+
+            _template = handlebarsContext.Compile(_source);
         }
 
         public string GetSource()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append($@"// Auto generated code
-#nullable enable
-using CACTI.Units;
-using CACTI.Units.{_dimensionDeclaration.DimensionNamespace};
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-
-namespace CACTI.Units.{_dimensionDeclaration.Namespace}
-{{
-    public class {_dimensionDeclaration.Name}Dimension : ExponentUnit<{_dimensionDeclaration.DimensionName}Dimension>, IUnit<{_dimensionDeclaration.Name}Dimension>
-    {{
-        public {_dimensionDeclaration.Name}Dimension({_dimensionDeclaration.DimensionName}Dimension dimension) : base(dimension, {_dimensionDeclaration.Exponent})
-        {{
-        }}
-
-        public double ConvertValue(double value, {_dimensionDeclaration.Name}Dimension unit)
-            => base.ConvertValue(value, unit);
-
-");
-            foreach (UnitDeclaration unitDeclaration in _dimensionDeclaration.Units)
-            {
-                stringBuilder.Append($@"
-            public static {_dimensionDeclaration.Name}Dimension {unitDeclaration.Name} {{ get; }} = new {_dimensionDeclaration.Name}Dimension({_dimensionDeclaration.DimensionName}Dimension.{unitDeclaration.Name.Replace(_dimensionDeclaration.ExponentPrefix, string.Empty)});");
-            }
-
-            stringBuilder.Append($@"
-            public static {_dimensionDeclaration.Name}Dimension[] Units = new {_dimensionDeclaration.Name}Dimension[] {{
-");
-
-            foreach (UnitDeclaration unitDeclaration in _dimensionDeclaration.Units)
-            {
-                stringBuilder.Append($@"
-                {unitDeclaration.Name},");
-            }
-
-            stringBuilder.Append($@"
-            }};
-");
-
-            stringBuilder.Append($@"
-
-            public static bool TryParse(string unitAbbrevation, [NotNullWhen(true)] out {_dimensionDeclaration.Name}Dimension? dimension)
-                => UnitParser.TryParse(unitAbbrevation, Units, out dimension);
-
-    }}
-}}
-");
-            return stringBuilder.ToString();
-        }
+            => _template(_dimensionDeclaration);
     }
 }
