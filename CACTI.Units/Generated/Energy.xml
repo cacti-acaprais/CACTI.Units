@@ -1,0 +1,8 @@
+<ComposedDimensionDeclaration
+	Name="Energy"
+	Namespace="Energies"
+	DimensionName="Power"
+	DimensionNamespace="Powers"
+	BaseDimensionName="Duration"
+	BaseDimensionNamespace="Durations">
+</ComposedDimensionDeclaration>

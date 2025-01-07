@@ -1,0 +1,8 @@
+<ComposedDimensionDeclaration
+	Name="Rate"
+	Namespace="Radiations"
+	DimensionName="Dose"
+	DimensionNamespace="Radiations"
+	BaseDimensionName="Duration"
+	BaseDimensionNamespace="Durations">
+</ComposedDimensionDeclaration>

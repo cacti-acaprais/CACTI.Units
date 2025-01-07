@@ -1,0 +1,20 @@
+<DimensionDeclaration Name="Dose" Namespace="Radiations">
+	<Unit Name="Nanosievert" Symbol="nSv" Ratio="Nano" Offset="0" />
+	<Unit Name="Nanorem" Symbol="nrem" Ratio="Nano * 1e-2" Offset="0" />
+	<Unit Name="Microsievert" Symbol="μSv" Ratio="Micro" Offset="0" />
+	<Unit Name="Microrem" Symbol="µrem" Ratio="Micro * 1e-2" Offset="0" />
+	<Unit Name="Millisievert" Symbol="mSv" Ratio="Milli" Offset="0" />
+	<Unit Name="Millirem" Symbol="mrem" Ratio="Milli * 1e-2" Offset="0" />
+	<Unit Name="Decisievert" Symbol="dSv" Ratio="Deci" Offset="0" />
+	<Unit Name="Decirem" Symbol="drem" Ratio="Deci * 1e-2" Offset="0" />
+	<Unit Name="Sievert" Symbol="Sv" Ratio="1" Offset="0" />
+	<Unit Name="Rem" Symbol="rem" Ratio="1e-2" Offset="0" />
+	<Unit Name="Decasievert" Symbol="daSv" Ratio="Deca" Offset="0" />
+	<Unit Name="Decarem" Symbol="darem" Ratio="Deca * 1e-2" Offset="0" />
+	<Unit Name="Hectosievert" Symbol="hSv" Ratio="Hecto" Offset="0" />
+	<Unit Name="Hectorem" Symbol="hrem" Ratio="Hecto * 1e-2" Offset="0" />
+	<Unit Name="Kilosievert" Symbol="kSv" Ratio="Kilo" Offset="0" />
+	<Unit Name="Kilorem" Symbol="krem" Ratio="Kilo * 1e-2" Offset="0" />
+	<Unit Name="Gray" Symbol="Gy" Ratio="1" Offset="0" />
+	<Unit Name="CentiGray" Symbol="cGy" Ratio="Centi" Offset="0" />
+</DimensionDeclaration>

@@ -1,0 +1,7 @@
+<DimensionDeclaration Name="DiskSize" Namespace="Size">
+	<Unit Name="Bytes" Symbol="o" Ratio="1" Offset="0" />
+	<Unit Name="KiloBytes" Symbol="Ko" Ratio="K" Offset="0" />
+	<Unit Name="MegaBytes" Symbol="Mo" Ratio="M" Offset="0" />
+	<Unit Name="GigaBytes" Symbol="Go" Ratio="G" Offset="0" />
+	<Unit Name="TeraBytes" Symbol="To" Ratio="T" Offset="0" />
+</DimensionDeclaration>

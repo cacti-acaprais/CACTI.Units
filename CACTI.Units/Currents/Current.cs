@@ -1,17 +1,16 @@
-﻿using CACTI.Units.Ratios;
-using CACTI.Units.Resistances;
-using CACTI.Units.Voltages;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using CACTI.Units.Voltages;
+using CACTI.Units.Resistances;
 
 namespace CACTI.Units.Currents
 {
     public partial class Current
     {
-        public static Volt operator *(Current current, Resistance resistance)
-            => new Volt(Ampere.Convert(current).Value * Ohm.Convert(resistance).Value);
+        public static Volt operator * (in Current current, in Resistance resistance)
+            => new Volt(current.ConvertValue(CurrentDimension.Ampere) * resistance.ConvertValue(ResistanceDimension.Ohm));
     }
 }

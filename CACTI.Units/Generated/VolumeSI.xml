@@ -1,0 +1,9 @@
+<ExponentDimensionDeclaration
+	Name="SIVolume"
+	Namespace="Volumes"
+	DimensionName="Distance"
+	DimensionNamespace="Distances"
+	DerivedDimensionName="Volume"
+	Exponent="3"
+	ExponentPrefix="Cubic">
+</ExponentDimensionDeclaration>

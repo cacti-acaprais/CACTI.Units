@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace CACTI.Units.Ratios
 {
     public class RatioDimension : Unit<RatioDimension>
     {
-        public RatioDimension(string symbol, double ratio) 
+        [JsonConstructor]
+        public RatioDimension(string symbol, double ratio)
             : base(symbol, ratio)
         {
         }

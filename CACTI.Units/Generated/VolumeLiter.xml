@@ -1,0 +1,3 @@
+<DerivedDimensionDeclaration Name="LiterVolume" Namespace="Volumes" DerivedDimensionName="Volume">
+	<Unit Name="Liter" Symbol="L" Ratio="Math.Pow(Deci, 3)" Offset="0" />
+</DerivedDimensionDeclaration>

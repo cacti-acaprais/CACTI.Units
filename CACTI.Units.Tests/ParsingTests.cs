@@ -20,7 +20,7 @@ namespace CACTI.Units.Tests
         {
             Ampere reference = 14.3;
             string text = reference.ToString("F3");
-            if(Current.TryParse(text, out Current? current))
+            if(Current.TryParse(text, out Current current))
             {
                 Assert.AreEqual(reference.Value, current.Value);
                 Assert.AreEqual(reference.Unit.Symbol, current.Unit.Symbol);
@@ -36,7 +36,7 @@ namespace CACTI.Units.Tests
         {
             RevolutionPerSecond reference = 10;
             string text = reference.ToString();
-            if (RevolutionSpeed.TryParse(text, out RevolutionSpeed? revolutionSpeed))
+            if (RevolutionSpeed.TryParse(text, out RevolutionSpeed revolutionSpeed))
             {
                 Assert.AreEqual(reference.Value, revolutionSpeed.Value);
                 Assert.AreEqual(reference.Unit.Symbol, revolutionSpeed.Unit.Symbol);
@@ -50,7 +50,7 @@ namespace CACTI.Units.Tests
         [TestMethod]
         public void RatioParsingTest()
         {
-            Ratio reference = 10;
+            Ratio reference = (Ratio)10;
             string text = reference.ToString();
             if(Ratio.TryParse(text, out Ratio? ratio))
             {
@@ -67,7 +67,7 @@ namespace CACTI.Units.Tests
         public void InvalidUnitlessParsingTest()
         {
             string text = "20";
-            bool result = Temperature.TryParse(text, out Temperature? temperature);
+            bool result = Temperature.TryParse(text, out Temperature temperature);
             Assert.IsFalse(result);
         }
 

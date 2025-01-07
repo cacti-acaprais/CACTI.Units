@@ -16,13 +16,13 @@ namespace CACTI.Units.Revolutions
         {
 
         }
-        public static Revolution Convert(Revolution revolution)
-            => new Revolution(revolution.Unit.ConvertValue(revolution.Value, RevolutionDimension.Revolution));
+        public static Revolution Convert(in Revolution revolution)
+            => revolution.Convert(RevolutionDimension.Revolution);
 
         public static implicit operator Revolution(double value)
             => new Revolution(value);
 
-        public static RevolutionSpeed operator /(Revolution revolution, Duration duration)
+        public static RevolutionSpeed operator /(in Revolution revolution, in Duration duration)
             => new RevolutionSpeed(revolution.Value / duration.Value, new RevolutionSpeedDimension(revolution.Unit, duration.Unit));
     }
 }

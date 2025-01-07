@@ -1,9 +1,10 @@
-﻿using HandlebarsDotNet;
+﻿using CACTI.Units.Generators.Declarations;
+using HandlebarsDotNet;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CACTI.Units.Generators
+namespace CACTI.Units.Generators.SourceGenerators
 {
     internal class ComposedUnitDimensionSourceGenerator
     {
@@ -11,22 +12,24 @@ namespace CACTI.Units.Generators
         private readonly HandlebarsTemplate<object, object> _template;
 
         private const string _source = @"// Auto generated code
-#nullable enable
+using System;
 using CACTI.Units;
 using CACTI.Units.{{DimensionNamespace}};
 using CACTI.Units.{{BaseDimensionNamespace}};
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
+#nullable enable
 
 namespace CACTI.Units.{{Namespace}}
 {
-    public class {{Name}}Dimension : ComposedUnit<{{DimensionName}}Dimension, {{BaseDimensionName}}Dimension>, IUnit<{{Name}}Dimension>
+    public partial class {{Name}}Dimension : ComposedUnit<{{DimensionName}}Dimension, {{BaseDimensionName}}Dimension>, IUnit<{{Name}}Dimension>
     {
+        [JsonConstructor]
         public {{Name}}Dimension({{DimensionName}}Dimension dimension, {{BaseDimensionName}}Dimension baseDimension) : base(dimension, baseDimension)
         {
         }
 
-        public double ConvertValue(double value, {{Name}}Dimension unit)
+        public double ConvertValue(in double value, in {{Name}}Dimension unit)
             => base.ConvertValue(value, unit);
 
         {{#each OperandeUnits as |unitDeclaration|}}
@@ -43,7 +46,7 @@ namespace CACTI.Units.{{Namespace}}
             {{/each}}
         };
         
-        public static bool TryParse(string unitAbbrevation, [NotNullWhen(true)] out {{Name}}Dimension? dimension)
+        public static bool TryParse(in string unitAbbrevation, out {{Name}}Dimension dimension)
                 => UnitParser.TryParse(unitAbbrevation, Units, out dimension);    
     }
 }";

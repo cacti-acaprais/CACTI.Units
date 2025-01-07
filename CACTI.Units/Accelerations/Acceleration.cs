@@ -1,33 +1,26 @@
-﻿using CACTI.Units.Forces;
-using CACTI.Units.Gravities;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using CACTI.Units.Masses;
-using CACTI.Units.Ratios;
-using System;
-using System.Diagnostics.CodeAnalysis;
+using CACTI.Units.Forces;
+using CACTI.Units.Gravities;
 
 namespace CACTI.Units.Accelerations
 {
     public partial class Acceleration
     {
-        
-        public static MeterPerSecondPerSecond Convert(Gravity gravity)
+        public static Newton operator *(in Acceleration acceleration, in Mass mass)
+            => acceleration.ConvertValue(AccelerationDimension.MeterPerSecondPerSecond) * mass.ConvertValue(MassDimension.Kilogram);
+
+        public Gravity ToGravity()
         {
-            MeterPerSecondPerSecond meterPerSecondPerSecond = gravity.Value * ForceDimension.KilogramForce.Ratio;
-            return meterPerSecondPerSecond;
+            MeterPerSecondPerSecond meterPerSecondPerSecond = MeterPerSecondPerSecond.Convert(this);
+            return meterPerSecondPerSecond.Value / ForceDimension.KilogramForce.Ratio;
         }
 
-        public static implicit operator Acceleration(Gravity gravity)
-            => Convert(gravity);
-
-        public static Newton operator *(Mass mass, Acceleration acceleration)
-            => acceleration * mass;
-
-        public static Newton operator *(Acceleration acceleration, Mass mass)
-        {
-            MeterPerSecondPerSecond meterPerSecondPerSecond = MeterPerSecondPerSecond.Convert(acceleration);
-            Kilogram kilogram = Kilogram.Convert(mass);
-
-            return meterPerSecondPerSecond.Value * kilogram.Value;
-        }
+        public static implicit operator Gravity(Acceleration acceleration) 
+            => acceleration.ToGravity();
     }
 }

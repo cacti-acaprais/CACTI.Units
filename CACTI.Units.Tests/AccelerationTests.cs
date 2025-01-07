@@ -28,7 +28,7 @@ namespace CACTI.Units.Tests
             MeterPerSecondPerSecond meterPerSecondPerSecond = MeterPerSecondPerSecond.Convert(acceleration);
             Assert.AreEqual(5.556, meterPerSecondPerSecond.Value, 0.001);
 
-            Gravity gravity = Gravity.Convert(acceleration);
+            Gravity gravity = acceleration.ToGravity();
             Assert.AreEqual(0.566, gravity.Value, 0.001);
 
             Newton newton = 100;
@@ -54,7 +54,7 @@ namespace CACTI.Units.Tests
             Kilogram mass = 10;
             Newton newton = acceleration * mass;
             Acceleration acceleration2 = newton / mass;
-            Assert.IsTrue(acceleration.Equals(acceleration2, precision: 0.00000000001));
+            Assert.IsTrue(acceleration.Equals(acceleration2));
         }
     }
 }

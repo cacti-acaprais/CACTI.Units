@@ -2,14 +2,16 @@
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
+		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Handlebars.Net" Version="2.1.2" GeneratePathProperty="true" PrivateAssets="all" />
-		<PackageReference Include="Handlebars.Net.Helpers" Version="2.3.5" GeneratePathProperty="true" PrivateAssets="all" />
-		<PackageReference Include="Handlebars.Net.Helpers.Core" Version="2.3.5" GeneratePathProperty="true" PrivateAssets="all" />
-		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.0.1" />
-		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" />
+		<PackageReference Include="Handlebars.Net" Version="2.1.6" GeneratePathProperty="true" PrivateAssets="all" />
+		<PackageReference Include="Handlebars.Net.Helpers" Version="2.4.6" GeneratePathProperty="true" PrivateAssets="all" />
+		<PackageReference Include="Handlebars.Net.Helpers.Core" Version="2.4.6" GeneratePathProperty="true" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.Bcl.HashCode" Version="6.0.0" />
+		<PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.11.0" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.11.0" />
 	</ItemGroup>
 
 	<PropertyGroup>

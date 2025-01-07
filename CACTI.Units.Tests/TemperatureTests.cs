@@ -43,7 +43,7 @@ namespace CACTI.Units.Tests
             Kelvin kelvin = Kelvin.Convert(celcius);
             Ratio ratio = celcius / kelvin;
 
-            Assert.AreEqual(1, ratio);
+            Assert.AreEqual(1, ratio.Value);
         }
 
         [TestMethod]

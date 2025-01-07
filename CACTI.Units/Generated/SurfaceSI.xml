@@ -1,0 +1,9 @@
+<ExponentDimensionDeclaration
+	Name="SISurface"
+	Namespace="Surfaces"
+	DimensionName="Distance"
+	DimensionNamespace="Distances"
+	DerivedDimensionName="Surface"
+	Exponent="2"
+	ExponentPrefix="Square">
+</ExponentDimensionDeclaration>

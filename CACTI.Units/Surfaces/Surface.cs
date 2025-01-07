@@ -1,15 +1,24 @@
 ﻿using CACTI.Units.Distances;
-using CACTI.Units.Ratios;
-using CACTI.Units.Volumes;
 using System;
-using System.Diagnostics.CodeAnalysis;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CACTI.Units.Volumes;
 
 namespace CACTI.Units.Surfaces
 {
     public partial class Surface
     {
-        public static Volume operator *(Surface surface, Distance length)
-            => new Volume(surface.Convert(new SurfaceDimension(length.Unit)).Value * length.Value, new VolumeDimension(length.Unit));
+        public static Volume operator *(in Surface surface, in Distance length)
+        {
+            switch (surface.Unit)
+            {
+                case SISurfaceDimension surfaceDimension:
+                    return new Volume(surface.Value * length.ConvertValue(surfaceDimension.Dimension), new SIVolumeDimension(surfaceDimension.Dimension));
+                default:
+                    return new Volume(surface.ConvertValue(new SISurfaceDimension(length.Unit)) * length.Value, new SIVolumeDimension(length.Unit));
+            }
+        }
     }
 }

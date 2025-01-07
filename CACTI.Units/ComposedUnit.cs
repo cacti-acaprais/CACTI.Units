@@ -9,8 +9,8 @@ namespace CACTI.Units
 
         public ComposedUnit(TDimension dimension, TBaseDimension baseDimension)
         {
-            if (dimension is null) throw new ArgumentNullException(nameof(dimension));
-            if (baseDimension is null) throw new ArgumentNullException(nameof(baseDimension));
+            if (dimension == null) throw new ArgumentNullException(nameof(dimension));
+            if (baseDimension == null) throw new ArgumentNullException(nameof(baseDimension));
 
             Dimension = dimension;
             BaseDimension = baseDimension;
@@ -24,13 +24,13 @@ namespace CACTI.Units
 
         public TBaseDimension BaseDimension { get; }
 
-        public double ConvertValue(double value, IComposedUnit<TDimension, TBaseDimension> unit)
+        public double ConvertValue(in double value, in IComposedUnit<TDimension, TBaseDimension> unit)
             => Dimension.ConvertValue(value, unit.Dimension) / BaseDimension.ConvertValue(1, unit.BaseDimension);
 
-        public double FromBaseValue(double value)
+        public double FromBaseValue(in double value)
             => Dimension.FromBaseValue(value) / BaseDimension.FromBaseValue(1);
 
-        public double GetBaseValue(double value)
+        public double GetBaseValue(in double value)
             => Dimension.GetBaseValue(value) / BaseDimension.GetBaseValue(1);
 
         public override bool Equals(object? obj)

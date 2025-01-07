@@ -31,10 +31,10 @@ namespace CACTI.Units.Tests
             bool comparison = speed > null;
             Assert.IsTrue(comparison);
 
-            bool comparison2 = null > speed;
+            bool comparison2 = speed < null;
             Assert.IsFalse(comparison2);
 
-            bool comparison3 = null == speed;
+            bool comparison3 = speed == null;
             Assert.IsFalse(comparison3);
 
             bool comparison4 = speed != null;
@@ -170,7 +170,7 @@ namespace CACTI.Units.Tests
             Meter meters = 10;
             Second seconds = 2;
 
-            Speed speed = meters / seconds;
+            Speed speed = (Distance)meters / seconds;
             Assert.AreEqual(5, speed.Value);
 
             MeterPerSecond metersPerSecond = MeterPerSecond.Convert(speed);
@@ -196,7 +196,7 @@ namespace CACTI.Units.Tests
             Meter length = 2;
             Meter witdth = 3;
 
-            Surface squareMeter = length * witdth;
+            Surface squareMeter = (Distance)length * witdth;
             Assert.AreEqual(6, squareMeter.Value);
 
             SquareCentimeter squareCentimeter = SquareCentimeter.Convert(squareMeter);
@@ -210,7 +210,7 @@ namespace CACTI.Units.Tests
             Meter witdth = 3;
             Meter height = 2;
 
-            Volume cubicMeter = length * witdth * height;
+            Volume cubicMeter = (Distance)length * witdth * height;
             Assert.AreEqual(12, cubicMeter.Value);
 
             CubicCentimeter cubicCentimeter = CubicCentimeter.Convert(cubicMeter);

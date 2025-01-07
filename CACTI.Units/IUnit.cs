@@ -14,8 +14,8 @@ namespace CACTI.Units
     public interface IUnit<TDimension> : IUnit
         where TDimension : IUnit<TDimension>
     {
-        double ConvertValue(double value, TDimension unit);
-        double GetBaseValue(double value);
-        double FromBaseValue(double value);
+        double ConvertValue(in double value, in TDimension unit);
+        double GetBaseValue(in double value);
+        double FromBaseValue(in double value);
     }
 }

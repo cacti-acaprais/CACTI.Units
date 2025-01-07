@@ -1,0 +1,11 @@
+<DimensionDeclaration Name="Power" Namespace="Powers">
+	<Unit Name="Nanowatt" Symbol="nW" Ratio="Nano" Offset="0" />
+	<Unit Name="Microwatt" Symbol="μW" Ratio="Micro" Offset="0" />
+	<Unit Name="Milliwatt" Symbol="mW" Ratio="Milli" Offset="0" />
+	<Unit Name="Centiwatt" Symbol="cW" Ratio="Centi" Offset="0" />
+	<Unit Name="Deciwatt" Symbol="dW" Ratio="Deci" Offset="0" />
+	<Unit Name="Watt" Symbol="W" Ratio="1" Offset="0" />
+	<Unit Name="Decawatt" Symbol="daW" Ratio="Deca" Offset="0" />
+	<Unit Name="Kilowatt" Symbol="kW" Ratio="Kilo" Offset="0" />
+	<Unit Name="Megawatt" Symbol="MW" Ratio="Mega" Offset="0" />
+</DimensionDeclaration>
