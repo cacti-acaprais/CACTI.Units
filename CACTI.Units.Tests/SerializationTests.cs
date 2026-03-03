@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace CACTI.Units.Tests
@@ -51,7 +52,17 @@ namespace CACTI.Units.Tests
             Assert.AreEqual("18 km/h", kilometerPerHour?.ToString());
 
             Ratio? ratio = Ratio.Parse("25 %");
+        }
 
+        [TestMethod]
+        public void JsonSerializationTest()
+        {
+            Percent percent = (Percent)10;
+            string percentJson = JsonSerializer.Serialize(percent);
+
+            Percent? otherPercent = JsonSerializer.Deserialize<Percent>(percentJson);
+
+            Assert.AreEqual(percent, otherPercent);
         }
     }
 }

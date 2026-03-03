@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+#nullable enable
 
 namespace CACTI.Units
 {
     public static class UnitParser
     {
         public static bool TryParse<T>(in string unitAbbrevation, in IEnumerable<T> units, [NotNullWhen(true)] out T? unit)
-            where T : IUnit<T>
+            where T : class, IUnit<T>
         {
             if (unitAbbrevation == null) throw new ArgumentNullException(nameof(unitAbbrevation));
             if (units == null) throw new ArgumentNullException(nameof(units));

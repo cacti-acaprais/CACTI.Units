@@ -10,7 +10,7 @@ namespace CACTI.Units
     public static class UnitValueParser
     {
         public static bool TryParse<TDimension>(in string valueAndUnitString, in IEnumerable<TDimension> units, in IFormatProvider? formatProvider, out double value, [NotNullWhen(true)] out TDimension? unit)
-            where TDimension : IUnit<TDimension>
+            where TDimension : class, IUnit<TDimension>
         {
             if (valueAndUnitString is null) throw new ArgumentNullException(nameof(valueAndUnitString));
             if (units is null) throw new ArgumentNullException(nameof(units));
