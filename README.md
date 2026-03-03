@@ -72,6 +72,35 @@ MillisievertPerHour millisievertPerHour = (MillisievertPerHour)50 + (Percent)50;
 Assert.AreEqual("75 mSv/h", millisievertPerHour.ToString());
 ~~~
 
+## Custom operators
+Some units are extended with custom operators allowing conversions to another unit.
+
+- Speed = Distance / Duration
+- RadiationRate = RadiationDose / Duration
+- Surface = Distance * Distance
+- Volume = Surface * Distance 
+
+~~~C#
+Volume volume = (Meter)5 * (Meter)5 * (Meter)2;
+Assert.AreEqual("50 m3", volume.ToString());
+~~~
+
+#SI units conversions to non SI
+Some units are extended to support non SI conversions like volumes (exponent of distances) to liters:
+
+~~~C#
+CubicDecimeter cubicDecimeter = 5;
+Liter liter = Liter.Convert(cubicDecimeter);
+Assert.AreEqual("5 L", liter.ToString("0.###"));
+
+liter += (Liter)5;
+Assert.AreEqual("10 L", liter.ToString());
+
+liter += (CubicDecimeter)3;
+Assert.AreEqual("13 L", liter.ToString());
+~~~
+
+
 # Serialization
 All units can be serialized with formatting:
 ~~~C#
