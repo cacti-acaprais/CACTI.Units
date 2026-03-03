@@ -85,7 +85,7 @@ Volume volume = (Meter)5 * (Meter)5 * (Meter)2;
 Assert.AreEqual("50 m3", volume.ToString());
 ~~~
 
-#SI units conversions to non SI
+# SI units conversions to non SI
 Some units are extended to support non SI conversions like volumes (exponent of distances) to liters:
 
 ~~~C#
