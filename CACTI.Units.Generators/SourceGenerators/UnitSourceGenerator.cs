@@ -18,6 +18,7 @@ using System;
 using CACTI.Units;
 using CACTI.Units.Ratios;
 using System.Text.Json.Serialization;
+using System.Diagnostics.CodeAnalysis;
 #nullable enable
 
 namespace CACTI.Units.{{dimensionDeclaration.Namespace}}
@@ -102,10 +103,10 @@ namespace CACTI.Units.{{dimensionDeclaration.Namespace}}
             ? value 
             : ({{unitDeclaration.Name}}?)null;
 
-        public static bool TryParse(in string valueString, out {{unitDeclaration.Name}} value)
+        public static bool TryParse(in string valueString, [NotNullWhen(true)] out {{unitDeclaration.Name}}? value)
             => TryParse(valueString, formatProvider: null, out value);
 
-        public static bool TryParse(in string valueString, in IFormatProvider formatProvider, out {{unitDeclaration.Name}} unitValue)
+        public static bool TryParse(in string valueString, in IFormatProvider formatProvider, [NotNullWhen(true)] out {{unitDeclaration.Name}}? unitValue)
         {
             if(UnitValueParser.TryParse<{{dimensionDeclaration.Name}}Dimension>(valueString, {{dimensionDeclaration.Name}}Dimension.Units, formatProvider: null, out double value, out {{dimensionDeclaration.Name}}Dimension unit))
             {

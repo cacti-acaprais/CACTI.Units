@@ -17,29 +17,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<AdditionalFiles Include="Generated\DiskSize.xml" />
-		<AdditionalFiles Include="Generated\Energy.xml" />
-		<AdditionalFiles Include="Generated\Gravity.xml" />
-		<AdditionalFiles Include="Generated\RadiationRate.xml" />
-		<AdditionalFiles Include="Generated\RadiationDose.xml" />
-		<AdditionalFiles Include="Generated\RevolutionSpeed.xml" />
-		<AdditionalFiles Include="Generated\Acceleration.xml" />
-		<AdditionalFiles Include="Generated\Speed.xml" />
-		<AdditionalFiles Include="Generated\SurfaceSI.xml" />
-		<AdditionalFiles Include="Generated\Surface.xml" />
-		<AdditionalFiles Include="Generated\Revolution.xml" />
-		<AdditionalFiles Include="Generated\Watt.xml" />
-		<AdditionalFiles Include="Generated\VolumeSI.xml" />
-		<AdditionalFiles Include="Generated\VolumeLiter.xml" />
-		<AdditionalFiles Include="Generated\Volume.xml" />
-		<AdditionalFiles Include="Generated\Voltage.xml" />
-		<AdditionalFiles Include="Generated\Resistance.xml" />
-		<AdditionalFiles Include="Generated\Force.xml" />
-		<AdditionalFiles Include="Generated\Duration.xml" />
-		<AdditionalFiles Include="Generated\Distance.xml" />
-		<AdditionalFiles Include="Generated\Current.xml" />
-		<AdditionalFiles Include="Generated\Mass.xml" />
-		<AdditionalFiles Include="Generated\Temperature.xml" />
+		<AdditionalFiles Include="Generated\*.xml" />
 	</ItemGroup>
 
 	<ItemGroup>

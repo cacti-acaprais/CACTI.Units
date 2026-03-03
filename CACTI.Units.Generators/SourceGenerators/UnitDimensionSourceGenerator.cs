@@ -14,6 +14,7 @@ namespace CACTI.Units.Generators.SourceGenerators
 using System;
 using CACTI.Units;
 using System.Text.Json.Serialization;
+using System.Diagnostics.CodeAnalysis;
 #nullable enable
 
 namespace CACTI.Units.{{Namespace}}
@@ -42,7 +43,7 @@ namespace CACTI.Units.{{Namespace}}
             {{/each}}
         };
 
-        public static bool TryParse(string unitAbbrevation, out {{Name}}Dimension dimension)
+        public static bool TryParse(string unitAbbrevation, [NotNullWhen(true)] out {{Name}}Dimension? dimension)
                 => UnitParser.TryParse(unitAbbrevation, Units, out dimension);
     }
 }";

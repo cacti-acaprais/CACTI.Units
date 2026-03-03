@@ -20,6 +20,7 @@ using System;
 using System.Linq;
 using CACTI.Units;
 using CACTI.Units.Ratios;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
 #nullable enable
 
@@ -146,10 +147,10 @@ namespace CACTI.Units.{_dimensionDeclaration.Namespace}
             ? parsedValue
             : ({_dimensionDeclaration.Name}?)null;
 
-        public static bool TryParse(in string valueString, out {_dimensionDeclaration.Name} parsedValue)
+        public static bool TryParse(in string valueString, [NotNullWhen(true)] out {_dimensionDeclaration.Name}? parsedValue)
             => TryParse(valueString, null, out parsedValue);
 
-        public static bool TryParse(in string valueString, in IFormatProvider formatProvider, out {_dimensionDeclaration.Name} parsedValue)
+        public static bool TryParse(in string valueString, in IFormatProvider formatProvider, [NotNullWhen(true)] out {_dimensionDeclaration.Name}? parsedValue)
         {{
             if (valueString is null) throw new ArgumentNullException(nameof(valueString));
 

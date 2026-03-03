@@ -1,0 +1,4 @@
+﻿<DimensionDeclaration Name="Angle" Namespace="Angles">
+	<Unit Name="Degree" Symbol="°" Ratio="1" Offset="0" />
+	<Unit Name="Radian" Symbol="rad" Ratio="180.0 / Math.PI" Offset="0" />
+</DimensionDeclaration>

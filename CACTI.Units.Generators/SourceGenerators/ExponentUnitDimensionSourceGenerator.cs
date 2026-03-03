@@ -16,6 +16,7 @@ using CACTI.Units;
 using CACTI.Units.{{DimensionNamespace}};
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using System.Diagnostics.CodeAnalysis;
 #nullable enable
 
 namespace CACTI.Units.{{Namespace}}

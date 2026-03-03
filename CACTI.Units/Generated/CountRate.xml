@@ -1,0 +1,8 @@
+﻿<ComposedDimensionDeclaration
+	Name="CountingRate"
+	Namespace="Countings"
+	DimensionName="Counting"
+	DimensionNamespace="Countings"
+	BaseDimensionName="Duration"
+	BaseDimensionNamespace="Durations">
+</ComposedDimensionDeclaration>

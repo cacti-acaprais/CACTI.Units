@@ -1,0 +1,8 @@
+﻿<ComposedDimensionDeclaration
+	Name="SurfaceActivity"
+	Namespace="SurfaceActivities"
+	DimensionName="Activity"
+	DimensionNamespace="Activities"
+	BaseDimensionName="SISurface"
+	BaseDimensionNamespace="Surfaces">
+</ComposedDimensionDeclaration>

@@ -1,0 +1,10 @@
+﻿<DimensionDeclaration Name="Activity" Namespace="Activities">
+	<Unit Name="Becquerel" Symbol="Bq" Ratio="1" Offset="0" />
+	<Unit Name="Megabecquerel" Symbol="MBq" Ratio="M" Offset="0" />
+	<Unit Name="Kilobecquerel" Symbol="KBq" Ratio="K" Offset="0" />
+	<Unit Name="Curie" Symbol="Ci" Ratio="2.702702702 * 1e-11d" Offset="0" />
+	<Unit Name="MilliCurie" Symbol="mCi" Ratio="2.702702702 * 1e-8d" Offset="0" />
+	<Unit Name="MicroCurie" Symbol="µCi" Ratio="2.702702702 * 1e-5d" Offset="0" />
+	<Unit Name="DisintegrationPerSecond" Symbol="dps" Ratio="1" Offset="0" />
+	<Unit Name="DisintegrationPerMinute" Symbol="dpm" Ratio="60" Offset="0" />
+</DimensionDeclaration>

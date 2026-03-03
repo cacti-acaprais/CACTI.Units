@@ -1,0 +1,3 @@
+﻿<DimensionDeclaration Name="Counting" Namespace="Countings">
+	<Unit Name="Count" Symbol="c" Ratio="1" Offset="0" />
+</DimensionDeclaration>

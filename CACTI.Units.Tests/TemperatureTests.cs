@@ -19,10 +19,10 @@ namespace CACTI.Units.Tests
             Kelvin kelvin = Kelvin.Convert(celcius);
             Assert.AreEqual(283.5, kelvin);
 
-            Farenheight farenheight = Farenheight.Convert(kelvin);
-            Assert.AreEqual(50, farenheight);
+            Fahrenheit fahrenheit = Fahrenheit.Convert(kelvin);
+            Assert.AreEqual(50, fahrenheit);
 
-            Celcius.Convert(farenheight);
+            Celcius.Convert(fahrenheit);
             Assert.AreEqual(10, celcius);
         }
 
