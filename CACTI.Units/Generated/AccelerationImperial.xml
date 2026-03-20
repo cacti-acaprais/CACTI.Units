@@ -1,0 +1,9 @@
+<ComposedDimensionDeclaration
+	Name="ImperialAcceleration"
+	Namespace="Accelerations"
+	DimensionName="ImperialSpeed"
+	DimensionNamespace="Speeds"
+	BaseDimensionName="Duration"
+	BaseDimensionNamespace="Durations"
+	DerivedDimensionName="Acceleration">
+</ComposedDimensionDeclaration>

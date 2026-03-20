@@ -123,6 +123,7 @@ namespace CACTI.Units.Generators.Loaders
                 Namespace = document.Namespace,
                 DimensionName = document.DimensionName,
                 DimensionNamespace = document.DimensionNamespace,
+                DerivedDimensionName = document.DerivedDimensionName,
                 BaseDimensionName = document.BaseDimensionName,
                 BaseDimensionNamespace = document.BaseDimensionNamespace
             };
@@ -213,7 +214,8 @@ namespace CACTI.Units.Generators.Loaders
                 DimensionName = document.DocumentElement.GetAttribute("DimensionName"),
                 DimensionNamespace = document.DocumentElement.GetAttribute("DimensionNamespace"),
                 BaseDimensionName = document.DocumentElement.GetAttribute("BaseDimensionName"),
-                BaseDimensionNamespace = document.DocumentElement.GetAttribute("BaseDimensionNamespace")
+                BaseDimensionNamespace = document.DocumentElement.GetAttribute("BaseDimensionNamespace"),
+                DerivedDimensionName = document.DocumentElement.GetAttribute("DerivedDimensionName")
             };
 
             return composedDimensionDeclaration;

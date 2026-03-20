@@ -84,5 +84,30 @@ namespace CACTI.Units.Tests
             Volume otherVolume = length * (Meter)5 * (Meter)2;
             Assert.AreEqual("50 m3", otherVolume.ToString());
         }
+
+        [TestMethod]
+        public void LiterConversionTest()
+        {
+            Liter liter = 5;
+            Milliliter milliliter = Milliliter.Convert(liter);
+            Assert.AreEqual("5000 mL", milliliter.ToString());
+
+            Hectoliter hectoliter = Hectoliter.Convert(liter);
+            Assert.AreEqual("0.05 hL", hectoliter.ToString("0.##"));
+        }
+
+        [TestMethod]
+        public void ImperialLiquidVolumeTests()
+        {
+            Quart quart = 4;
+            Gallon gallon = quart;
+            Assert.AreEqual("1 gal", gallon.ToString("0.##"));
+
+            Pint pint = gallon;
+            Assert.AreEqual("8 pt", pint.ToString("0.##"));
+
+            Liter liter = Liter.Convert(pint);
+            Assert.AreEqual("4.55 L", liter.ToString("0.##"));
+        }
     }
 }

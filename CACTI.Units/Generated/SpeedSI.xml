@@ -1,0 +1,9 @@
+<ComposedDimensionDeclaration 
+	Name="SISpeed" 
+	Namespace="Speeds"
+	DimensionName="SIDistance"
+	DimensionNamespace="Distances"
+	BaseDimensionName="Duration"
+	BaseDimensionNamespace="Durations"
+	DerivedDimensionName="Speed">
+</ComposedDimensionDeclaration>

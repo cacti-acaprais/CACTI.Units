@@ -134,14 +134,19 @@ namespace CACTI.Units.Generators
 
             context.AddSource($"{dimensionDeclaration.Namespace}.{dimensionDeclaration.Name}Dimension.g.cs", SourceText.From(unitDimensionSource, System.Text.Encoding.UTF8));
 
-            BaseUnitSourceGenerator baseUnitSourceGenerator = new BaseUnitSourceGenerator(dimensionDeclaration);
-            string baseUnitSource = baseUnitSourceGenerator.GetSource();
+            if (string.IsNullOrEmpty(dimensionDeclaration.DerivedDimensionName))
+            {
+                BaseUnitSourceGenerator baseUnitSourceGenerator = new BaseUnitSourceGenerator(dimensionDeclaration);
+                string baseUnitSource = baseUnitSourceGenerator.GetSource();
 
-            context.AddSource($"{dimensionDeclaration.Namespace}.{dimensionDeclaration.Name}.g.cs", SourceText.From(baseUnitSource, System.Text.Encoding.UTF8));
+                context.AddSource($"{dimensionDeclaration.Namespace}.{dimensionDeclaration.Name}.g.cs", SourceText.From(baseUnitSource, System.Text.Encoding.UTF8));
+            }
 
             foreach (UnitDeclaration unitDeclaration in dimensionDeclaration.Units)
             {
-                UnitSourceGenerator unitSourceGenerator = new UnitSourceGenerator(dimensionDeclaration, unitDeclaration, dimensionDeclaration.Units.Where(x => x.Name != unitDeclaration.Name));
+                UnitSourceGenerator unitSourceGenerator = string.IsNullOrEmpty(dimensionDeclaration.DerivedDimensionName)
+                    ? new UnitSourceGenerator(dimensionDeclaration, unitDeclaration, dimensionDeclaration.Units.Where(x => x.Name != unitDeclaration.Name))
+                    : new DerivedUnitSourceGenerator(dimensionDeclaration, unitDeclaration, dimensionDeclaration.Units.Where(x => x.Name != unitDeclaration.Name));
                 string unitSource = unitSourceGenerator.GetSource();
 
                 context.AddSource($"{dimensionDeclaration.Namespace}.{unitDeclaration.Name}.g.cs", SourceText.From(unitSource, System.Text.Encoding.UTF8));

@@ -9,7 +9,7 @@
 		<Company>CACTI</Company>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Description>Manage conversions and operations on units.</Description>
-		<Version>1.0.0</Version>
+		<Version>1.1.0</Version>
 		<PackageId>CACTI.Units</PackageId>
 		<RepositoryUrl>https://github.com/cacti-acaprais/CACTI.Units</RepositoryUrl>
 		<PackageTags></PackageTags>

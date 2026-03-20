@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CACTI.Units.Generators.Declarations
 {
-    internal class ComposedDimensionDeclaration : DimensionDeclaration
+    internal class ComposedDimensionDeclaration : DerivedDimensionDeclaration
     {
         public string DimensionName { get; set; }
         public string DimensionNamespace { get; set; }

@@ -4,20 +4,42 @@ Manage units with conversions and mathematical operations.
 Most code is generated through ISourceGenerator with AdditionalFiles for units descriptions.
 
 ## Unit Dimensions
-Units are defined by their base dimensions like:
-- Distances
-- Durations
-- Radiation doses
-- Temperatures
-- Ratios
-- Masses
+Units are defined by their base dimensions like (with international system and imperial units support):
+- Activity
+- Angle
+- Count
+- Current
+- Disk size
+- Distance
+	- SI: Meter, Kilometer, ...
+	- Imperial: Inch, Foot, Yard, Mile, ...
+- Duration
+- Energy
+- Force
+- Gravity
+- Mass
+- Radiation dose
+- Resistance
+- Revolution
+- Temperature
+- Voltage
+- Watt
+- Ratio
 
 ## Composed unit dimensions
 Some units dimensions are composed by other dimensions like:
-- Speeds (Distance / Duration)
 - Accelerations (Speed / Duration)
+- Count rate
+- Radiation rate
+- Revolution speed
+- Speeds (Distance / Duration)
+	- SI: Meter per second, ...
+	- Imperial: Mile per hour, ...
 - Radation rates (Dose / Duration)
 - Surface (Distance²)
+- Volume (Distance ^ 3)
+	- SI: cubic meter, liter, ...
+	- Imperial: Pint, Gallon, ...
 
 # Comparisons
 Units of the same dimensions can be compared:

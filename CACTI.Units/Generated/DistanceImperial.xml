@@ -1,0 +1,6 @@
+<DerivedDimensionDeclaration Name="ImperialDistance" Namespace="Distances" DerivedDimensionName="Distance">
+	<Unit Name="Inch" Symbol="in" Ratio="0.0254" Offset="0" />
+	<Unit Name="Foot" Symbol="ft" Ratio="0.3048" Offset="0" />
+	<Unit Name="Yard" Symbol="yd" Ratio="0.9144" Offset="0" />
+	<Unit Name="Mile" Symbol="mi" Ratio="1_609.344" Offset="0" />
+</DerivedDimensionDeclaration>

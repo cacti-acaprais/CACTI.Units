@@ -24,6 +24,10 @@ namespace CACTI.Units.Gravities
             => Value * ForceDimension.KilogramForce.Ratio;
 
         public static implicit operator Acceleration(in Gravity gravity)
-            => gravity.ToAcceleration();
+        {
+            MeterPerSecondPerSecond acceleration = gravity.ToAcceleration();
+            return new Acceleration(acceleration.Value, acceleration.Unit);
+        }
+            
     }
 }

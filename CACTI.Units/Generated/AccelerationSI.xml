@@ -1,0 +1,9 @@
+<ComposedDimensionDeclaration 
+	Name="SIAcceleration" 
+	Namespace="Accelerations"
+	DimensionName="SISpeed"
+	DimensionNamespace="Speeds"
+	BaseDimensionName="Duration"
+	BaseDimensionNamespace="Durations"
+	DerivedDimensionName="Acceleration">
+</ComposedDimensionDeclaration>

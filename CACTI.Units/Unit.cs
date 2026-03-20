@@ -28,7 +28,7 @@ namespace CACTI.Units
         public double Ratio { get; }
         public double Offset { get; }
 
-        public double ConvertValue(in double value, in TDimension unit)
+        public virtual double ConvertValue(in double value, in TDimension unit)
         {
             if (unit is null) throw new ArgumentNullException(nameof(unit));
 
@@ -58,10 +58,10 @@ namespace CACTI.Units
         public override int GetHashCode()
             => HashCode.Combine(Ratio, Symbol, Offset);
 
-        public double FromBaseValue(in double value)
+        public virtual double FromBaseValue(in double value)
             => (value / Ratio) + Offset;
 
-        public double GetBaseValue(in double value)
+        public virtual double GetBaseValue(in double value)
             => (value - Offset) * Ratio;
 
         protected const double Mega = 1e6;

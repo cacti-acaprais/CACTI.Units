@@ -1,7 +1,7 @@
 <ExponentDimensionDeclaration
-	Name="SISurface"
+	Name="ImperialSurface"
 	Namespace="Surfaces"
-	DimensionName="SIDistance"
+	DimensionName="ImperialDistance"
 	DimensionNamespace="Distances"
 	DerivedDimensionName="Surface"
 	Exponent="2"

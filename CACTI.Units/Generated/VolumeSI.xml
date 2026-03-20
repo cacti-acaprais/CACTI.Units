@@ -1,7 +1,7 @@
 <ExponentDimensionDeclaration
 	Name="SIVolume"
 	Namespace="Volumes"
-	DimensionName="Distance"
+	DimensionName="SIDistance"
 	DimensionNamespace="Distances"
 	DerivedDimensionName="Volume"
 	Exponent="3"

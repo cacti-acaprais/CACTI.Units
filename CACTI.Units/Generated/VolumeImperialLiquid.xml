@@ -1,0 +1,6 @@
+<DerivedDimensionDeclaration Name="ImperialLiquidVolume" Namespace="Volumes" DerivedDimensionName="Volume">
+	<Unit Name="Gill" Symbol="gi" Ratio="142.07 * (Math.Pow(Deci, 3) * Milli)" Offset="0" />
+	<Unit Name="Pint" Symbol="pt" Ratio="568.26 * (Math.Pow(Deci, 3) * Milli)" Offset="0" />
+	<Unit Name="Quart" Symbol="qt" Ratio="1.1365 * Math.Pow(Deci, 3)" Offset="0" />
+	<Unit Name="Gallon" Symbol="gal" Ratio="4.546 * Math.Pow(Deci, 3)" Offset="0" />
+</DerivedDimensionDeclaration>

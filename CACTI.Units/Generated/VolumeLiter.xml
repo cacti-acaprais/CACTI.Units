@@ -1,3 +1,7 @@
 <DerivedDimensionDeclaration Name="LiterVolume" Namespace="Volumes" DerivedDimensionName="Volume">
+	<Unit Name="Milliliter" Symbol="mL" Ratio="Math.Pow(Deci, 3) * Milli" Offset="0" />
+	<Unit Name="Centiliter" Symbol="cL" Ratio="Math.Pow(Deci, 3) * Centi" Offset="0" />
+	<Unit Name="Deciliter" Symbol="dL" Ratio="Math.Pow(Deci, 3) * Deci" Offset="0" />
 	<Unit Name="Liter" Symbol="L" Ratio="Math.Pow(Deci, 3)" Offset="0" />
+	<Unit Name="Hectoliter" Symbol="hL" Ratio="Math.Pow(Deci, 3) * Hecto" Offset="0" />
 </DerivedDimensionDeclaration>
