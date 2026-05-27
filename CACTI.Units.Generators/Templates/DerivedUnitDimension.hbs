@@ -1,0 +1,27 @@
+// Auto generated code
+using System;
+using CACTI.Units;
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
+using System.Diagnostics.CodeAnalysis;
+#nullable enable
+
+namespace CACTI.Units.{{Namespace}}
+{
+    public partial class {{Name}}Dimension : {{DerivedDimensionName}}Dimension, IUnit<{{Name}}Dimension>
+    {
+        [JsonConstructor]
+        public {{Name}}Dimension(string symbol, double ratio, double offset)
+            : base(symbol: symbol, ratio: ratio, offset: offset)
+        {
+
+        }
+
+        {{#each Units as |unitDeclaration|}}
+        public static new {{@root.Name}}Dimension {{unitDeclaration.Name}} { get; } = new {{@root.Name}}Dimension("{{unitDeclaration.Symbol}}", {{unitDeclaration.Ratio}}, {{unitDeclaration.Offset}});
+        {{/each}}
+
+        public double ConvertValue(in double value, in {{Name}}Dimension unit)
+            => base.ConvertValue(value, unit);
+    }
+}

@@ -1,0 +1,160 @@
+// Auto generated code
+using System;
+using System.Linq;
+using CACTI.Units;
+using CACTI.Units.Ratios;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
+#nullable enable
+
+namespace CACTI.Units.{{Namespace}}
+{
+    public readonly partial struct {{Name}} : IUnitValue<{{Name}}Dimension, {{Name}}>, IEquatable<{{Name}}>
+    {
+        private readonly double _value;
+        private readonly {{Name}}Dimension _unit;
+
+        [JsonConstructor]
+        public {{Name}}(double value, {{Name}}Dimension unit)
+        {
+            if (double.IsNaN(value)) throw new ArgumentOutOfRangeException(nameof(value), $"{nameof(value)} is NaN");
+            if (double.IsInfinity(value)) throw new ArgumentOutOfRangeException(nameof(value), $"{nameof(value)} is Infinity");
+            _value = value;
+            _unit = unit ?? throw new ArgumentNullException(nameof(unit));
+        }
+
+        public {{Name}}Dimension Unit => _unit;
+        public double Value => _value;
+
+        public static Ratio operator /(in {{Name}} value1, in {{Name}} value2)
+            => new Ratio(value1.Value / value2.Unit.ConvertValue(value2.Value, value1.Unit));
+
+        public static {{Name}} operator /(in {{Name}} value, in Ratio ratio)
+            => new {{Name}}(value.Value / ratio.Unit.GetBaseValue(ratio.Value), value.Unit);
+
+        public static {{Name}} operator *(in {{Name}} value, in Ratio ratio)
+            => new {{Name}}(value.Value * ratio.Unit.GetBaseValue(ratio.Value), value.Unit);
+
+        public static {{Name}} operator -(in {{Name}} value, in Ratio ratio)
+            => new {{Name}}(value.Value - (value.Value * ratio.Unit.GetBaseValue(ratio.Value)), value.Unit);
+
+        public static {{Name}} operator +(in {{Name}} value, in Ratio ratio)
+            => new {{Name}}(value.Value + (value.Value * ratio.Unit.GetBaseValue(ratio.Value)), value.Unit);
+
+        public static {{Name}} operator *(in {{Name}} value1, in double value2)
+            => new {{Name}}(value1.Value * value2, value1.Unit);
+
+        public static {{Name}} operator /(in {{Name}} value1, in double value2)
+            => new {{Name}}(value1.Value / value2, value1.Unit);
+
+        public static {{Name}} operator +(in {{Name}} value1, in {{Name}} value2)
+            => new {{Name}}(value1.Value + value2.ConvertValue(value1.Unit), value1.Unit);
+
+        public static {{Name}} operator -(in {{Name}} value1, in {{Name}} value2)
+            => new {{Name}}(value1.Value - value2.ConvertValue(value1.Unit), value1.Unit);
+
+        public static bool operator ==(in {{Name}} left, in {{Name}} right)
+            => left.Equals(right);
+
+        public static bool operator !=(in {{Name}} left, in {{Name}} right)
+            => !left.Equals(right);
+
+        public static bool operator >(in {{Name}} left, in {{Name}} right)
+            => left.CompareTo(right) > 0;
+
+        public static bool operator <(in {{Name}} left, in {{Name}} right)
+            => left.CompareTo(right) < 0;
+
+        public static bool operator <=(in {{Name}} left, in {{Name}} right)
+            => left.CompareTo(right) <= 0;
+
+        public static bool operator >=(in {{Name}} left, in {{Name}} right)
+            => left.CompareTo(right) >= 0;
+
+        public {{Name}} Convert(in {{Name}}Dimension unit)
+        {
+            if(Unit != null && Unit.Equals(unit))
+                return this;
+
+            return new {{Name}}(Unit.ConvertValue(Value, unit), unit);
+        }
+
+        public double ConvertValue(in {{Name}}Dimension unit)
+            => Unit.ConvertValue(Value, unit);
+
+        public override int GetHashCode()
+            => Unit != null ? HashCode.Combine(Unit.GetBaseValue(Value)) : 0;
+
+        public override string ToString()
+            => ToString(null, null);
+
+        public string ToString(string format)
+            => ToString(format, null);
+
+        public string ToString(IFormatProvider formatProvider)
+            => ToString(null, formatProvider);
+
+        public string ToString(string format, IFormatProvider formatProvider)
+            => $"{Value.ToString(format, formatProvider)}{(Unit == null || string.IsNullOrEmpty(Unit.Symbol) ? string.Empty : $" {Unit.Symbol}")}";
+
+        public override bool Equals(object obj)
+            => obj is {{Name}} direct ? Equals(direct)
+            : obj is IUnitValue<{{Name}}Dimension, {{Name}}> unitValue && Equals(unitValue);
+
+        public bool Equals({{Name}} other)
+            => (other.Unit != null && Unit != null && Value.Equals(other.ConvertValue(Unit)))
+            || (other.Unit == null && Unit == null);
+
+        public bool Equals(IUnitValue<{{Name}}Dimension, {{Name}}> other)
+            => other != null && other.Unit != null && Unit != null && Value.Equals(other.ConvertValue(Unit));
+
+        public int CompareTo(object obj)
+        {
+            switch (obj)
+            {
+                case {{Name}} direct:
+                    return CompareTo(direct);
+                case IUnitValue<{{Name}}Dimension, {{Name}}> ratioValue:
+                    return CompareTo(ratioValue);
+                default:
+                    return obj == null
+                        ? 1
+                        : throw new ArgumentException("Invalid comparison object type");
+            }
+        }
+
+        public int CompareTo({{Name}} other)
+            => other.Unit != null && Unit != null
+            ? Value.CompareTo(other.ConvertValue(Unit))
+            : Unit != null ? 1 : (other.Unit != null ? -1 : 0);
+
+        public int CompareTo(IUnitValue<{{Name}}Dimension, {{Name}}> other)
+            => other != null
+            ? Value.CompareTo(other.ConvertValue(Unit))
+            : 1;
+
+        public static {{Name}}? Parse(in string valueString)
+            => Parse(valueString, null);
+
+        public static {{Name}}? Parse(in string valueString, in IFormatProvider formatProvider)
+            => TryParse(valueString, formatProvider, out {{Name}}? parsedValue)
+            ? parsedValue
+            : ({{Name}}?)null;
+
+        public static bool TryParse(in string valueString, [NotNullWhen(true)] out {{Name}}? parsedValue)
+            => TryParse(valueString, null, out parsedValue);
+
+        public static bool TryParse(in string valueString, in IFormatProvider formatProvider, [NotNullWhen(true)] out {{Name}}? parsedValue)
+        {
+            if (valueString is null) throw new ArgumentNullException(nameof(valueString));
+
+            parsedValue = default;
+
+            if (!UnitValueParser.TryParse<{{Name}}Dimension>(valueString, {{Name}}Dimension.Units.OfType<{{Name}}Dimension>(), formatProvider, out double value, out {{Name}}Dimension unit))
+                return false;
+
+            parsedValue = new {{Name}}(value, unit);
+            return true;
+        }
+    }
+}
