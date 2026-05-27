@@ -1,4 +1,4 @@
-﻿using CACTI.Units.Accelerations;
+using CACTI.Units.Accelerations;
 using CACTI.Units.Forces;
 using CACTI.Units.Ratios;
 using System;
@@ -10,15 +10,10 @@ using System.Threading.Tasks;
 
 namespace CACTI.Units.Gravities
 {
-    public partial class Gravity : IUnitValue<GravityDimension, Gravity>
+    public readonly partial struct Gravity
     {
-        public Gravity(double value) : this(value, GravityDimension.Gravity)
-        {
-
-        }
-
         public static implicit operator Gravity(in double value)
-            => new Gravity(value);
+            => new Gravity(value, GravityDimension.Gravity);
 
         public MeterPerSecondPerSecond ToAcceleration()
             => Value * ForceDimension.KilogramForce.Ratio;
@@ -28,6 +23,5 @@ namespace CACTI.Units.Gravities
             MeterPerSecondPerSecond acceleration = gravity.ToAcceleration();
             return new Acceleration(acceleration.Value, acceleration.Unit);
         }
-            
     }
 }

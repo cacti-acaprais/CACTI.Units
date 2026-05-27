@@ -31,7 +31,7 @@ namespace CACTI.Units.Tests
 
             Assert.AreEqual("10 Sv", sievert.ToString());
             Hour hour = 5;
-            Rate rate = sievert / hour;
+            Rate rate = (Dose)sievert / hour;
             Assert.AreEqual("2 Sv/h", rate.ToString());
 
             MillisievertPerSecond millisievertPerSecond = SievertPerMinute.Convert(rate);

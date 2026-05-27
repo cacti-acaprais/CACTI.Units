@@ -16,7 +16,7 @@ namespace CACTI.Units.Tests
         [TestMethod]
         public void ToVolumeTests()
         {
-            Volume volume = (SquareCentimeter)10 * (Centimeter)10;
+            Volume volume = (Surface)(SquareCentimeter)10 * (Centimeter)10;
             Assert.AreEqual(volume.Unit, VolumeDimension.CubicCentimeter);
         }
 
@@ -44,7 +44,7 @@ namespace CACTI.Units.Tests
             Yard yard = 1;
             Foot foot = 30;
 
-            Surface surface = yard * foot;
+            Surface surface = (Distance)yard * foot;
             Assert.AreEqual(surface.Unit, SurfaceDimension.SquareYard);
 
             SquareFoot squareFoot = SquareFoot.Convert(surface);

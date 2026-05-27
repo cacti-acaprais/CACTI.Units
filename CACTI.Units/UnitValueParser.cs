@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -9,6 +10,9 @@ namespace CACTI.Units
 {
     public static class UnitValueParser
     {
+        private static readonly ConcurrentDictionary<Type, Regex> _regexCache = new ConcurrentDictionary<Type, Regex>();
+        private static readonly ConcurrentDictionary<Type, bool> _hasEmptySymbol = new ConcurrentDictionary<Type, bool>();
+
         public static bool TryParse<TDimension>(in string valueAndUnitString, in IEnumerable<TDimension> units, in IFormatProvider? formatProvider, out double value, [NotNullWhen(true)] out TDimension? unit)
             where TDimension : class, IUnit<TDimension>
         {
@@ -30,13 +34,22 @@ namespace CACTI.Units
         private static bool TryExtractValueAndUnit<TDimension>(in IEnumerable<TDimension> units, in string valueAndUnitString, out string valueString, out string unitString)
             where TDimension : IUnit<TDimension>
         {
-            string[] symbols = units
-                .Select(x => x.Symbol)
-                .Select(x => Regex.Escape(x))
-                .ToArray();
+            Type key = typeof(TDimension);
 
-            string pattern = $@"^(?<value>.*?)\s?(?<unit>{string.Join("|", symbols.Where(symbol => !string.IsNullOrEmpty(symbol)))})";
-            Regex regex = new Regex(pattern);
+            IEnumerable<TDimension> unitsCopy = units;
+            Regex regex = _regexCache.GetOrAdd(key, _ =>
+            {
+                string[] symbols = unitsCopy
+                    .Select(x => x.Symbol)
+                    .Where(symbol => !string.IsNullOrEmpty(symbol))
+                    .Select(x => Regex.Escape(x))
+                    .ToArray();
+
+                string pattern = $@"^(?<value>.*?)\s?(?<unit>{string.Join("|", symbols)})";
+                return new Regex(pattern, RegexOptions.Compiled);
+            });
+
+            bool hasEmpty = _hasEmptySymbol.GetOrAdd(key, _ => unitsCopy.Any(x => string.IsNullOrEmpty(x.Symbol)));
 
             Match match = regex.Match(valueAndUnitString);
             GroupCollection groups = match.Groups;
@@ -45,8 +58,7 @@ namespace CACTI.Units
 
             if (!valueGroup.Success || !unitGroup.Success)
             {
-                //There is a symbol less possibility
-                if (symbols.Any(symbol => string.IsNullOrEmpty(symbol)))
+                if (hasEmpty)
                 {
                     valueString = valueAndUnitString;
                     unitString = string.Empty;

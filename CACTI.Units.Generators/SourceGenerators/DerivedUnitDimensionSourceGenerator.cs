@@ -9,7 +9,6 @@ namespace CACTI.Units.Generators.SourceGenerators
     internal class DerivedUnitDimensionSourceGenerator
     {
         private readonly DerivedDimensionDeclaration _dimensionDeclaration;
-        private readonly HandlebarsTemplate<object, object> _template;
         private const string _source = @"// Auto generated code
 using System;
 using CACTI.Units;
@@ -38,11 +37,11 @@ namespace CACTI.Units.{{Namespace}}
     }
 }";
 
+        private static readonly HandlebarsTemplate<object, object> _template = Handlebars.Compile(_source);
+
         public DerivedUnitDimensionSourceGenerator(DerivedDimensionDeclaration dimensionDeclaration)
         {
             _dimensionDeclaration = dimensionDeclaration;
-
-            _template = Handlebars.Compile(_source);
         }
 
         public string GetSource()

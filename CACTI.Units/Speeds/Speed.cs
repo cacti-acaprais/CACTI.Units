@@ -10,7 +10,7 @@ using CACTI.Units.Accelerations;
 
 namespace CACTI.Units.Speeds
 {
-    public partial class Speed
+    public readonly partial struct Speed
     {
         public static Distance operator *(in Speed speed, in Duration duration)
         {

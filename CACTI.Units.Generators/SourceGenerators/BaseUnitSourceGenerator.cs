@@ -1,4 +1,4 @@
-﻿using CACTI.Units.Generators.Declarations;
+using CACTI.Units.Generators.Declarations;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -26,7 +26,7 @@ using System.Text.Json.Serialization;
 
 namespace CACTI.Units.{_dimensionDeclaration.Namespace}
 {{
-    public partial class {_dimensionDeclaration.Name} : IUnitValue<{_dimensionDeclaration.Name}Dimension, {_dimensionDeclaration.Name}>
+    public readonly partial struct {_dimensionDeclaration.Name} : IUnitValue<{_dimensionDeclaration.Name}Dimension, {_dimensionDeclaration.Name}>, IEquatable<{_dimensionDeclaration.Name}>
     {{
         private readonly double _value;
         private readonly {_dimensionDeclaration.Name}Dimension _unit;
@@ -90,7 +90,7 @@ namespace CACTI.Units.{_dimensionDeclaration.Namespace}
 
         public {_dimensionDeclaration.Name} Convert(in {_dimensionDeclaration.Name}Dimension unit)
         {{
-            if(Unit.Equals(unit))
+            if(Unit != null && Unit.Equals(unit))
                 return this;
 
             return new {_dimensionDeclaration.Name}(Unit.ConvertValue(Value, unit), unit);
@@ -99,8 +99,8 @@ namespace CACTI.Units.{_dimensionDeclaration.Namespace}
         public double ConvertValue(in {_dimensionDeclaration.Name}Dimension unit)
             => Unit.ConvertValue(Value, unit);
 
-         public override int GetHashCode()
-            => HashCode.Combine(Unit.GetBaseValue(Value));
+        public override int GetHashCode()
+            => Unit != null ? HashCode.Combine(Unit.GetBaseValue(Value)) : 0;
 
         public override string ToString()
             => ToString(null, null);
@@ -112,19 +112,25 @@ namespace CACTI.Units.{_dimensionDeclaration.Namespace}
             => ToString(null, formatProvider);
 
         public string ToString(string format, IFormatProvider formatProvider)
-            => $""{{Value.ToString(format, formatProvider)}}{{(string.IsNullOrEmpty(Unit.Symbol) ? string.Empty : $"" {{Unit.Symbol}}"")}}"";
+            => $""{{Value.ToString(format, formatProvider)}}{{(Unit == null || string.IsNullOrEmpty(Unit.Symbol) ? string.Empty : $"" {{Unit.Symbol}}"")}}"";
 
         public override bool Equals(object obj)
-            => obj is IUnitValue<{_dimensionDeclaration.Name}Dimension, {_dimensionDeclaration.Name}> unitValue && Equals(unitValue);
+            => obj is {_dimensionDeclaration.Name} direct ? Equals(direct)
+            : obj is IUnitValue<{_dimensionDeclaration.Name}Dimension, {_dimensionDeclaration.Name}> unitValue && Equals(unitValue);
+
+        public bool Equals({_dimensionDeclaration.Name} other)
+            => (other.Unit != null && Unit != null && Value.Equals(other.ConvertValue(Unit)))
+            || (other.Unit == null && Unit == null);
 
         public bool Equals(IUnitValue<{_dimensionDeclaration.Name}Dimension, {_dimensionDeclaration.Name}> other)
-            => (other?.Unit != null && Unit != null && Value.Equals(other.ConvertValue(Unit)))
-            || (other?.Unit == null && Value == default && Unit == default);
+            => other != null && other.Unit != null && Unit != null && Value.Equals(other.ConvertValue(Unit));
 
         public int CompareTo(object obj)
         {{
             switch (obj)
             {{
+                case {_dimensionDeclaration.Name} direct:
+                    return CompareTo(direct);
                 case IUnitValue<{_dimensionDeclaration.Name}Dimension, {_dimensionDeclaration.Name}> ratioValue:
                     return CompareTo(ratioValue);
                 default:
@@ -133,6 +139,11 @@ namespace CACTI.Units.{_dimensionDeclaration.Namespace}
                         : throw new ArgumentException(""Invalid comparison object type"");
             }}
         }}
+
+        public int CompareTo({_dimensionDeclaration.Name} other)
+            => other.Unit != null && Unit != null
+            ? Value.CompareTo(other.ConvertValue(Unit))
+            : Unit != null ? 1 : (other.Unit != null ? -1 : 0);
 
         public int CompareTo(IUnitValue<{_dimensionDeclaration.Name}Dimension, {_dimensionDeclaration.Name}> other)
             => other != null
@@ -143,7 +154,7 @@ namespace CACTI.Units.{_dimensionDeclaration.Namespace}
             => Parse(valueString, null);
 
         public static {_dimensionDeclaration.Name}? Parse(in string valueString, in IFormatProvider formatProvider)
-            => TryParse(valueString, formatProvider, out {_dimensionDeclaration.Name} parsedValue)
+            => TryParse(valueString, formatProvider, out {_dimensionDeclaration.Name}? parsedValue)
             ? parsedValue
             : ({_dimensionDeclaration.Name}?)null;
 

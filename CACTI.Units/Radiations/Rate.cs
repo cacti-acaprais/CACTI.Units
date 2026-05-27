@@ -7,7 +7,7 @@ using CACTI.Units.Durations;
 
 namespace CACTI.Units.Radiations
 {
-    public partial class Rate
+    public readonly partial struct Rate
     {
         public static Dose operator *(in Rate rate, in Duration duration)
             => new Dose(rate.Value * duration.ConvertValue(rate.Unit.BaseDimension), rate.Unit.Dimension);

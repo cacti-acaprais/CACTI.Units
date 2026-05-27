@@ -22,7 +22,7 @@ namespace CACTI.Units.Tests
             KilometerPerHour kilometerPerHour = 100;
             Second second = 5;
 
-            Acceleration acceleration = kilometerPerHour / second;
+            Acceleration acceleration = (Speed)kilometerPerHour / second;
             Assert.AreEqual(20, acceleration.Value);
 
             MeterPerSecondPerSecond meterPerSecondPerSecond = MeterPerSecondPerSecond.Convert(acceleration);
@@ -34,7 +34,7 @@ namespace CACTI.Units.Tests
             Newton newton = 100;
             Kilogram kilogram = 20;
 
-            MeterPerSecondPerSecond meterPerSecondPerSecond1 = newton / kilogram;
+            MeterPerSecondPerSecond meterPerSecondPerSecond1 = (Force)newton / kilogram;
             Assert.AreEqual(5, meterPerSecondPerSecond1);
         }
 
@@ -52,8 +52,8 @@ namespace CACTI.Units.Tests
         {
             MeterPerSecondPerDay acceleration = 10;
             Kilogram mass = 10;
-            Newton newton = acceleration * mass;
-            Acceleration acceleration2 = newton / mass;
+            Newton newton = (Acceleration)acceleration * mass;
+            Acceleration acceleration2 = (Force)newton / mass;
             Assert.IsTrue(acceleration.Equals(acceleration2));
         }
     }

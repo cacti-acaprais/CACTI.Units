@@ -9,7 +9,7 @@ using CACTI.Units.Surfaces;
 
 namespace CACTI.Units.Distances
 {
-    public partial class Distance
+    public readonly partial struct Distance
     {
         public static Speed operator /(in Distance length, in Duration duration)
         {

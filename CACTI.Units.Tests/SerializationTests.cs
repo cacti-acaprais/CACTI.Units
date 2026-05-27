@@ -1,4 +1,4 @@
-﻿using CACTI.Units.Distances;
+using CACTI.Units.Distances;
 using CACTI.Units.Ratios;
 using CACTI.Units.Speeds;
 using CACTI.Units.Temperatures;
@@ -31,18 +31,18 @@ namespace CACTI.Units.Tests
         public void ParsingTest()
         {
             Assert.IsTrue(Distance.TryParse("5 m", out Distance? distance));
-            Assert.AreEqual("5 m", distance.ToString());
+            Assert.AreEqual("5 m", distance.Value.ToString());
 
             Assert.IsTrue(Millimeter.TryParse("5 m", out Millimeter? millimeters));
-            Assert.AreEqual("5000 mm", millimeters.ToString());
+            Assert.AreEqual("5000 mm", millimeters.Value.ToString());
 
             Assert.IsFalse(Temperature.TryParse("5 m", out Temperature? temperature));
-            Assert.IsTrue(temperature is null);
+            Assert.IsNull(temperature);
 
             Assert.IsTrue(Fahrenheit.TryParse("5°C", out Fahrenheit? fahrenheit));
-            Assert.AreEqual("41 °F", fahrenheit.ToString());
+            Assert.AreEqual("41 °F", fahrenheit.Value.ToString());
 
-            Celcius celcius = (Celcius)fahrenheit;
+            Celcius celcius = (Celcius)fahrenheit.Value;
             Assert.AreEqual("5 °C", celcius.ToString());
 
             Speed? speed = Speed.Parse("5 m/s");

@@ -8,7 +8,7 @@ using CACTI.Units.Volumes;
 
 namespace CACTI.Units.Surfaces
 {
-    public partial class Surface
+    public readonly partial struct Surface
     {
         public static Volume operator *(in Surface surface, in Distance length)
         {

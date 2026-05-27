@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CACTI.Units.Durations
 {
-    public partial class Duration
+    public readonly partial struct Duration
     {
         public static TimeSpan ToTimeSpan(Duration duration)
             => TimeSpan.FromSeconds(duration.ConvertValue(DurationDimension.Second));

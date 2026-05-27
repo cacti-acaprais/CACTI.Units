@@ -21,13 +21,13 @@ namespace CACTI.Units.Generators.Declarations
             && EqualityComparer<string>.Default.Equals(DimensionNamespace, other.DimensionNamespace)
             && EqualityComparer<string>.Default.Equals(BaseDimensionName, other.BaseDimensionName)
             && EqualityComparer<string>.Default.Equals(BaseDimensionNamespace, other.BaseDimensionNamespace)
-            && EqualityComparer<string>.Default.Equals(BaseDimensionNamespace, other.BaseDimensionNamespace)
             && (BaseUnits?.SequenceEqual(other.BaseUnits ?? Array.Empty<UnitDeclaration>()) ?? other.BaseUnits == null)
             && (OperandeUnits?.SequenceEqual(other.OperandeUnits ?? Array.Empty<UnitDeclaration>()) ?? other.OperandeUnits == null);
 
         public override int GetHashCode()
         {
             HashCode hashCode = new HashCode();
+            hashCode.Add(base.GetHashCode());
             hashCode.Add(DimensionName);
             hashCode.Add(DimensionNamespace);
             hashCode.Add(BaseDimensionName);

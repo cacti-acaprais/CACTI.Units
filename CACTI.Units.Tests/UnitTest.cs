@@ -23,32 +23,9 @@ namespace CACTI.Units.Tests
         [TestMethod]
         public void NullComparison()
         {
-#pragma warning disable CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
-#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
-#pragma warning disable CS8604 // Existence possible d'un argument de référence null.
-
             MeterPerSecond speed = 10;
-            bool comparison = speed > null;
-            Assert.IsTrue(comparison);
 
-            bool comparison2 = speed < null;
-            Assert.IsFalse(comparison2);
-
-            bool comparison3 = speed == null;
-            Assert.IsFalse(comparison3);
-
-            bool comparison4 = speed != null;
-            Assert.IsTrue(comparison4);
-
-            bool comparison5 = speed <= null;
-            Assert.IsFalse(comparison5);
-
-            bool comparison6 = speed >= null;
-            Assert.IsTrue(comparison6);
-
-            bool comparison7 = speed < null;
-            Assert.IsFalse(comparison7);
-
+            // CompareTo(null) returns 1 for non-default values
             int comparison8 = speed.CompareTo(null);
             Assert.AreEqual(1, comparison8);
 
@@ -57,12 +34,14 @@ namespace CACTI.Units.Tests
             Assert.AreEqual(1, comparison9);
 
             KilometerPerHour speed2 = 10;
-            int comparison10 = speed2.CompareTo((object)speed);
+            int comparison10 = speed2.CompareTo((object)(Speed)speed);
             Assert.AreEqual(-1, comparison10);
 
-#pragma warning restore CS8604 // Existence possible d'un argument de référence null.
-#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
-#pragma warning restore CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
+            // Default struct comparisons
+            Speed defaultSpeed = default;
+            Speed nonDefaultSpeed = (MeterPerSecond)10;
+            Assert.AreNotEqual(defaultSpeed, nonDefaultSpeed);
+            Assert.AreEqual(default(Speed), defaultSpeed);
         }
 
         [TestMethod]
@@ -151,7 +130,7 @@ namespace CACTI.Units.Tests
             Assert.AreEqual(5, revolutionPerMinute.Value);
 
             RevolutionPerMinute otherRevolutionPerMinute = 10;
-            int comparison = otherRevolutionPerMinute.CompareTo(revolutionPerMinute);
+            int comparison = otherRevolutionPerMinute.CompareTo((RevolutionSpeed)revolutionPerMinute);
             Assert.AreEqual(1, comparison);
         }
 
@@ -182,10 +161,10 @@ namespace CACTI.Units.Tests
             KilometerPerHour kilometerPerHour = KilometerPerHour.Convert(metersPerSecond);
             Assert.AreEqual(18, kilometerPerHour.Value);
 
-            int comparison = metersPerSecond.CompareTo(kilometerPerHour);
+            int comparison = metersPerSecond.CompareTo((Speed)kilometerPerHour);
             Assert.AreEqual(0, comparison);
 
-            Distance length = (KilometerPerHour)18 * (Minute)120;
+            Distance length = (Speed)(KilometerPerHour)18 * (Minute)120;
             Kilometer kilometer = Kilometer.Convert(length);
             Assert.AreEqual(36, kilometer.Value);
         }
@@ -222,7 +201,7 @@ namespace CACTI.Units.Tests
         {
             MeterPerSecondPerSecond acceleration = 5;
             Kilogram mass = 20;
-            Newton newton = acceleration * mass;
+            Newton newton = (Acceleration)acceleration * mass;
 
             Assert.AreEqual(100, newton);
 

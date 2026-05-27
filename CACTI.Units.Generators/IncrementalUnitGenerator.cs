@@ -16,24 +16,33 @@ namespace CACTI.Units.Generators
     [Generator]
     public class IncrementalUnitGenerator : IIncrementalGenerator
     {
-        public void Initialize(IncrementalGeneratorInitializationContext context)
+        static IncrementalUnitGenerator()
         {
             Handlebars.Configuration.TextEncoder = null;
+            Handlebars.RegisterHelper("Replace", (context, arguments) =>
+            {
+                if (arguments.Length != 3)
+                    throw new HandlebarsException("{{#Replace}} helper must have exactly three arguments");
 
+                string source = arguments.At<string>(0);
+                string toReplace = arguments.At<string>(1);
+                string replaceWith = arguments.At<string>(2);
+
+                return source.Replace(toReplace, replaceWith);
+            });
+        }
+
+        public void Initialize(IncrementalGeneratorInitializationContext context)
+        {
             IncrementalValuesProvider<AdditionalText> textFiles = context.AdditionalTextsProvider.Where(file => file.Path.EndsWith(".xml"));
 
-            // read their contents and save their name
-            IncrementalValuesProvider<XmlDocument> xmlDocuments = textFiles.Select((file, token) =>
+            IncrementalValuesProvider<DimensionDeclaration> dimensionDeclarations = textFiles.Select((file, token) =>
             {
                 XmlDocument xmlDocument = new XmlDocument();
                 string text = file.GetText(token).ToString();
                 xmlDocument.LoadXml(text);
-                return xmlDocument;
-            });
-
-            IncrementalValuesProvider<DimensionDeclaration> dimensionDeclarations = xmlDocuments.Select((xmlDocument, token) => IncrementalDeclarationsLoader
-                .GetDimensionDeclarationOrDefault(xmlDocument))
-                .Where(declaration => declaration != null);
+                return IncrementalDeclarationsLoader.GetDimensionDeclarationOrDefault(xmlDocument);
+            }).Where(declaration => declaration != null);
 
             IncrementalValueProvider<ImmutableArray<DimensionDeclaration>> collectedDimensionDeclarations = dimensionDeclarations.Collect();
 

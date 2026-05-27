@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CACTI.Units.Ratios
 {
-    public class Ratio : IUnitValue<RatioDimension, Ratio>
+    public readonly struct Ratio : IUnitValue<RatioDimension, Ratio>, IEquatable<Ratio>
     {
         private readonly double _value;
         private readonly RatioDimension _unit;
@@ -64,7 +64,7 @@ namespace CACTI.Units.Ratios
             => new Ratio(value1.Value - value2.ConvertValue(RatioDimension.RatioUnit));
 
         public override int GetHashCode()
-            => HashCode.Combine(Unit.GetBaseValue(Value));
+            => Unit != null ? HashCode.Combine(Unit.GetBaseValue(Value)) : 0;
 
         public override string ToString()
             => ToString(null, null);
@@ -76,7 +76,7 @@ namespace CACTI.Units.Ratios
             => ToString(null, formatProvider);
 
         public string ToString(string? format, IFormatProvider? formatProvider)
-            => $"{Value.ToString(format, formatProvider)}{(string.IsNullOrEmpty(Unit.Symbol) ? string.Empty : $" {Unit.Symbol}")}";
+            => $"{Value.ToString(format, formatProvider)}{(Unit == null || string.IsNullOrEmpty(Unit.Symbol) ? string.Empty : $" {Unit.Symbol}")}";
 
         public static Ratio? Parse(in string valueString)
             => Parse(valueString, formatProvider: null);
@@ -93,10 +93,7 @@ namespace CACTI.Units.Ratios
         {
             if (UnitValueParser.TryParse(valueString, RatioDimension.Units, formatProvider, out double value, out RatioDimension unit))
             {
-                ratio = unit == RatioDimension.Percent
-                    ? new Percent(value)
-                    : new Ratio(value);
-
+                ratio = new Ratio(value, unit);
                 return true;
             }
 
@@ -105,22 +102,35 @@ namespace CACTI.Units.Ratios
         }
 
         public override bool Equals(object? obj)
-            => obj is IUnitValue<RatioDimension, Ratio> other && Equals(other);
+            => obj is Ratio direct ? Equals(direct)
+            : obj is IUnitValue<RatioDimension, Ratio> other && Equals(other);
+
+        public bool Equals(Ratio other)
+            => (other.Unit != null && Unit != null && Value.Equals(other.ConvertValue(Unit)))
+            || (other.Unit == null && Unit == null);
+
+        public bool Equals(IUnitValue<RatioDimension, Ratio>? other)
+            => other != null && other.Unit != null && Unit != null && Value.Equals(other.ConvertValue(Unit));
 
         public int CompareTo(object? obj)
         {
             switch (obj)
             {
+                case Ratio direct:
+                    return CompareTo(direct);
                 case IUnitValue<RatioDimension, Ratio> ratioValue:
                     return CompareTo(ratioValue);
                 default:
-                    throw new ArgumentException("Invalid comparison object type");
+                    return obj == null
+                        ? 1
+                        : throw new ArgumentException("Invalid comparison object type");
             }
         }
 
-        public bool Equals(IUnitValue<RatioDimension, Ratio>? other)
-            => (other?.Unit != null && Unit != null && Value.Equals(other.ConvertValue(Unit)))
-            || (other?.Unit == null && Unit == null);
+        public int CompareTo(Ratio other)
+            => other.Unit != null && Unit != null
+            ? Value.CompareTo(other.ConvertValue(Unit))
+            : Unit != null ? 1 : (other.Unit != null ? -1 : 0);
 
         public int CompareTo(IUnitValue<RatioDimension, Ratio> other)
             => other != null

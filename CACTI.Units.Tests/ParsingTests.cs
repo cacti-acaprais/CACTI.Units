@@ -1,4 +1,4 @@
-﻿using CACTI.Units.Currents;
+using CACTI.Units.Currents;
 using CACTI.Units.Ratios;
 using CACTI.Units.RevolutionSpeeds;
 using CACTI.Units.Temperatures;
@@ -20,8 +20,9 @@ namespace CACTI.Units.Tests
         {
             Ampere reference = 14.3;
             string text = reference.ToString("F3");
-            if(Current.TryParse(text, out Current current))
+            if(Current.TryParse(text, out Current? parsedCurrent))
             {
+                Current current = parsedCurrent.Value;
                 Assert.AreEqual(reference.Value, current.Value);
                 Assert.AreEqual(reference.Unit.Symbol, current.Unit.Symbol);
             }
@@ -36,8 +37,9 @@ namespace CACTI.Units.Tests
         {
             RevolutionPerSecond reference = 10;
             string text = reference.ToString();
-            if (RevolutionSpeed.TryParse(text, out RevolutionSpeed revolutionSpeed))
+            if (RevolutionSpeed.TryParse(text, out RevolutionSpeed? parsedSpeed))
             {
+                RevolutionSpeed revolutionSpeed = parsedSpeed.Value;
                 Assert.AreEqual(reference.Value, revolutionSpeed.Value);
                 Assert.AreEqual(reference.Unit.Symbol, revolutionSpeed.Unit.Symbol);
             }
@@ -52,8 +54,9 @@ namespace CACTI.Units.Tests
         {
             Ratio reference = (Ratio)10;
             string text = reference.ToString();
-            if(Ratio.TryParse(text, out Ratio? ratio))
+            if(Ratio.TryParse(text, out Ratio? parsedRatio))
             {
+                Ratio ratio = parsedRatio.Value;
                 Assert.AreEqual(reference.Value, ratio.Value);
                 Assert.AreEqual(reference.Unit.Symbol, ratio.Unit.Symbol);
             }
@@ -67,7 +70,7 @@ namespace CACTI.Units.Tests
         public void InvalidUnitlessParsingTest()
         {
             string text = "20";
-            bool result = Temperature.TryParse(text, out Temperature temperature);
+            bool result = Temperature.TryParse(text, out Temperature? temperature);
             Assert.IsFalse(result);
         }
 

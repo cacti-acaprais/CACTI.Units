@@ -9,7 +9,7 @@ using CACTI.Units.Gravities;
 
 namespace CACTI.Units.Accelerations
 {
-    public partial class Acceleration
+    public readonly partial struct Acceleration
     {
         public static Newton operator *(in Acceleration acceleration, in Mass mass)
             => acceleration.ConvertValue(AccelerationDimension.MeterPerSecondPerSecond) * mass.ConvertValue(MassDimension.Kilogram);

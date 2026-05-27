@@ -9,7 +9,6 @@ namespace CACTI.Units.Generators.SourceGenerators
     internal class ExponentUnitDimensionSourceGenerator
     {
         private readonly ExponentDimensionDeclaration _dimensionDeclaration;
-        private readonly HandlebarsTemplate<object, object> _template;
         private const string _source = @"// Auto generated code
 using System;
 using CACTI.Units;
@@ -49,23 +48,11 @@ namespace CACTI.Units.{{Namespace}}
     }
 }";
 
+        private static readonly HandlebarsTemplate<object, object> _template = Handlebars.Compile(_source);
+
         public ExponentUnitDimensionSourceGenerator(ExponentDimensionDeclaration dimensionDeclaration)
         {
             _dimensionDeclaration = dimensionDeclaration;
-
-            Handlebars.RegisterHelper("Replace", (context, arguments) =>
-            {
-                if (arguments.Length != 3)
-                    throw new HandlebarsException("{{#Replace}} helper must have exactly one argument");
-
-                string source = arguments.At<string>(0);
-                string toReplace = arguments.At<string>(1);
-                string replaceWith = arguments.At<string>(2);
-
-                return source.Replace(toReplace, replaceWith);
-            });
-
-            _template = Handlebars.Compile(_source);
         }
 
         public string GetSource()

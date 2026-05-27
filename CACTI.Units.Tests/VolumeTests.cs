@@ -76,12 +76,12 @@ namespace CACTI.Units.Tests
         public void SurfaceToVolumeTest()
         {
             Centimeter width = (Centimeter)5;
-            Surface surface = width * (Millimeter)100;
+            Surface surface = (Distance)width * (Millimeter)100;
             Volume volume = surface * (Millimeter)20;
             Assert.AreEqual("100 cm3", volume.ToString());
 
             Meter length = (Meter)5;
-            Volume otherVolume = length * (Meter)5 * (Meter)2;
+            Volume otherVolume = (Distance)length * (Meter)5 * (Meter)2;
             Assert.AreEqual("50 m3", otherVolume.ToString());
         }
 

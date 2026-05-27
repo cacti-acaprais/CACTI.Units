@@ -8,7 +8,7 @@ using CACTI.Units.Resistances;
 
 namespace CACTI.Units.Voltages
 {
-    public partial class Voltage
+    public readonly partial struct Voltage
     {
         public static Resistance operator /(in Voltage voltage, in Current current)
         {

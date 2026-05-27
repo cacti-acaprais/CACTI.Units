@@ -16,15 +16,15 @@ namespace CACTI.Units.Tests
         [TestMethod]
         public void ToResistanceTests()
         {
-            Resistance resistance = (MilliVolt)10 / (MilliAmpere)10;
+            Resistance resistance = (Voltage)(MilliVolt)10 / (MilliAmpere)10;
             Assert.IsTrue(resistance.Unit.Equals(ResistanceDimension.MilliOhm));
             Assert.AreEqual((MilliOhm)1, resistance);
 
-            Resistance resistance2 = (MilliVolt)10 / (Ampere)10;
+            Resistance resistance2 = (Voltage)(MilliVolt)10 / (Ampere)10;
             Assert.IsTrue(resistance2.Unit.Equals(ResistanceDimension.MilliOhm));
             Assert.AreEqual((MilliOhm)0.001, resistance2);
 
-            Resistance resistance3 = (Volt)10 / (MicroAmpere)1000;
+            Resistance resistance3 = (Voltage)(Volt)10 / (MicroAmpere)1000;
             Assert.IsTrue(resistance3.Unit.Equals(ResistanceDimension.Ohm));
             Assert.AreEqual((Ohm)10000, resistance3);
         }

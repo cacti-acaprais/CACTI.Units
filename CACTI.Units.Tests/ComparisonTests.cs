@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +18,7 @@ namespace CACTI.Units.Tests
         {
             Distance distance = (Kilometer)1;
             Meter meter = 1000;
-            Assert.AreEqual(distance, meter);
+            Assert.AreEqual(distance, (Distance)meter);
             Assert.IsTrue(distance == meter);
         }
 
@@ -27,7 +27,7 @@ namespace CACTI.Units.Tests
         {
             Duration duration = (Day)1;
             Hour hour = 12;
-            Assert.AreNotEqual(duration, hour);
+            Assert.AreNotEqual(duration, (Duration)hour);
             Assert.IsTrue(duration != hour);
         }
 

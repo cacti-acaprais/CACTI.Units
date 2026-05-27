@@ -7,7 +7,6 @@ namespace CACTI.Units.Generators.SourceGenerators
 {
     internal class DerivedUnitSourceGenerator : UnitSourceGenerator
     {
-
         public DerivedUnitSourceGenerator(DerivedDimensionDeclaration dimensionDeclaration, UnitDeclaration unitDeclaration, IEnumerable<UnitDeclaration> otherUnitDeclarations)
             : base(new DimensionDeclaration
             {
@@ -17,7 +16,6 @@ namespace CACTI.Units.Generators.SourceGenerators
                 Units = dimensionDeclaration.Units
             }, unitDeclaration, otherUnitDeclarations)
         {
-
         }
     }
 }
