@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
 
 namespace CACTI.Units
 {
@@ -45,8 +44,17 @@ namespace CACTI.Units
         {
             if (otherUnits is null) throw new ArgumentNullException(nameof(otherUnits));
 
-            otherUnit = otherUnits.FirstOrDefault(x => x.Ratio == Ratio);
-            return !(otherUnit is null);
+            foreach (TOtherDimension candidate in otherUnits)
+            {
+                if (candidate.Ratio == Ratio)
+                {
+                    otherUnit = candidate;
+                    return true;
+                }
+            }
+
+            otherUnit = default;
+            return false;
         }
 
         public override bool Equals(object? obj)

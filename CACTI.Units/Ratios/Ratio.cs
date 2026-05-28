@@ -76,7 +76,12 @@ namespace CACTI.Units.Ratios
             => ToString(null, formatProvider);
 
         public string ToString(string? format, IFormatProvider? formatProvider)
-            => $"{Value.ToString(format, formatProvider)}{(Unit == null || string.IsNullOrEmpty(Unit.Symbol) ? string.Empty : $" {Unit.Symbol}")}";
+        {
+            string valueStr = Value.ToString(format, formatProvider);
+            if (Unit == null || string.IsNullOrEmpty(Unit.Symbol))
+                return valueStr;
+            return string.Concat(valueStr, " ", Unit.Symbol);
+        }
 
         public static Ratio? Parse(in string valueString)
             => Parse(valueString, formatProvider: null);

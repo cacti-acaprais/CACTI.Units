@@ -7,6 +7,8 @@ namespace CACTI.Units
         where TDimension : IUnit<TDimension>
         where TBaseDimension : IUnit<TBaseDimension>
     {
+        private readonly double _baseDimensionBaseValue;
+        private readonly double _baseDimensionFromBaseValue;
 
         public ComposedUnit(TDimension dimension, TBaseDimension baseDimension)
         {
@@ -15,6 +17,8 @@ namespace CACTI.Units
 
             Dimension = dimension;
             BaseDimension = baseDimension;
+            _baseDimensionBaseValue = baseDimension.GetBaseValue(1);
+            _baseDimensionFromBaseValue = baseDimension.FromBaseValue(1);
 
             Symbol = $"{(dimension is IComposedUnit ? $"({dimension.Symbol})" : dimension.Symbol)}/{baseDimension.Symbol}";
         }
@@ -29,10 +33,10 @@ namespace CACTI.Units
             => Dimension.ConvertValue(value, unit.Dimension) / BaseDimension.ConvertValue(1, unit.BaseDimension);
 
         public double FromBaseValue(in double value)
-            => Dimension.FromBaseValue(value) / BaseDimension.FromBaseValue(1);
+            => Dimension.FromBaseValue(value) / _baseDimensionFromBaseValue;
 
         public double GetBaseValue(in double value)
-            => Dimension.GetBaseValue(value) / BaseDimension.GetBaseValue(1);
+            => Dimension.GetBaseValue(value) / _baseDimensionBaseValue;
 
         public override bool Equals(object? obj)
             => obj is ComposedUnit<TDimension, TBaseDimension> other

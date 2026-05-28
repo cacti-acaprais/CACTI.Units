@@ -30,25 +30,27 @@ Units are defined by their base dimensions like (with international system and i
 Some units dimensions are composed by other dimensions like:
 - Accelerations (Speed / Duration)
 - Count rate
-- Radiation rate
+- Radiation rate (Dose / Duration)
 - Revolution speed
 - Speeds (Distance / Duration)
 	- SI: Meter per second, ...
 	- Imperial: Mile per hour, ...
-- Radation rates (Dose / Duration)
+- Surface activity
 - Surface (Distance²)
+	- SI: square meter, are, hectare, ...
+	- Imperial: square foot, square yard, acre, ...
 - Volume (Distance ^ 3)
 	- SI: cubic meter, liter, ...
 	- Imperial: Pint, Gallon, ...
 
-# Comparisons
+## Comparisons
 Units of the same dimensions can be compared:
 - Equality (Equals or ==)
-- Difference ( != )  
-- Superior ( > )
-- Inferior ( < )
-- Superior or equal ( >= )
-- Inferior or equal ( <= )
+- Difference ( != )
+- Greater than ( > )
+- Less than ( < )
+- Greater than or equal ( >= )
+- Less than or equal ( <= )
 
 ~~~C#
 Speed speed = (MeterPerSecond)10;
@@ -63,12 +65,12 @@ Assert.IsTrue(meterPerSecond >= kilometerPerHour);
 Assert.IsTrue(meterPerSecond == kilometerPerHour);
 ~~~
 
-# Mathematical operations
-All unit dimensions support the bellows operations:
+## Mathematical operations
+All unit dimensions support the below operations:
 - Division (unit = unit / double)
 - Multiplication (unit = unit * double)
 - Addition (unit = unit + unit)
-- Substraction (unit = unit - unit)
+- Subtraction (unit = unit - unit)
 
 The unit of an operation result is always the left operand unit.
 
@@ -78,13 +80,13 @@ Surface surface = squareMeter - (SquareMeter)30;
 Assert.AreEqual("90 m2", surface.ToString());
 ~~~
 
-## Ratios operations
-Along with mathematical operations bellow ratios operations are supported:
+### Ratios operations
+Along with mathematical operations, the below ratios operations are supported:
 - Ratio (ratio = unit / unit)
 - Division (unit = unit / ratio)
-- Multiplicaiton (unit = unit * ratio)
+- Multiplication (unit = unit * ratio)
 - Addition (unit = unit + ratio)
-- Subsraction (unit = unit - ratio)
+- Subtraction (unit = unit - ratio)
 
 ~~~C#
 Ratio ratio = (MillisievertPerHour)50 / (MillisievertPerHour)200;
@@ -94,7 +96,7 @@ MillisievertPerHour millisievertPerHour = (MillisievertPerHour)50 + (Percent)50;
 Assert.AreEqual("75 mSv/h", millisievertPerHour.ToString());
 ~~~
 
-## Custom operators
+### Custom operators
 Some units are extended with custom operators allowing conversions to another unit.
 
 - Speed = Distance / Duration
@@ -107,7 +109,7 @@ Volume volume = (Meter)5 * (Meter)5 * (Meter)2;
 Assert.AreEqual("50 m3", volume.ToString());
 ~~~
 
-# SI units conversions to non SI
+## SI units conversions to non SI
 Some units are extended to support non SI conversions like volumes (exponent of distances) to liters:
 
 ~~~C#
@@ -123,8 +125,8 @@ Assert.AreEqual("13 L", liter.ToString());
 ~~~
 
 
-# Serialization
-All units can be serialized with formatting:
+## Formatting
+All units support formatting:
 ~~~C#
 Meter distance = 50.555;
 Assert.AreEqual("50.555 m", distance.ToString());
@@ -133,8 +135,8 @@ Assert.AreEqual("50.55 m", distance.ToString("F2"));
 Assert.AreEqual("50.55 m", string.Format("{0:F2}", distance));
 ~~~
 
-# Parsing
-A text can be parsed with the 
+## Parsing
+A text can be parsed with the `Parse` method:
 
 ~~~C#
 Speed speed = Speed.Parse("5 m/s");

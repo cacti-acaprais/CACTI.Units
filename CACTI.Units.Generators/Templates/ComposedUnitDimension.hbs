@@ -12,6 +12,9 @@ namespace CACTI.Units.{{Namespace}}
 {
     public partial class {{Name}}Dimension : {{#if DerivedDimensionName}}{{DerivedDimensionName}}Dimension{{else}}Unit<{{Name}}Dimension>{{/if}}, IComposedUnit<{{DimensionName}}Dimension, {{BaseDimensionName}}Dimension>, IUnit<{{Name}}Dimension>
     {
+        private readonly double _baseDimensionBaseValue;
+        private readonly double _baseDimensionFromBaseValue;
+
         [JsonConstructor]
         public {{Name}}Dimension({{DimensionName}}Dimension dimension, {{BaseDimensionName}}Dimension baseDimension)
             : base(symbol: $"{(dimension is IComposedUnit ? $"({dimension.Symbol})" : dimension.Symbol)}/{baseDimension.Symbol}", ratio: dimension.Ratio / baseDimension.Ratio, offset: 0)
@@ -21,6 +24,8 @@ namespace CACTI.Units.{{Namespace}}
 
             Dimension = dimension;
             BaseDimension = baseDimension;
+            _baseDimensionBaseValue = baseDimension.GetBaseValue(1);
+            _baseDimensionFromBaseValue = baseDimension.FromBaseValue(1);
         }
 
         public {{DimensionName}}Dimension Dimension { get; }
@@ -36,7 +41,7 @@ namespace CACTI.Units.{{Namespace}}
             {{/each}}
         {{/each}}
 
-        public static {{Name}}Dimension[] Units = new {{Name}}Dimension[] {
+        public static readonly {{Name}}Dimension[] Units = new {{Name}}Dimension[] {
             {{#each Units as |unitDeclaration|}}
             {{unitDeclaration.Name}},
             {{/each}}
@@ -46,10 +51,10 @@ namespace CACTI.Units.{{Namespace}}
             => Dimension.ConvertValue(value, unit.Dimension) / BaseDimension.ConvertValue(1, unit.BaseDimension);
 
         public double FromBaseValue(in double value)
-            => Dimension.FromBaseValue(value) / BaseDimension.FromBaseValue(1);
+            => Dimension.FromBaseValue(value) / _baseDimensionFromBaseValue;
 
         public double GetBaseValue(in double value)
-            => Dimension.GetBaseValue(value) / BaseDimension.GetBaseValue(1);
+            => Dimension.GetBaseValue(value) / _baseDimensionBaseValue;
 
         public override bool Equals(object? obj)
             => obj is ComposedUnit<{{DimensionName}}Dimension, {{BaseDimensionName}}Dimension> other

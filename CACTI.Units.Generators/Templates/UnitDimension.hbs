@@ -22,7 +22,7 @@ namespace CACTI.Units.{{Namespace}}
         public static {{unitDeclaration.DerivedDimensionName}}Dimension {{unitDeclaration.Name}} { get; } = {{unitDeclaration.DerivedDimensionName}}Dimension.{{unitDeclaration.Name}};
         {{/each}}
 
-        public static {{Name}}Dimension[] Units = new {{Name}}Dimension[] {
+        public static readonly {{Name}}Dimension[] Units = new {{Name}}Dimension[] {
             {{#each Units as |unitDeclaration|}}
                 {{unitDeclaration.Name}},
             {{/each}}

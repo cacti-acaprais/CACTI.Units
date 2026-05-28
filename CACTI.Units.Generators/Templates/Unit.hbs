@@ -103,7 +103,10 @@ namespace CACTI.Units.{{dimensionDeclaration.Namespace}}
         public string ToString(string? format, IFormatProvider? formatProvider)
         {
             string symbol = {{dimensionDeclaration.Name}}Dimension.{{unitDeclaration.Name}}.Symbol;
-            return $"{Value.ToString(format, formatProvider)}{(string.IsNullOrEmpty(symbol) ? string.Empty : $" {symbol}")}";
+            string valueStr = Value.ToString(format, formatProvider);
+            if (string.IsNullOrEmpty(symbol))
+                return valueStr;
+            return string.Concat(valueStr, " ", symbol);
         }
 
         public override bool Equals(object? obj)
