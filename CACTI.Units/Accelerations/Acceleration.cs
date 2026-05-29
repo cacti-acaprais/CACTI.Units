@@ -12,7 +12,7 @@ namespace CACTI.Units.Accelerations
     public readonly partial struct Acceleration
     {
         public static Newton operator *(in Acceleration acceleration, in Mass mass)
-            => acceleration.ConvertValue(AccelerationDimension.MeterPerSecondPerSecond) * mass.ConvertValue(MassDimension.Kilogram);
+            => acceleration.ConvertValue(AccelerationDimension.MeterPerSecondPerSecond) * mass.ConvertValue(SIMassDimension.Kilogram);
 
         public Gravity ToGravity()
         {

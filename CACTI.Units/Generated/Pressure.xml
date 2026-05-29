@@ -1,0 +1,12 @@
+<DimensionDeclaration Name="Pressure" Namespace="Pressures">
+	<Unit Name="Pascal" Symbol="Pa" Ratio="1" Offset="0" />
+	<Unit Name="Hectopascal" Symbol="hPa" Ratio="Hecto" Offset="0" />
+	<Unit Name="Kilopascal" Symbol="kPa" Ratio="Kilo" Offset="0" />
+	<Unit Name="Megapascal" Symbol="MPa" Ratio="Mega" Offset="0" />
+	<Unit Name="Gigapascal" Symbol="GPa" Ratio="Giga" Offset="0" />
+	<Unit Name="Bar" Symbol="bar" Ratio="1e5" Offset="0" />
+	<Unit Name="Millibar" Symbol="mbar" Ratio="Hecto" Offset="0" />
+	<Unit Name="Atmosphere" Symbol="atm" Ratio="101325" Offset="0" />
+	<Unit Name="Psi" Symbol="psi" Ratio="6894.76" Offset="0" />
+	<Unit Name="Torr" Symbol="Torr" Ratio="133.322" Offset="0" />
+</DimensionDeclaration>

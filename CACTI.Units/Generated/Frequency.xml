@@ -1,0 +1,7 @@
+<DimensionDeclaration Name="Frequency" Namespace="Frequencies">
+	<Unit Name="Hertz" Symbol="Hz" Ratio="1" Offset="0" />
+	<Unit Name="Kilohertz" Symbol="kHz" Ratio="Kilo" Offset="0" />
+	<Unit Name="Megahertz" Symbol="MHz" Ratio="Mega" Offset="0" />
+	<Unit Name="Gigahertz" Symbol="GHz" Ratio="Giga" Offset="0" />
+	<Unit Name="Terahertz" Symbol="THz" Ratio="Tera" Offset="0" />
+</DimensionDeclaration>

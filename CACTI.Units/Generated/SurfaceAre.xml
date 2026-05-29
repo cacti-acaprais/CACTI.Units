@@ -1,4 +1,5 @@
 ﻿<DerivedDimensionDeclaration Name="AreSurface" Namespace="Surfaces" DerivedDimensionName="Surface">
 	<Unit Name="Are" Symbol="a" Ratio="Hecto" Offset="0" />
 	<Unit Name="Hectare" Symbol="ha" Ratio="Hecto * Hecto" Offset="0" />
+	<Unit Name="Acre" Symbol="ac" Ratio="4046.86" Offset="0" />
 </DerivedDimensionDeclaration>

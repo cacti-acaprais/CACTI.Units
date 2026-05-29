@@ -11,6 +11,6 @@ namespace CACTI.Units.Forces
     public readonly partial struct Force
     {
         public static MeterPerSecondPerSecond operator /(in Force force, in Mass mass)
-            => force.ConvertValue(ForceDimension.Newton) / mass.ConvertValue(MassDimension.Kilogram);
+            => force.ConvertValue(ForceDimension.Newton) / mass.ConvertValue(SIMassDimension.Kilogram);
     }
 }

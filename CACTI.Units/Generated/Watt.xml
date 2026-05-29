@@ -8,4 +8,6 @@
 	<Unit Name="Decawatt" Symbol="daW" Ratio="Deca" Offset="0" />
 	<Unit Name="Kilowatt" Symbol="kW" Ratio="Kilo" Offset="0" />
 	<Unit Name="Megawatt" Symbol="MW" Ratio="Mega" Offset="0" />
+	<Unit Name="Gigawatt" Symbol="GW" Ratio="Giga" Offset="0" />
+	<Unit Name="Horsepower" Symbol="HP" Ratio="745.7" Offset="0" />
 </DimensionDeclaration>

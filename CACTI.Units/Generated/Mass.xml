@@ -1,4 +1,3 @@
 <DimensionDeclaration Name="Mass" Namespace="Masses">
-  <Unit Name="Kilogram" Symbol="kg" Ratio="Kilo" Offset="0" />  
-  <Unit Name="Gram" Symbol="g" Ratio="1" Offset="0" />  
+
 </DimensionDeclaration>

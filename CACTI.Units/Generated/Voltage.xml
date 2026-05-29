@@ -1,5 +1,7 @@
 <DimensionDeclaration Name="Voltage" Namespace="Voltages">
   <Unit Name="Volt" Symbol="V" Ratio="1" Offset="0" />  
   <Unit Name="MilliVolt" Symbol="mV" Ratio="Milli" Offset="0" />  
-  <Unit Name="MicroVolt" Symbol="µV" Ratio="Micro" Offset="0" />  
+  <Unit Name="MicroVolt" Symbol="µV" Ratio="Micro" Offset="0" />
+  <Unit Name="KiloVolt" Symbol="kV" Ratio="Kilo" Offset="0" />
+  <Unit Name="MegaVolt" Symbol="MV" Ratio="Mega" Offset="0" />
 </DimensionDeclaration>

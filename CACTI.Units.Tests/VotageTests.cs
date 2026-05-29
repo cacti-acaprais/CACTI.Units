@@ -28,5 +28,21 @@ namespace CACTI.Units.Tests
             Assert.IsTrue(resistance3.Unit.Equals(ResistanceDimension.Ohm));
             Assert.AreEqual((Ohm)10000, resistance3);
         }
+
+        [TestMethod]
+        public void KiloVoltToVoltConversion()
+        {
+            KiloVolt kiloVolt = 1;
+            Volt volt = Volt.Convert(kiloVolt);
+            Assert.AreEqual(1000, volt.Value);
+        }
+
+        [TestMethod]
+        public void MegaVoltToKiloVoltConversion()
+        {
+            MegaVolt megaVolt = 1;
+            KiloVolt kiloVolt = KiloVolt.Convert(megaVolt);
+            Assert.AreEqual(1000, kiloVolt.Value);
+        }
     }
 }

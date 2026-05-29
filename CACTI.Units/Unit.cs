@@ -72,6 +72,9 @@ namespace CACTI.Units
         public virtual double GetBaseValue(in double value)
             => (value - Offset) * Ratio;
 
+        protected const double Peta = 1e15;
+        protected const double Tera = 1e12;
+        protected const double Giga = 1e9;
         protected const double Mega = 1e6;
         protected const double Kilo = 1e3;
         protected const double Hecto = 1e2;
@@ -87,5 +90,6 @@ namespace CACTI.Units
         protected const double M = K * 1024;
         protected const double G = M * 1024;
         protected const double T = G * 1024;
+        protected const double P = T * 1024;
     }
 }

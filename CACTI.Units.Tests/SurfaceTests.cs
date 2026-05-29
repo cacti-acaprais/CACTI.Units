@@ -50,5 +50,13 @@ namespace CACTI.Units.Tests
             SquareFoot squareFoot = SquareFoot.Convert(surface);
             Assert.AreEqual("90 ft2", squareFoot.ToString("0.##"));
         }
+
+        [TestMethod]
+        public void AcreConversionTest()
+        {
+            SquareMeter squareMeter = 4046.86;
+            Acre acre = Acre.Convert(squareMeter);
+            Assert.AreEqual(1, acre.Value, 0.001);
+        }
     }
 }

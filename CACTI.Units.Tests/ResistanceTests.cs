@@ -40,5 +40,21 @@ namespace CACTI.Units.Tests
             Resistance halved = ohm / 2;
             Assert.AreEqual(50, halved.Value);
         }
+
+        [TestMethod]
+        public void OhmToKiloOhmConversion()
+        {
+            Ohm ohm = 4700;
+            KiloOhm kiloOhm = KiloOhm.Convert(ohm);
+            Assert.AreEqual(4.7, kiloOhm.Value, 0.0001);
+        }
+
+        [TestMethod]
+        public void KiloOhmToMegaOhmConversion()
+        {
+            KiloOhm kiloOhm = 2200;
+            MegaOhm megaOhm = MegaOhm.Convert(kiloOhm);
+            Assert.AreEqual(2.2, megaOhm.Value, 0.0001);
+        }
     }
 }

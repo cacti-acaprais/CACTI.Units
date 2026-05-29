@@ -3,4 +3,5 @@
 	<Unit Name="Foot" Symbol="ft" Ratio="0.3048" Offset="0" />
 	<Unit Name="Yard" Symbol="yd" Ratio="0.9144" Offset="0" />
 	<Unit Name="Mile" Symbol="mi" Ratio="1_609.344" Offset="0" />
+	<Unit Name="NauticalMile" Symbol="nmi" Ratio="1852" Offset="0" />
 </DerivedDimensionDeclaration>

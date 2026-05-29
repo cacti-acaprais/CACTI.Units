@@ -1,0 +1,11 @@
+<DerivedDimensionDeclaration Name="SIMass" Namespace="Masses" DerivedDimensionName="Mass">
+	<Unit Name="Microgram" Symbol="μg" Ratio="Micro" Offset="0" />
+	<Unit Name="Milligram" Symbol="mg" Ratio="Milli" Offset="0" />
+	<Unit Name="Centigram" Symbol="cg" Ratio="Centi" Offset="0" />
+	<Unit Name="Decigram" Symbol="dg" Ratio="Deci" Offset="0" />
+	<Unit Name="Gram" Symbol="g" Ratio="1" Offset="0" />
+	<Unit Name="Decagram" Symbol="dag" Ratio="Deca" Offset="0" />
+	<Unit Name="Hectogram" Symbol="hg" Ratio="Hecto" Offset="0" />
+	<Unit Name="Kilogram" Symbol="kg" Ratio="Kilo" Offset="0" />
+	<Unit Name="MetricTon" Symbol="t" Ratio="Mega" Offset="0" />
+</DerivedDimensionDeclaration>

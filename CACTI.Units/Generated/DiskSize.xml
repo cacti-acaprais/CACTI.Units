@@ -4,4 +4,5 @@
 	<Unit Name="MegaBytes" Symbol="Mo" Ratio="M" Offset="0" />
 	<Unit Name="GigaBytes" Symbol="Go" Ratio="G" Offset="0" />
 	<Unit Name="TeraBytes" Symbol="To" Ratio="T" Offset="0" />
+	<Unit Name="PetaBytes" Symbol="PB" Ratio="P" Offset="0" />
 </DimensionDeclaration>

@@ -1,0 +1,7 @@
+<DerivedDimensionDeclaration Name="ImperialMass" Namespace="Masses" DerivedDimensionName="Mass">
+	<Unit Name="Ounce" Symbol="oz" Ratio="28.3495" Offset="0" />
+	<Unit Name="Pound" Symbol="lb" Ratio="453.592" Offset="0" />
+	<Unit Name="Stone" Symbol="st" Ratio="6350.29" Offset="0" />
+	<Unit Name="ShortTon" Symbol="ton" Ratio="907185" Offset="0" />
+	<Unit Name="LongTon" Symbol="lton" Ratio="1016047" Offset="0" />
+</DerivedDimensionDeclaration>

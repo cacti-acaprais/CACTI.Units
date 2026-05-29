@@ -29,6 +29,10 @@ namespace CACTI.Units.Tests
             gigaBytes *= 1024;
             TeraBytes teraBytes = TeraBytes.Convert(gigaBytes);
             Assert.AreEqual("1 To", teraBytes.ToString());
+
+            teraBytes *= 1024;
+            PetaBytes petaBytes = PetaBytes.Convert(teraBytes);
+            Assert.AreEqual("1 PB", petaBytes.ToString());
         }
     }
 }

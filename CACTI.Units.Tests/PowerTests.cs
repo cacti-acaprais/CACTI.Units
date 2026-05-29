@@ -47,6 +47,22 @@ namespace CACTI.Units.Tests
         }
 
         [TestMethod]
+        public void MegawattToGigawattConversion()
+        {
+            Megawatt megawatt = 2500;
+            Gigawatt gigawatt = Gigawatt.Convert(megawatt);
+            Assert.AreEqual(2.5, gigawatt.Value, 0.0001);
+        }
+
+        [TestMethod]
+        public void HorsepowerToWattConversion()
+        {
+            Horsepower horsepower = 1;
+            Watt watt = Watt.Convert(horsepower);
+            Assert.AreEqual(745.7, watt.Value, 0.1);
+        }
+
+        [TestMethod]
         public void FullScaleConversionRoundTrip()
         {
             Watt watt = 42;

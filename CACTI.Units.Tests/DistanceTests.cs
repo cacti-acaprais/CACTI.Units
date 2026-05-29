@@ -20,5 +20,13 @@ namespace CACTI.Units.Tests
             Foot foot = inch;
             Assert.AreEqual("3.28 ft", foot.ToString("0.##"));
         }
+
+        [TestMethod]
+        public void NauticalMileToMeterConversion()
+        {
+            NauticalMile nauticalMile = 1;
+            Meter meter = Meter.Convert(nauticalMile);
+            Assert.AreEqual(1852, meter.Value, 0.001);
+        }
     }
 }
